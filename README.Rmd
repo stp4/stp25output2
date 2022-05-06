@@ -1,0 +1,379 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+require(magrittr)
+require(stp25output2)
+require(stp25stat2)
+require(stp25tools)
+require(lattice)
+```
+
+# stp25output2
+
+Die Scripten dienen der Erstellung von Reports als HTML aber auch von PDF ueber knit.
+Zum Teil handelt es sich um modifizerte Funktionen von  R2HTML, texreg und htmlTable.
+
+Overview
+--------
+
+
+* Initialisiert von neuen Projekten
+   + `Projekt()` und `End()` Initialisiert ein neues Projekt und aufruf der HTML-Seite mit Hilfe von R2HTML.
+
+* Text und Tabellen-Formatierung
+   + `Output` Erstellt Tabellen
+   + `Text`, `Head` und `Head1 ...` Schreibt HTML Text.
+
+* Hilfsfunktionen
+   + `SavePlot` Speichert Bilder in den Arbeitsfolder.
+
+
+
+
+## Output formats
+
+File | Type    | Parameter       | which_output()
+-----|---------|-----------------|--------------
+r    |         |                 | text
+r    | Projekt("html")        |  | html
+r    | spin    | html_document   | markdown_html
+r    | spin    | pdf_document    | latex
+r    | spin    | word_document   | docx
+Rmd  |     | html_document   | markdown_html
+Rmd  |     | pdf_document    | latex
+Rmd  |     | word_document   | docx
+Rmd  |     | beamer   | latex
+Rmd  |     | github_document   | markdown_html
+
+
+
+## Projekt
+
+Initialisieren eines Projektes. 
+
+```{r}
+# devtools::install_github("stp4/stp25output")
+ 
+Projekt("md", "Beispiel Projekt",
+        datum = date()
+        )
+
+#stp25settings
+set_opt(prozent=list(digits=c(1,0), style=2))
+
+warpbreaks2 <- Label(warpbreaks,
+                     breaks	=	"The number of breaks",
+                     wool	=	"The type of wool",
+                     tension	=	"The level of tension")
+ 
+
+warpbreaks2 %>%
+  Tbll_desc(breaks + tension ~ wool)
+
+End()
+
+```
+
+
+
+### Usage
+
+data.frame()
+
+```{r output-data-frame, results='asis'}
+
+which_output()
+ 
+dat<- data.frame(
+term = c("A", "B", "C", "D"),
+n = c(23, 14, 56, 2),
+m = c("4.7 (2.4)", "4.1 (2.3)", "8.9 (3.6)", NA)
+) 
+
+dat  %>% Output("data.frame()")
+ 
+
+```
+
+
+
+```{r output-matrix, results='asis'}
+
+# matrix(c("a1","a2",3,4,5,6),
+#                 nrow=2, byrow=TRUE,
+#                 dimnames=list(gender=c("M", "F"),
+#                               party=c( "Dem", "Ind", "Rep")))  #%>% Output("matrix()")
+
+as.table(matrix(c("a1","a2",3,4,5,6),
+                 nrow=2, byrow=TRUE,
+                 dimnames=list(gender=c("M", "F"),
+                               party=c( "Dem", "Ind", "Rep")))) %>% Output("as.table()")
+
+```
+
+
+
+```{r , results='asis'}
+ 
+warpbreaks2 %>%
+  Tbll_desc(breaks + tension + wool) %>% Output("")
+
+
+```
+
+
+### Verschiedene Szenarien
+ 
+
+```{r, include = FALSE}
+
+df1 <- data.frame(
+  term = c("A", "B", "C", "D"),
+  n = c(23, 14, 56, 2),
+  m = c("4.7 (2.4)", "4.1 (2.3)", "8.9 (3.6)", NA)
+)
+
+
+
+```
+
+
+
+
+```{r df-default}
+ 
+df1 %>% Output()
+
+```
+
+
+
+
+
+
+
+
+```{r df-false, results='asis'}
+
+df1 %>% Output()
+
+```
+
+
+
+```{r df-text, results='markup'}
+
+df1 %>% Output(output="text")
+
+```
+
+```{r,results='asis'}
+
+df1 %>% Output(output="markdown")
+```
+
+
+##  xtable()
+
+Ist eine Package zum Erstellen von HTML und latex.
+Convert an R object to an xtable object, which can then be printed as a LaTeX or HTML table
+
+```{r, results='asis'}
+ 
+require(xtable)
+data(tli)
+## Demonstrate aov
+fm1 <- aov(tlimth ~ sex + ethnicty + grade + disadvg, data = tli)
+fm1.table <- xtable(fm1)
+
+Output(fm1.table)
+
+
+```
+
+
+```{r , results='markup'}
+
+fm2 <- lm(tlimth ~ sex*ethnicty, data = tli)
+fm2b <- lm(tlimth ~ ethnicty, data = tli)
+
+#Output(xtable(anova(fm2b, fm2)), output="md")
+
+```
+
+
+
+##  knitr::kable
+
+
+```{r}
+knitr::kable(
+  df1, row.names = FALSE,
+  format = "pandoc" 
+)
+```
+
+
+
+```{r}
+
+knitr::kable(
+  df1, row.names = FALSE,
+  format = "markdown" 
+)
+
+```
+
+
+```{r}
+knitr::kable(
+  df1, row.names = FALSE,
+  format = "pandoc" 
+)
+```
+
+
+
+
+
+
+## Grafik settings
+
+
+```{r}
+ 
+set.seed(2)
+n <- 20 * 3 * 2
+DF <- data.frame(
+  n = runif(n, min = 1, max = 5),
+  e = runif(n, min = 1, max = 5),
+  o = runif(n, min = 1, max = 5),
+  g = runif(n, min = 1, max = 5),
+  a = runif(n, min = 1, max = 5),
+  treatment = gl(3, n / 3, labels = c("UG1", "UG2", "KG"))[sample.int(n)],
+  sex = gl(2, n / 2, labels = c("male", "female"))
+)
+
+```
+
+```{r fig-default, fig.height=3, fig.width=4}
+#set_lattice()
+bwplot(e ~ treatment, DF)
+```
+
+
+
+
+```{r fig-ggplot, fig.height=3, fig.width=4}
+
+#set_lattice_ggplot()
+bwplot(e ~ treatment, DF)
+
+
+```
+
+
+
+```{r fig-bw, fig.height=3, fig.width=4}
+#set_lattice_bw()
+bwplot(e ~ treatment, DF)
+
+ 
+```
+
+
+
+
+## A few methods for making tables in rmarkdown
+Quelle: https://gist.github.com/benmarwick/8ad99f35d5e4caa06492
+ 
+ 
+
+https://github.com/yihui/printr
+https://github.com/jalapic/simpletable
+https://github.com/renkun-ken/formattable
+ 
+
+```{r}
+my_data <- head(iris)
+names(my_data) <- c(letters[1:ncol(iris)])
+```
+
+```{r results='asis'}
+library("knitr")
+kable(my_data)
+```
+
+```{r results='asis'}
+library("xtable")
+print(xtable(my_data), type = "html", include.rownames=FALSE, html.table.attributes=list("border='0' cellpadding='5' "))
+```
+
+```{r, results = 'asis'}
+library(xtable)
+print(xtable(my_data), type = 'html')
+```
+
+```{r results = 'asis'}
+library(xtable)
+print(xtable(my_data), type = 'html', html.table.attributes = '')
+```
+
+```{r results='asis'}
+library("pander")
+pandoc.table(my_data)
+```
+
+```{r results='asis'}
+library("pander")
+pandoc.table(my_data, split.cells = 5)
+```
+
+```{r, results = 'asis'}
+pander::panderOptions('table.split.table', 350)
+pander::pandoc.table(my_data, style="rmarkdown")
+```
+
+```{}
+library("ascii")
+print(ascii(my_data), type = 'pandoc')
+```
+
+```{r}
+library("htmlTable")
+htmlTable(my_data, col.rgroup = c("none", "#F7F7F7"))
+```
+
+```{r results='asis'}
+library(hwriter)
+hwrite(my_data, border=0)
+```
+
+This one is the most useful, and has a nice guide to customisation here: http://www.ebi.ac.uk/~gpau/hwriter/
+
+
+```{r results='asis'}
+library(hwriter)
+cat(
+  hwrite(
+    my_data,
+    border = 0,
+    center = TRUE,
+    table.frame = 'void',
+    width = '300px',
+    table.style = 'padding: 50px',
+    row.names = FALSE,
+    row.style = list('font-weight:bold')
+  )
+)
+```
+
