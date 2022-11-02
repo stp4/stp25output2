@@ -21,7 +21,7 @@ Output_word <- function(x,
   # calledFun = as.list(sys.call())[[1]]
   # message(paste(callingFun, " is calling ", calledFun, sep=""))
   #
-  caption <- Caption(caption, attr(x, "caption"))
+  caption <- Caption(caption, attr(x, "caption"), N = attr(x, "N"))
   note <- Note(note, attr(x, "note"))
 
   Text(caption)

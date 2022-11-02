@@ -22,6 +22,18 @@ Output <- function(x, ...) {
   UseMethod("Output")
 }
 
+#' @rdname Output
+#' @export
+Output2 <- function(x,
+                    ...,
+                    note = NULL,
+                    output =  which_output()) {
+  Output(x,
+         caption = paste(...),
+         note = note,
+         output =  output)
+}
+
 
 #' @rdname Output
 #' @export
@@ -105,9 +117,12 @@ Output.data.frame <-
       return(Output_word(x, caption, note, output, split_header))
     }
 
-    if (output == "text") {
-      caption <- Caption(caption, attr(x, "caption"))
+      caption <- Caption(caption, attr(x, "caption"), N = attr(x, "N"))
       note <- Note(note, attr(x, "note"))
+
+    if (output == "text") {
+      #caption <- Caption(caption, attr(x, "caption"))
+      #note <- Note(note, attr(x, "note"))
       if (!is.null(tbl$header_above))
         names(x) <-
         ifelse(tbl$header_above2 == "",
@@ -122,8 +137,8 @@ Output.data.frame <-
         cat("\n", note, "\n\n")
     }
     else if (output == "html" | output == "markdown_html") {
-      caption <- Caption(caption, attr(x, "caption"))
-      note <- Note(note, attr(x, "note"))
+      #caption <- Caption(caption, attr(x, "caption"))
+      #note <- Note(note, attr(x, "note"))
 
       tbl$header <-  gsub(" +", '&nbsp;', tbl$header)
       tbl$cgroup <-  gsub(" +", '&nbsp;', tbl$cgroup)
@@ -258,6 +273,7 @@ Output.list <- function(x,
     Head5(caption)
   if (!is.null(note))
     Head5(note)
+
   if (output == "docx") {
     if (length(x) > 1)
       Text("Weitere Tabellen:", names(x)[-1])
@@ -267,9 +283,11 @@ Output.list <- function(x,
     res <- list()
     for (i in 1:length(x)) {
       if (inherits(x[[i]], "list")) {
-        print(x[[i]])
+        if (is.data.frame(x[[i]])) print(x[[i]])
+        else print(class(x[[i]]))
         stop("Recrusive Liste!")
       }
+      if (is.data.frame(x[[i]]))
       res[[i]] <- Output(x[[i]], output = output, ...)
     }
     invisible(x)
@@ -383,7 +401,6 @@ Output.default <- function(x, ...) {
     warning("Unbekanter Objekt-Typ: ", class(x)[1])
     x
   }
-
 }
 
 

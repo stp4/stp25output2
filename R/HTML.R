@@ -1,16 +1,22 @@
 #' HTML Text Formatting Elements
 #'
-#' HTML_ schreibt direkt ins HTML-File
-#' @param x Text
-#' @param output HTML, Knit  oder Textfile (ist nicht gedacht zum Aendern)
+#' @param output titel Titel der Seite
+#' @param encoding layout.css layout.css
+#' @param encoding  encoding utf-8
 #' @noRd
-HTML_open <- function(title,   layout.css = "layout.css"){
+#'
+HTML_open <- function(title,
+                      layout.css = "layout.css",
+                      encoding= "UTF-8"){
+
+  #  <meta charset="ISO-8859-1">
   cat(
     paste0(
 '<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="ISO-8859-1">
+
+  <meta charset=', encoding, '>
   <meta name="author" content="Wolfgang Peter">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 

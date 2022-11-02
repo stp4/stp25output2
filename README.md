@@ -41,15 +41,10 @@ Initialisieren eines Projektes.
 # devtools::install_github("stp4/stp25output")
  
 Projekt("md", "Beispiel Projekt",
-        datum = date(),
-        silent =FALSE
+        datum = date()
         )
-#> 
-#>  Projekt_Rmd 
-#> 
-#> format:  md  output:   markdown 
-#>  c:/users/wpete/dropbox/3_forschung/r-project/stp25output2/readme.rmd
-#> script:  README.Rmd
+#> Projekt:  Beispiel Projekt 
+#> Wd:  C:/Users/wpete/Dropbox/3_Forschung/R-Project/stp25output2
 
 #stp25settings
 set_opt(prozent=list(digits=c(1,0), style=2))
@@ -62,9 +57,9 @@ warpbreaks2 <- Label(warpbreaks,
 
 warpbreaks2 %>%
   Tbll_desc(breaks + tension ~ wool)
-#> # A tibble: 6 x 3
+#> # A tibble: 6 × 3
 #>   Item                          A               B             
-#>   <chr>                         <chr>           <chr>         
+#> * <chr>                         <chr>           <chr>         
 #> 1 "(N) "                        "27"            "27"          
 #> 2 "The number of breaks (mean)" "31.04 (15.85)" "25.26 (9.30)"
 #> 3 "The level of tension "       ""              ""            
@@ -80,26 +75,106 @@ End()
 data.frame()
 
 ``` r
+set_opt(caption =TRUE)
 which_output()
 ```
 
-\[1\] “text”
+\[1\] “markdown_html”
 
 ``` r
  
 dat<- data.frame(
-term = c("A", "B", "C", "D"),
+term = factor(c("A", "B", "C", "D")),
 n = c(23, 14, 56, 2),
 m = c("4.7 (2.4)", "4.1 (2.3)", "8.9 (3.6)", NA)
 ) 
+attr(dat, "N") <- 56
 
-dat  %>% Output("data.frame()")
+dat  %>% Output("data.frame")
 ```
 
-Tab 1: data.frame() term n m 1 A 23 4.7 (2.4) 2 B 14 4.1 (2.3) 3 C 56
-8.9 (3.6) 4 D 2 <NA>
+<table class="gmisc_table" style="border-collapse: collapse; padding-left: .5em; padding-right: .2em;">
+<thead>
+<tr>
+<td colspan="3" style="text-align: left;">
+Tab 1: data.frame (N=56)
+</td>
+</tr>
+<tr>
+<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+term
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+n
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+m
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+A
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+23
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+4.7 (2.4)
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+B
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+14
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+4.1 (2.3)
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+C
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+56
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+8.9 (3.6)
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+D
+</td>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+2
+</td>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="3">
+</td>
+</tr>
+</tfoot>
+</table>
 
 ``` r
+
+Text("Hallo")
+#> Hallo
+Text(dat, term, n, m,  include.levels=TRUE)
+#> term: term: A|B|C|D n: n: numeric m: m: 4.1 (2.3)|4.7 (2.4)|8.9 (3.6)
+```
+
+``` r
+
 # matrix(c("a1","a2",3,4,5,6),
 #                 nrow=2, byrow=TRUE,
 #                 dimnames=list(gender=c("M", "F"),
@@ -111,58 +186,324 @@ as.table(matrix(c("a1","a2",3,4,5,6),
                                party=c( "Dem", "Ind", "Rep")))) %>% Output("as.table()")
 ```
 
-Tab 2: as.table() gender party_Dem party_Ind party_Rep 1 M a1 a2 3 2 F 4
-5 6
+<table class="gmisc_table" style="border-collapse: collapse; padding-left: .5em; padding-right: .2em;">
+<thead>
+<tr>
+<td colspan="5" style="text-align: left;">
+Tab 2: as.table()
+</td>
+</tr>
+<tr>
+<th colspan="1" style="font-weight: 900; border-top: 2px solid black; text-align: center;">
+</th>
+<th style="border-bottom: none; border-top: 2px solid black;" colspan="1">
+ 
+</th>
+<th colspan="3" style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+party
+</th>
+</tr>
+<tr>
+<th style="font-weight: 900; border-bottom: 1px solid black; text-align: center;">
+gender
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid black; text-align: center;" colspan="1">
+ 
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid black; text-align: center;">
+Dem
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid black; text-align: center;">
+Ind
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid black; text-align: center;">
+Rep
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+M
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;" colspan="1">
+ 
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+a1
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+a2
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+3
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+F
+</td>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;" colspan="1">
+ 
+</td>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+4
+</td>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+5
+</td>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+6
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="5">
+</td>
+</tr>
+</tfoot>
+</table>
 
 ``` r
  
 warpbreaks2 %>%
-  Tbll_desc(breaks + tension + wool) %>% Output("")
+  Tbll_desc(breaks + tension + wool) %>% Output()
 ```
 
-Tab 3:  
-Item m 1 (N) 54 2 The number of breaks (mean) 28.15 (13.20) 3 The level
-of tension  
-4 L 18 (33%) 5 M 18 (33%) 6 H 18 (33%) 7 The type of wool  
-8 A 27 (50.0%) 9 B 27 (50.0%)
+<table class="gmisc_table" style="border-collapse: collapse; padding-left: .5em; padding-right: .2em;">
+<thead>
+<tr>
+<td colspan="2" style="text-align: left;">
+Tab 3: Summary (N=54)
+</td>
+</tr>
+<tr>
+<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+Item
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+m
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+(N) 
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+54
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+The number of breaks (mean)
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+28.15 (13.20)
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+The level of tension 
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+ L
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+18 (33%)
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+ M
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+18 (33%)
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+ H
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+18 (33%)
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+The type of wool 
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+ A
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+27 (50.0%)
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+ B
+</td>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+27 (50.0%)
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="2">
+Categorical date: count (percent)ratio; Continuous date: mean (sd)
+</td>
+</tr>
+</tfoot>
+</table>
 
 ### Verschiedene Szenarien
 
 ``` r
- 
+#' default, results='markup'
 df1 %>% Output()
-#> 
-#>  Tab 4:  
-#>   term  n         m
-#> 1    A 23 4.7 (2.4)
-#> 2    B 14 4.1 (2.3)
-#> 3    C 56 8.9 (3.6)
-#> 4    D  2      <NA>
-#> 
-#> 
+#> <table class='gmisc_table' style='border-collapse: collapse; padding-left: .5em; padding-right: .2em;' >
+#> <thead>
+#> <tr><td colspan='3' style='text-align: left;'>
+#> Tab 4: Demo Ueberschrift</td></tr>
+#> <tr>
+#> <th style='font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;'>term</th>
+#> <th style='font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;'>n</th>
+#> <th style='font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;'>m</th>
+#> </tr>
+#> </thead>
+#> <tbody>
+#> <tr>
+#> <td style='padding-left: .5em; padding-right: .2em; text-align: left;'>A</td>
+#> <td style='padding-left: .5em; padding-right: .2em; text-align: left;'>23</td>
+#> <td style='padding-left: .5em; padding-right: .2em; text-align: left;'>4.7&nbsp;(2.4)</td>
+#> </tr>
+#> <tr>
+#> <td style='padding-left: .5em; padding-right: .2em; text-align: left;'>B</td>
+#> <td style='padding-left: .5em; padding-right: .2em; text-align: left;'>14</td>
+#> <td style='padding-left: .5em; padding-right: .2em; text-align: left;'>4.1&nbsp;(2.3)</td>
+#> </tr>
+#> <tr>
+#> <td style='padding-left: .5em; padding-right: .2em; text-align: left;'>C</td>
+#> <td style='padding-left: .5em; padding-right: .2em; text-align: left;'>56</td>
+#> <td style='padding-left: .5em; padding-right: .2em; text-align: left;'>8.9&nbsp;(3.6)</td>
+#> </tr>
+#> <tr>
+#> <td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>D</td>
+#> <td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>2</td>
+#> <td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'></td>
+#> </tr>
+#> </tbody>
+#> <tfoot><tr><td colspan='3'>
+#> Note: Anmerkung</td></tr></tfoot>
+#> </table>
 ```
 
 ``` r
+#' default, results='asis'
 df1 %>% Output()
 ```
 
-Tab 5:  
-term n m 1 A 23 4.7 (2.4) 2 B 14 4.1 (2.3) 3 C 56 8.9 (3.6) 4 D 2 <NA>
+<table class="gmisc_table" style="border-collapse: collapse; padding-left: .5em; padding-right: .2em;">
+<thead>
+<tr>
+<td colspan="3" style="text-align: left;">
+Tab 5: Demo Ueberschrift
+</td>
+</tr>
+<tr>
+<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+term
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+n
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+m
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+A
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+23
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+4.7 (2.4)
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+B
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+14
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+4.1 (2.3)
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+C
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+56
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+8.9 (3.6)
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+D
+</td>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+2
+</td>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="3">
+Note: Anmerkung
+</td>
+</tr>
+</tfoot>
+</table>
 
 ``` r
+#' results='markup'
 df1 %>% Output(output="text")
 #> 
-#>  Tab 6:  
+#>  Tab 6: Demo Ueberschrift 
 #>   term  n         m
 #> 1    A 23 4.7 (2.4)
 #> 2    B 14 4.1 (2.3)
 #> 3    C 56 8.9 (3.6)
 #> 4    D  2      <NA>
 #> 
-#> 
+#>  Note: Anmerkung
 ```
 
 ``` r
+#' results='asis'
 df1 %>% Output(output="markdown")
 ```
 
@@ -172,6 +513,10 @@ df1 %>% Output(output="markdown")
 | B    |  14 | 4.1 (2.3) |
 | C    |  56 | 8.9 (3.6) |
 | D    |   2 |           |
+
+Tab 7: Demo Ueberschrift
+
+Note: Anmerkung
 
 ## xtable()
 
@@ -190,13 +535,126 @@ fm1.table <- xtable(fm1)
 Output(fm1.table)
 ```
 
-Tab 7:  
-Df Sum.Sq Mean.Sq F.value Pr..F. sex 1 75.37255 75.37255 0.3751912
-0.541683003 ethnicty 3 2572.14918 857.38306 4.2679008 0.007183052 grade
-1 36.30740 36.30740 0.1807318 0.671727134 disadvg 1 59.30338 59.30338
-0.2952017 0.588206240 Residuals 93 18682.86749 200.89105 NA NA
+<table class="gmisc_table" style="border-collapse: collapse; padding-left: .5em; padding-right: .2em;">
+<thead>
+<tr>
+<td colspan="5" style="text-align: left;">
+Tab 8:
+</td>
+</tr>
+<tr>
+<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+Df
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+Sum Sq
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+Mean Sq
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+F value
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+Pr(\>F)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+1
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+75.3725490196085
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+75.3725490196085
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+0.375191177841786
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+0.541683003365518
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+3
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+2572.14917617822
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+857.383058726072
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+4.26790076558696
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+0.00718305207307176
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+1
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+36.307404193483
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+36.307404193483
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+0.180731817099443
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+0.671727134425381
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+1
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+59.3033811724377
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+59.3033811724377
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+0.295201710987628
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+0.588206240205116
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+93
+</td>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+18682.8674894362
+</td>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+200.891048273508
+</td>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+</td>
+<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="5">
+</td>
+</tr>
+</tfoot>
+</table>
 
 ``` r
+
 fm2 <- lm(tlimth ~ sex*ethnicty, data = tli)
 fm2b <- lm(tlimth ~ ethnicty, data = tli)
 
@@ -220,6 +678,7 @@ knitr::kable(
 | D    |   2 | NA        |
 
 ``` r
+
 knitr::kable(
   df1, row.names = FALSE,
   format = "markdown" 
@@ -272,6 +731,7 @@ bwplot(e ~ treatment, DF)
 ![](README-fig-default-1.png)<!-- -->
 
 ``` r
+
 #set_lattice_ggplot()
 bwplot(e ~ treatment, DF)
 ```
@@ -434,8 +894,8 @@ library("xtable")
 print(xtable(my_data), type = "html", include.rownames=FALSE, html.table.attributes=list("border='0' cellpadding='5' "))
 ```
 
-<!-- html table generated in R 4.1.2 by xtable 1.8-4 package -->
-<!-- Sun Dec 12 10:20:37 2021 -->
+<!-- html table generated in R 4.2.1 by xtable 1.8-4 package -->
+<!-- Fri Oct 28 08:56:24 2022 -->
 <table border="0" cellpadding="5">
 <tr>
 <th>
@@ -563,8 +1023,8 @@ library(xtable)
 print(xtable(my_data), type = 'html')
 ```
 
-<!-- html table generated in R 4.1.2 by xtable 1.8-4 package -->
-<!-- Sun Dec 12 10:20:37 2021 -->
+<!-- html table generated in R 4.2.1 by xtable 1.8-4 package -->
+<!-- Fri Oct 28 08:56:24 2022 -->
 <table border="1">
 <tr>
 <th>
@@ -712,8 +1172,8 @@ library(xtable)
 print(xtable(my_data), type = 'html', html.table.attributes = '')
 ```
 
-<!-- html table generated in R 4.1.2 by xtable 1.8-4 package -->
-<!-- Sun Dec 12 10:20:37 2021 -->
+<!-- html table generated in R 4.2.1 by xtable 1.8-4 package -->
+<!-- Fri Oct 28 08:56:24 2022 -->
 <table>
 <tr>
 <th>

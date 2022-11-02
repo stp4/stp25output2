@@ -39,7 +39,7 @@ Output_kable.default <-
            ...) {
 
 
-    caption <- Caption(caption, attr(x, "caption"))
+    caption <- Caption(caption, attr(x, "caption"), N = attr(x, "N"))
     note <- Note(note, attr(x, "note"))
 
 

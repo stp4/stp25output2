@@ -10,12 +10,12 @@
 #' h=dev.size("in")[1] Hoehe der Grafik also zb h=8
 #' res=72
 #' @param filename Text
-#' @param save_plot speichern als file = TRUE,
+#' @param save_plot speichern als file = pdf esp,
 #' @param output nur wichtig bei html
 #' @param out.type	 name of the output device: can
 #' be "pdf", or "cairo"
 #'
-#' @return
+#' @return file name
 #' @export
 #'
 #' @examples
@@ -23,12 +23,28 @@
 #' plot(1)
 #' SavePlot("Einfache Grafik", w=4, h=4)
 #'
+#' #'  require(cowplot)
+#' title <-
+#'   cowplot::ggdraw() +
+#'   cowplot::draw_label("FFQ DEGS 534", fontface = 'bold')
+#'
+#' cowplot::plot_grid(
+#'   title, NULL,
+#'   function(x) plot(1),
+#'   function(x) plot(1:10),
+#'   nrow = 2,
+#'   #labels = c("", "", "C"),
+#'   rel_heights = c(0.05, 1 )
+#' )
+#' cowplot::save_plot( )
+#' ggplot2::ggsave("test-23.pdf")
+#' ggplot2::ggsave("test-2.eps")
 #'
 SavePlot <- function(caption = "",
                      w = dev.size("in")[1],
                      h = dev.size("in")[2],
                      filename = "",
-                     save_plot = TRUE,
+                     save_plot = "pdf",
                      output =  which_output(),
                      res=72,
                      out.type="pdf"
@@ -36,11 +52,10 @@ SavePlot <- function(caption = "",
                     ) {
   abb <- Abb(filename, caption)
 
-
   if (output == "html") {
-
     GraphFileName <- paste0(abb$GraphFileName, ".png")
-    # resulution
+    #' resulution
+    #' w und h in pixels
     Width <- round(w * res)
     Height <- round(h * res)
 
@@ -54,7 +69,6 @@ SavePlot <- function(caption = "",
       res = res  # res liefert unerwartete Ergebnisse
     )
 
-
     HTML_default(
       paste0(
         "\n<div  class='center'>\n",
@@ -66,24 +80,67 @@ SavePlot <- function(caption = "",
         "<figcaption>", abb$HtmlCaption, "</figcaption>\n",
         "</figure>\n</div>"
       ))
-
-
  #  HTML_S(abb$GraphFileName)
     HTML_BR()
   }
   else if( output == "docx" ){
-      save_plot<- FALSE
+      save_plot <- "FALSE"
   }else{ NULL }
 
 
 
+  if ("pdf" %in% save_plot) {
+    if (filename == "")
+      abb_Name <- paste0(abb$Name, ".pdf")
+    else
+      abb_Name <- paste0(get_opt("fig_folder"), filename, ".pdf")
 
-  if (save_plot) {
-      abb$Name <- paste0(abb$Name, ".pdf")
-      try(dev.copy2pdf(file = abb$Name,
-                       width = w,
-                       height = h,
-                       out.type=out.type))
+    cat("\nPDF: ",abb_Name,"\n")
+
+    try(dev.copy2pdf(
+      file = abb_Name,
+      width = w,
+      height = h,
+      out.type = out.type
+    ))
+
+
+
+
+  }
+
+  if ("eps" %in% save_plot) {
+    if (filename == "")
+      abb_Name <- paste0(abb$Name, ".eps")
+    else
+      abb_Name <- paste0(get_opt("fig_folder"), filename, ".eps")
+
+
+    if (inherits(ggplot2::last_plot(), "ggplot")) {
+      cat("\n ggplot2::ggsave: ", abb_Name, "\n")
+
+      #' save as png
+       ggplot2::ggsave(gsub("\\.eps", "\\.png", abb_Name),
+                      width = w,
+                      height = h)
+
+      if (out.type == "cairo")
+        ggplot2::ggsave(abb_Name,
+                        width = w,
+                        height = h,
+                        device = cairo_ps)
+      else
+        ggplot2::ggsave(abb_Name,
+                        width = w, height = h)
+    }
+    else{
+      cat("\n dev.copy2eps: ", abb_Name, "\n")
+      try(dev.copy2eps(
+        file = abb_Name,
+        width = w,
+        height = h
+      ))
+    }
 
   }
 
@@ -91,5 +148,39 @@ SavePlot <- function(caption = "",
 invisible(abb$GraphFileName)
 }
 
+#' @rdname Tab_Abb
+#' @export
+Abb_Index <- function (x = NULL) {
+  if (exists("Abb_Index", .step25Env))
+    if (is.null(x)) {
+      get("Abb_Index", .step25Env)
+    }
+  else{
+    assign("Abb_Index", x, envir = .step25Env)
+    x
+  }
+  else
+    0
+}
 
 
+#' @rdname Tab_Abb
+#' @export
+#' @param filename  Name des Foles
+#' @param folder   Speicherort
+#'
+Abb <- function (filename="",
+                 caption="",
+                 folder = get_opt("fig_folder")) {
+  if (exists("Abb_Index", .step25Env))
+    x <-  get("Abb_Index", .step25Env) + 1
+  else x <- 1
+
+  assign("Abb_Index", x, envir = .step25Env)
+
+  list(
+    HtmlCaption=paste0("Abb", x, ": ", caption),
+    GraphFileName = paste0("Fig", x, filename),
+    Name =paste0(folder, "Fig", x, filename)
+  )
+}

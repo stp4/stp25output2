@@ -41,68 +41,48 @@ Tab_Index <- function (x = NULL)
     0
 }
 
-#' @rdname Tab_Abb
-#' @export
-Abb_Index <- function (x = NULL) {
-  if (exists("Abb_Index", .step25Env))
-    if (is.null(x)) {
-      get("Abb_Index", .step25Env)
-    }
-  else{
-    assign("Abb_Index", x, envir = .step25Env)
-    x
-  }
-  else
-    0
-}
-
-#' @rdname Tab_Abb
-#' @export
-#' @param filename  Name des Foles
-#' @param folder   Speicherort
-#'
-Abb <- function (filename="",
-                 caption="",
-                 folder = get_opt("fig_folder"))
-
-{
-
-
-  if (exists("Abb_Index", .step25Env))
-    x <-  get("Abb_Index", .step25Env) + 1
-  else x <- 1
-
-  assign("Abb_Index", x, envir = .step25Env)
 
 
 
-  list(
-    HtmlCaption=paste0("Abb", x, ": ", caption),
-    GraphFileName = paste0("Fig", x, filename),
-    Name =paste0(folder, "Fig", x, filename)
-  )
-}
 
 
 
 
 #' @rdname Tab_Abb
 #' @param atr in Caption: alternativer Text
-#' @description  Ueberschrift aus stp-Objekt: Caption(caption, attr(x, "caption"))
+#' @description  Ueberschrift aus stp-Objekt:
+#'
+#' Caption(caption, attr(x, "caption"))
 #' oder Note(note, attr(x, "note")) mit
+#'
 Caption <- function(caption = NULL,
                     atr = NULL,
-                    output =  which_output()) {
-  if (is.null(caption) & (!is.null(atr)))
-    caption <-  atr
-  else if (is.null(caption))
-    caption <- ""
+                   # output =  which_output(),
+                    N = NULL,
+                    include.n = get_opt("caption"))
+  {
 
+
+
+  # print( list(
+  #        caption=caption,
+  #        atr = atr,
+  #        output=output,
+  #        n=N,
+  #        include.n =include.n)
+  #        )
+
+  if( is.character(caption) ){
+    if(!is.null(include.n) & !is.null(N))
+      caption <- paste(caption, " (N=", N, ")", sep="")
+  }
+  else if( is.character( atr )) caption <-  atr
+  else  if(!is.null(include.n) & !is.null(N))
+         caption <- paste( "N=", N, sep="" )
+  else caption <- ""
 
   #if (output == "html" | output == "text" | output == "markdown_html")
-    Tab(caption)
- # else
- #   caption
+  Tab(caption)
 }
 
 #' @rdname Tab_Abb

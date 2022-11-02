@@ -122,6 +122,88 @@ Text.character <- function(...,
     report_txt(msg)
 }
 
+#' @rdname Output
+#'
+#' @export
+#' @examples
+#'
+#'
+#' m <- data.frame(
+#'   Item = factor(1:3, 1:3, c("A", "B", "C")),
+#'   a = (1:3),
+#'   b = (1:3) * 2,
+#'   c = (1:3) * 3
+#' )
+#'
+#' m <- stp25tools::Label(m, a = "Aplha", b = "Barbar", c = "Ciklyn")
+#' Text(m)
+Text.data.frame <- function(x,
+                            ...,
+                            style = 0,
+                            char = "-",
+                            include.levels = FALSE,
+                            output =  which_output()) {
+  dotts <- sapply(lazyeval::lazy_dots(...),
+                  function(x)
+                    as.character(x[1]))
+
+  if (length(dotts) == 0) {
+    dotts <- names(x)
+  }
+
+  if (!include.levels)
+    Text(
+      paste0(dotts, ": ",
+                stp25tools::get_label(x[dotts])
+             ),
+         style = style,
+         char = char,
+      output=output)
+  else{
+    lvl <-   sapply(x[dotts], function(y) {
+      if (is.numeric(y))
+        "numeric"
+      else if (is.factor(y))
+        paste(levels(y), collapse = "|")
+      else if (is.character(y)) {
+        y<- factor(y)
+        paste(levels(y), collapse = "|")
+
+      }
+      else
+        "unknown"
+    })
+    Text(
+      paste0(dotts, ": ",
+             stp25tools::get_label(x[dotts]), ": ", lvl
+             ),
+      style = style,
+      char = char,
+      output=output
+    )
+  }
+
+}
+
+# Text.data.frame <- function(x,  ...,
+#                             style = 0,
+#                             char = "-",
+#                             output =  "text"
+#                             ) {
+#   dotts <-  sapply(lazyeval::lazy_dots(...), function(x)
+#     as.character(x[1]))
+#
+#
+#     Text(paste0(dotts, ": ",
+#                 stp25tools::get_label(x[dotts])),
+#          style = style,
+#          char = char,
+#          output=output)
+#
+#
+#
+# }
+
 #' @rdname Text
 #' @export
 Head<- function( ...,
@@ -277,3 +359,7 @@ Arbeitszeit <- function(Lines,
                   "Zeit_Summe")], ...)
   invisible(zeit)
 }
+
+
+
+

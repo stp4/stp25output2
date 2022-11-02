@@ -90,20 +90,26 @@ End()
 data.frame()
 
 ```{r output-data-frame, results='asis'}
-
+set_opt(caption =TRUE)
 which_output()
  
 dat<- data.frame(
-term = c("A", "B", "C", "D"),
+term = factor(c("A", "B", "C", "D")),
 n = c(23, 14, 56, 2),
 m = c("4.7 (2.4)", "4.1 (2.3)", "8.9 (3.6)", NA)
 ) 
+attr(dat, "N") <- 56
 
-dat  %>% Output("data.frame()")
+dat  %>% Output("data.frame")
  
 
 ```
 
+```{r}
+
+Text("Hallo")
+Text(dat, term, n, m,  include.levels=TRUE)
+```
 
 
 ```{r output-matrix, results='asis'}
@@ -125,7 +131,7 @@ as.table(matrix(c("a1","a2",3,4,5,6),
 ```{r , results='asis'}
  
 warpbreaks2 %>%
-  Tbll_desc(breaks + tension + wool) %>% Output("")
+  Tbll_desc(breaks + tension + wool) %>% Output()
 
 
 ```
@@ -142,42 +148,36 @@ df1 <- data.frame(
   m = c("4.7 (2.4)", "4.1 (2.3)", "8.9 (3.6)", NA)
 )
 
-
+  attr(df1, "caption") <-  "Demo Ueberschrift"
+  attr(df1, "note") <- "Note: Anmerkung"
+  attr(df1, "N") <- 99
+  set_opt(caption = TRUE)
 
 ```
 
 
 
 
-```{r df-default}
- 
+```{r df-default, results='markup'}
+#' default, results='markup'
 df1 %>% Output()
-
 ```
-
-
-
-
-
-
 
 
 ```{r df-false, results='asis'}
-
+#' default, results='asis'
 df1 %>% Output()
-
 ```
 
 
 
 ```{r df-text, results='markup'}
-
+#' results='markup'
 df1 %>% Output(output="text")
-
 ```
 
-```{r,results='asis'}
-
+```{r, df-md, results='asis'}
+#' results='asis'
 df1 %>% Output(output="markdown")
 ```
 
