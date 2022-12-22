@@ -10,10 +10,10 @@
 #' h=dev.size("in")[1] Hoehe der Grafik also zb h=8
 #' res=72
 #' @param filename Text
-#' @param save_plot speichern als file = pdf esp,
+#' @param save_plot  c("pdf", "esp", "png", "jpeg", "bmp") speichern als file
 #' @param output nur wichtig bei html
 #' @param out.type	 name of the output device: can
-#' be "pdf", or "cairo"
+#' be "pdf", or "cairo" dev.copy2pdf
 #'
 #' @return file name
 #' @export
@@ -40,24 +40,65 @@
 #' ggplot2::ggsave("test-23.pdf")
 #' ggplot2::ggsave("test-2.eps")
 #'
+#'
+#' save_my_plot <- function(p,
+#' w = 7,
+#' h = 3.5 ,
+#' filename = "A-Figure.jpeg",
+#' out.type = "cairo",
+#' path = getwd(),
+#' res= 72
+#' ) {
+#'
+#'   p_new <-
+#'     update(p, par.settings = stp25settings::bw_theme(farbe()))
+#'   filename <-   file.path(path, filename)
+#'   jpeg(filename,
+#'        width = round(w * res),
+#'        height = round(h * res),
+#'        quality = 100,
+#'        res = res,
+#'        type  = out.type
+#'   )
+#'   # wegen "cairo"
+#'   print(cowplot::plot_grid(p_new))
+#'   dev.off()
+#'
+#'   (p_new)
+#' }
+#'
+#'
+#' require(lattice)
+#' require(stp25output2)
+#' require(stp25settings)
+#' p<- barchart(yield ~ variety | site, data = barley,
+#'              groups = year, layout = c(1,6), stack = TRUE,
+#'              auto.key = list(space = "right"),
+#'              ylab = "Barley Yield (bushels/acre)",
+#'              scales = list(x = list(rot = 45)))
+#'
+#' save_my_plot(p)
+#'
+#'
+#'
 SavePlot <- function(caption = "",
-                     w = dev.size("in")[1],
-                     h = dev.size("in")[2],
-                     filename = "",
-                     save_plot = "pdf",
-                     output =  which_output(),
-                     res=72,
-                     out.type="pdf"
-
-                    ) {
+                      w = dev.size("in")[1],
+                      h = dev.size("in")[2],
+                      filename = "",
+                      save_plot = "pdf",  # c("pdf", "esp", "png", "jpeg", "bmp")
+                      output =  which_output(),
+                      res = 72,
+                      out.type = "pdf") {
   abb <- Abb(filename, caption)
+  Width <- round(w * res)
+  Height <- round(h * res)
+
 
   if (output == "html") {
     GraphFileName <- paste0(abb$GraphFileName, ".png")
     #' resulution
     #' w und h in pixels
-    Width <- round(w * res)
-    Height <- round(h * res)
+
 
     dev.print(
       device = png,
@@ -73,19 +114,32 @@ SavePlot <- function(caption = "",
       paste0(
         "\n<div  class='center'>\n",
         "<figure style='font-family: verdana; font-size: 8pt; font-style: italic; padding: 8px; text-align: center'>\n",
-        "<img src='", GraphFileName, "'",
-       " alt='",abb$Name,"'",
-        " style='width:",Width,"px;height:",Height,"px;'",
+        "<img src='",
+        GraphFileName,
+        "'",
+        " alt='",
+        abb$Name,
+        "'",
+        " style='width:",
+        Width,
+        "px;height:",
+        Height,
+        "px;'",
         "/>\n<br>\n",
-        "<figcaption>", abb$HtmlCaption, "</figcaption>\n",
+        "<figcaption>",
+        abb$HtmlCaption,
+        "</figcaption>\n",
         "</figure>\n</div>"
-      ))
- #  HTML_S(abb$GraphFileName)
+      )
+    )
+    #  HTML_S(abb$GraphFileName)
     HTML_BR()
   }
-  else if( output == "docx" ){
-      save_plot <- "FALSE"
-  }else{ NULL }
+  else if (output == "docx") {
+    save_plot <- "FALSE"
+  } else{
+    NULL
+  }
 
 
 
@@ -95,7 +149,7 @@ SavePlot <- function(caption = "",
     else
       abb_Name <- paste0(get_opt("fig_folder"), filename, ".pdf")
 
-    cat("\nPDF: ",abb_Name,"\n")
+    cat("\nPDF: ", abb_Name, "\n")
 
     try(dev.copy2pdf(
       file = abb_Name,
@@ -103,10 +157,6 @@ SavePlot <- function(caption = "",
       height = h,
       out.type = out.type
     ))
-
-
-
-
   }
 
   if ("eps" %in% save_plot) {
@@ -120,7 +170,7 @@ SavePlot <- function(caption = "",
       cat("\n ggplot2::ggsave: ", abb_Name, "\n")
 
       #' save as png
-       ggplot2::ggsave(gsub("\\.eps", "\\.png", abb_Name),
+      ggplot2::ggsave(gsub("\\.eps", "\\.png", abb_Name),
                       width = w,
                       height = h)
 
@@ -135,18 +185,76 @@ SavePlot <- function(caption = "",
     }
     else{
       cat("\n dev.copy2eps: ", abb_Name, "\n")
-      try(dev.copy2eps(
-        file = abb_Name,
-        width = w,
-        height = h
-      ))
+      try(dev.copy2eps(file = abb_Name,
+                       width = w,
+                       height = h))
     }
 
   }
 
+  if ("jpeg" %in% save_plot) {
+    if (filename == "")
+      abb_Name <- paste0(abb$Name, ".jpeg")
+    else
+      abb_Name <-
+        paste0(get_opt("fig_folder"), filename, ".jpeg")
+    cat("\njpeg: ", abb_Name, "\n")
+    #if( out.type !=  "cairo")  out.type <- "windows"
 
-invisible(abb$GraphFileName)
+    dev.print(
+      device = jpeg,
+      file = abb_Name,
+      width = Width,
+      height = Height,
+      pointsize = 12,
+      bg =  "white",
+      res = res  # res liefert unerwartete Ergebnisse
+    )
+  }
+
+  if ("bmp" %in% save_plot) {
+    if (filename == "")
+      abb_Name <- paste0(abb$Name, ".bmp")
+    else
+      abb_Name <-
+        paste0(get_opt("fig_folder"), filename, ".bmp")
+    cat("\nbmpjpeg: ", abb_Name, "\n")
+    #if( out.type !=  "cairo")  out.type <- "windows"
+
+    dev.print(
+      device = bmp,
+      file = abb_Name,
+      width = Width,
+      height = Height,
+      pointsize = 12,
+      bg =  "white",
+      res = res  # res liefert unerwartete Ergebnisse
+    )
+  }
+
+  if ("png" %in% save_plot) {
+    if (filename == "")
+      abb_Name <- paste0(abb$Name, ".png")
+    else
+      abb_Name <- paste0(get_opt("fig_folder"), filename, ".png")
+    cat("\npng: ", abb_Name, "\n")
+
+    dev.print(
+      device = png,
+      file = abb_Name,
+      width = Width,
+      height = Height,
+      pointsize = 12,
+      bg =  "white",
+      res = res  # res liefert unerwartete Ergebnisse
+    )
+  }
+
+  invisible(abb$GraphFileName)
 }
+
+
+
 
 #' @rdname Tab_Abb
 #' @export
@@ -184,3 +292,150 @@ Abb <- function (filename="",
     Name =paste0(folder, "Fig", x, filename)
   )
 }
+
+
+
+
+
+#' SavePlot_old <- function(caption = "",
+#'                          w = dev.size("in")[1],
+#'                          h = dev.size("in")[2],
+#'                          filename = "",
+#'                          save_plot = "pdf",
+#'                          output =  which_output(),
+#'                          res = 72,
+#'                          out.type="pdf"
+#'
+#' ) {
+#'   abb <- Abb(filename, caption)
+#'
+#'
+#'
+#'   if (output == "html") {
+#'     GraphFileName <- paste0(abb$GraphFileName, ".png")
+#'     #' resulution
+#'     #' w und h in pixels
+#'     Width <- round(w * res)
+#'     Height <- round(h * res)
+#'
+#'     dev.print(
+#'       device = png,
+#'       file = file.path(dirname(HTMLGetFile()), GraphFileName),
+#'       width = Width,
+#'       height = Height,
+#'       pointsize = 12,
+#'       bg =  "white",
+#'       res = res  # res liefert unerwartete Ergebnisse
+#'     )
+#'
+#'     HTML_default(
+#'       paste0(
+#'         "\n<div  class='center'>\n",
+#'         "<figure style='font-family: verdana; font-size: 8pt; font-style: italic; padding: 8px; text-align: center'>\n",
+#'         "<img src='", GraphFileName, "'",
+#'         " alt='",abb$Name,"'",
+#'         " style='width:",Width,"px;height:",Height,"px;'",
+#'         "/>\n<br>\n",
+#'         "<figcaption>", abb$HtmlCaption, "</figcaption>\n",
+#'         "</figure>\n</div>"
+#'       ))
+#'     #  HTML_S(abb$GraphFileName)
+#'     HTML_BR()
+#'   }
+#'   else if( output == "docx" ){
+#'     save_plot <- "FALSE"
+#'   }else{ NULL }
+#'
+#'
+#'
+#'   if ("pdf" %in% save_plot) {
+#'     if (filename == "")
+#'       abb_Name <- paste0(abb$Name, ".pdf")
+#'     else
+#'       abb_Name <- paste0(get_opt("fig_folder"), filename, ".pdf")
+#'
+#'     cat("\nPDF: ",abb_Name,"\n")
+#'
+#'     try(dev.copy2pdf(
+#'       file = abb_Name,
+#'       width = w,
+#'       height = h,
+#'       out.type = out.type
+#'     ))
+#'
+#'
+#'
+#'
+#'   }
+#'
+#'   if ("eps" %in% save_plot) {
+#'     if (filename == "")
+#'       abb_Name <- paste0(abb$Name, ".eps")
+#'     else
+#'       abb_Name <- paste0(get_opt("fig_folder"), filename, ".eps")
+#'
+#'
+#'     if (inherits(ggplot2::last_plot(), "ggplot")) {
+#'       cat("\n ggplot2::ggsave: ", abb_Name, "\n")
+#'
+#'       #' save as png
+#'       ggplot2::ggsave(gsub("\\.eps", "\\.png", abb_Name),
+#'                       width = w,
+#'                       height = h)
+#'
+#'       if (out.type == "cairo")
+#'         ggplot2::ggsave(abb_Name,
+#'                         width = w,
+#'                         height = h,
+#'                         device = cairo_ps)
+#'       else
+#'         ggplot2::ggsave(abb_Name,
+#'                         width = w, height = h)
+#'     }
+#'     else{
+#'       cat("\n dev.copy2eps: ", abb_Name, "\n")
+#'       try(dev.copy2eps(
+#'         file = abb_Name,
+#'         width = w,
+#'         height = h
+#'       ))
+#'     }
+#'
+#'   }
+#'
+#'   if ("jpg" %in% save_plot) {
+#'
+#'     if (filename == "")
+#'       abb_Name <- paste0(abb$Name, ".jpg")
+#'     else
+#'       abb_Name <- paste0(get_opt("fig_folder"), filename, ".jpg")
+#'
+#'     cat("\njpg: ",abb_Name,"\n")
+#'
+#'     try(dev.copy2pdf(
+#'       file = abb_Name,
+#'       width = w,
+#'       height = h,
+#'       out.type = out.type
+#'     ))
+#'
+#'     jpeg(filename,
+#'          width = round(w * res),
+#'          height = round(h * res),
+#'          quality = 100,
+#'          res = res,
+#'          type  = out.type
+#'     )
+#'
+#'     if( out.type ==  "cairo")
+#'       print(cowplot::plot_grid(p_new))
+#'     else print( )
+#'     dev.off()
+#'
+#'
+#'   }
+#'
+#'
+#'
+#'   invisible(abb$GraphFileName)
+#' }
