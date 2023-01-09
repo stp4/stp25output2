@@ -30,7 +30,6 @@
 Projekt <- function(myformat = "",
                     Projektname = "Demo",
                     datum = date()
-                    #,silent =TRUE
                   ) {
   cat("Projekt: ", Projektname, "\nWd: ", getwd(), "\n")
   set.seed(0815)
@@ -57,8 +56,6 @@ Projekt <- function(myformat = "",
         Projektname = Projektname,
         datum = datum
       )
-
-     # if(!silent) cat("\n HTML_Start \n" )
     }
     else{
         projekt_settings(withprompt="> ")
@@ -70,7 +67,6 @@ Projekt <- function(myformat = "",
       Projektname = Projektname,
       datum = datum
     )
-  #  if(!silent) cat("\n Rmd_Start \n" )
   }
 
 
@@ -84,13 +80,16 @@ Projekt <- function(myformat = "",
 
 
 #' @rdname Projekt
-#' @description Einstellungen fuer .Rmd files hier werden keine Folder erstellt
+#' @description Einstellungen fuer .Rmd files hier
+#' werden keine Folder erstellt
 Rmd_Start <- function (myformat,
                                 Projektname,
                                 datum
                                 ){
  # set_default_params(list(Tab_Index = 0, Abb_Index = 0))
   set_opt(output = myformat)
+  html_tbl_css()
+
   invisible(
     paste(
       Projektname,
@@ -118,7 +117,10 @@ HTML_Start <- function (Projektname = "Demo",
   #-- Fehler Abfangen
   if (options()$prompt[1] == "HTML> ") {
     options(prompt = "> ")
-    return()
+    #  cat("\n Gab es vorhin einen Fehler?\n")
+    cat("\n",
+        crayon::bgMagenta('Gab es vorhin einen Fehler?'),
+        "\n")
   }
 
   creat_folder(
@@ -140,6 +142,8 @@ HTML_Start <- function (Projektname = "Demo",
       )
     )
   )
+
+  html_tbl_css()
 
 
   HTML_open(Projektname)
@@ -167,18 +171,35 @@ HTML_Start <- function (Projektname = "Demo",
 #' @param browser Ie oder Chrome
 #' @param output,file intern
 #' @export
-End <- function(browser = "iexplore",
+End <- function(browser = NA,
                 output = options()$prompt[1] == "HTML> ",
                 file = HTMLGetFile(),
                 ...) {
   if (output & !is.null(file)) {
-    if (browser == "firefox")
+    if (browser %in% c("firefox", "meleon"))
       file <-  paste0("file:///", file)
-    brwsr <-
-      list(chrome = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
-           firefox = "C:/Program Files/Mozilla Firefox/firefox.exe",
-           iexplore =  "C:/Program Files (x86)/Internet Explorer/iexplore.exe")
-    browser <-  brwsr[[browser]]
+    # brwsr <-
+    #   list(
+    #
+    #     meleon =  "C:/Program Files (x86)/K-Meleon/k-meleon.exe",
+    #     chrome   = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+    #     # firefox  = "C:/Program Files/Mozilla Firefox/firefox.exe",
+    #        iexplore = "C:/Program Files (x86)/Internet Explorer/iexplore.exe",
+    #        word     = "C:/Program Files (x86)/Microsoft Office/Office14/WINWORD.EXE"
+    #
+    #        )
+    browser <-
+      switch(
+        browser,
+        meleon    = "C:/Program Files (x86)/K-Meleon/k-meleon.exe",
+        chrome    = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+        firefox   = "C:/Program Files/Mozilla Firefox/firefox.exe",
+        iexplore  = "C:/Program Files (x86)/Internet Explorer/iexplore.exe",
+        word      = "C:/Program Files (x86)/Microsoft Office/Office14/WINWORD.EXE",
+        getOption("browser")
+      )
+
+
     HTML_close()
     browseURL(file, browser = browser)
   }
@@ -348,4 +369,27 @@ creat_folder <- function(output.dir,
 }
 
 
-
+html_tbl_css <- function() {
+  # Ausgabe von Tabellen Formatieren
+  # speichert in options("htmlTable.theme")
+  htmlTable::setHtmlTableTheme(
+    css.rgroup = "font-weight: normal; margin: 0; padding: 0;",
+    css.rgroup.sep = "",
+    css.tspanner = "font-weight: 900; text-align: left;",
+    css.tspanner.sep = "border-top: 1px solid #BEBEBE;",
+    css.total = "border-top: 1px solid #BEBEBE; font-weight: 900;",
+    css.cell = "margin: 0; padding: 0;",
+    css.cgroup = "margin: 0; padding: 0; vertical-align: middle;",
+    css.header = "margin: 0; padding: 0; font-weight: 900; vertical-align: middle;",
+    css.header.border_bottom = "border-bottom: 1px solid grey",
+    css.class = "gmisc_table",
+    css.table = "margin-top: 1em; margin-bottom: 1em;",
+    spacer.celltype = "double_cell",
+    spacer.css.cgroup.bottom.border = "1px solid white",
+    spacer.content = "",
+    spacer.css = "width: 2px;",
+    # Positions
+    pos.rowlabel = "bottom",
+    pos.caption = "top"
+  )
+}
