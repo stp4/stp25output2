@@ -27,11 +27,16 @@ Output <- function(x, ...) {
 Output2 <- function(x,
                     ...,
                     note = NULL,
+                    header = NULL,
                     output =  which_output()) {
-  Output(x,
-         caption = paste(...),
-         note = note,
-         output =  output)
+  Output(
+    x,
+    caption = paste(...),
+    note = note,
+    header = header,
+    output =  output
+
+  )
 }
 
 
@@ -43,6 +48,8 @@ Output.character <- function(x, ...){ Text(x) }
 #' @param x dataframe
 #' @param caption,note  Ueberschrift Fussnote
 #' @param output welcher output, text, html, markdown
+#' @param header erste Zeile nur bei HTML
+#' @param select auswahl von Spalten
 #' @param css.table,css.cell,align  htmlTable
 #'  padding-left: .5em; padding-right: .2em;
 #' @param booktabs,latex_options an kableExtra
@@ -95,6 +102,8 @@ Output.data.frame <-
   function(x,
            caption = NULL,
            note = NULL,
+           header = NULL,
+           select = NA,
            output =  which_output(),
            split_header = TRUE,
            css.table = 'padding-left: .5em; padding-right: .2em;',
@@ -103,22 +112,46 @@ Output.data.frame <-
            latex_options = c("hold_position"),
            linesep = "",
            align = "l",
+
            rgroup = attr(x, "rgroup", TRUE),
            n.rgroup =  attr(x, "n.rgroup", TRUE),
+
+
          #  cgroup = NULL,
          #  n.cgroup = NULL,
            ...) {
     if (nrow(x) == 0)
       return(NULL)
-    tbl <- tbl_header(x, split_header=split_header)
+
+  if(!is.na(select)) x <- x[select]
+
+
 
     if (output == "docx") {
       # In spin-word geht Word.doc  nicht weil die Ausgabe nicht an knit_print weitergegeben wird.
       return(Output_word(x, caption, note, output, split_header))
     }
 
-      caption <- Caption(caption, attr(x, "caption"), N = attr(x, "N"))
-      note <- Note(note, attr(x, "note"))
+
+
+    caption <- Caption(caption, attr(x, "caption"), N = attr(x, "N"))
+    note    <- Note(note, attr(x, "note"))
+
+     tbl <- tbl_header(x, header, split_header)
+
+     if(!is.null(rgroup)){
+       if (!is.null(names(rgroup))) {
+         n.rgroup <- as.vector(rgroup)
+         rgroup <- names(rgroup)
+         if (!any(n.rgroup == 1)) {
+           rgroup <- c(".", rgroup)
+           n.rgroup <- n.rgroup - 1
+         }
+         else
+           n.rgroup <- n.rgroup[-1] - 1
+       }}
+
+
 
     if (output == "text") {
       #caption <- Caption(caption, attr(x, "caption"))
@@ -306,25 +339,27 @@ Output.list <- function(x,
 #' @noRd
 tbl_header <-
   function(x,
-           col_names = colnames(x),
+           header = NULL,
            split_header = TRUE,
            split_heder.chr = "_") {
 
-    header <- col_names
+    header <- if( is.null(header)) colnames(x)
+    else if(length(header)==ncol(x) ) header
+    else colnames(x)
+
     header_above <- NULL
     cgroup <- NULL
     n.cgroup <- NULL
     a1 <- a2 <- NULL
 
-    if (split_header)
-    {
-      result_tbl_names <- stringr::str_split(col_names, split_heder.chr)
+    if (split_header) {
+      result_tbl_names <- stringr::str_split(header, split_heder.chr)
       ebenen <- max(lengths(result_tbl_names), na.rm = TRUE)
 
       if (ebenen == 3) {
         #Fehler mit Name_name_SD abfangen
         result_tbl_names <-
-          stringr::str_split(col_names, split_heder.chr , 2)
+          stringr::str_split(header, split_heder.chr , 2)
         ebenen <- max(lengths(result_tbl_names), na.rm = TRUE)
       }
 
