@@ -54,7 +54,9 @@ Output.character <- function(x, ...){ Text(x) }
 #'  padding-left: .5em; padding-right: .2em;
 #' @param booktabs,latex_options an kableExtra
 #' @param linesep linesep = ""  linesep = c("", "", "\\midrule")
-#' @param rgroup,n.rgroup an htmlTable
+#' @param rgroup,n.rgroup an htmlTable rgroup = c("A", "B", "C")
+#' n.rgroup wie oft kommt A b und C vor.
+#' Die Position kann über   rgroup = c("A"=1, "B"=3, "C" =6 ) eingestellt werden
 #' @param ... nicht benutzt
 #'
 #' @return nix
@@ -138,18 +140,17 @@ Output.data.frame <-
     note    <- Note(note, attr(x, "note"))
 
      tbl <- tbl_header(x, header, split_header)
-
-     if(!is.null(rgroup)){
+     if(!is.null(rgroup)) {
        if (!is.null(names(rgroup))) {
          n.rgroup <- as.vector(rgroup)
          rgroup <- names(rgroup)
-         if (!any(n.rgroup == 1)) {
-           rgroup <- c(".", rgroup)
-           n.rgroup <- n.rgroup - 1
+         if (n.rgroup[1L] != 1) {
+           rgroup <- c("", rgroup)
+           n.rgroup <- c(1, n.rgroup)
          }
-         else
-           n.rgroup <- n.rgroup[-1] - 1
-       }}
+         n.rgroup <-  c(diff(n.rgroup - 1))
+       }
+     }
 
 
 
