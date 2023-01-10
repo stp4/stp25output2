@@ -375,6 +375,12 @@ html_tbl_css <- function() {
   htmlTable::setHtmlTableTheme(
     css.rgroup = "font-weight: normal; margin: 0; padding: 0;",
     css.rgroup.sep = "",
+
+    # in html geht das mit den linien
+    # aber die lassen sich nicht ins Word Kopieren
+    # css.rgroup.sep = "border-top: 1px solid green;",
+
+
     css.tspanner = "font-weight: 900; text-align: left;",
     css.tspanner.sep = "border-top: 1px solid #BEBEBE;",
     css.total = "border-top: 1px solid #BEBEBE; font-weight: 900;",
