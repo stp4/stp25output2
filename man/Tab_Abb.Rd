@@ -14,11 +14,17 @@ Abb_Index(x = NULL)
 
 Abb(filename = "", caption = "", folder = get_opt("fig_folder"))
 
-Tab(caption = "")
+Tab(caption = "", caption.nr.prefix = get_opt("table", "caption.nr.prefix"))
 
 Tab_Index(x = NULL)
 
-Caption(caption = NULL, atr = NULL, N = NULL, include.n = get_opt("caption"))
+Caption(
+  caption = NULL,
+  atr = NULL,
+  N = NULL,
+  include.n = get_opt("table", "include.n"),
+  include.tabel.number = get_opt("table", "include.tabel.number")
+)
 
 Note(x = NULL, atr = NULL)
 }
@@ -32,6 +38,9 @@ Note(x = NULL, atr = NULL)
 \item{folder}{Speicherort}
 
 \item{atr}{in Caption: alternativer Text}
+
+\item{include.n, include.tabel.number}{wird über get_opt gesteuert
+entweder direkt include.n oder indirekt mit caotion =TRUE/FALSE}
 }
 \value{
 Name plus Nummer

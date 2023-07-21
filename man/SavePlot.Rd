@@ -25,12 +25,12 @@ res=72}
 
 \item{filename}{Text}
 
-\item{save_plot}{speichern als file = pdf esp,}
+\item{save_plot}{c("pdf", "esp", "png", "jpeg", "bmp") speichern als file}
 
 \item{output}{nur wichtig bei html}
 
 \item{out.type}{name of the output device: can
-be "pdf", or "cairo"}
+be "pdf", or "cairo" dev.copy2pdf}
 }
 \value{
 file name
@@ -61,6 +61,47 @@ cowplot::plot_grid(
 cowplot::save_plot( )
 ggplot2::ggsave("test-23.pdf")
 ggplot2::ggsave("test-2.eps")
+
+
+save_my_plot <- function(p,
+w = 7,
+h = 3.5 ,
+filename = "A-Figure.jpeg",
+out.type = "cairo",
+path = getwd(),
+res= 72
+) {
+
+  p_new <-
+    update(p, par.settings = stp25settings::bw_theme(farbe()))
+  filename <-   file.path(path, filename)
+  jpeg(filename,
+       width = round(w * res),
+       height = round(h * res),
+       quality = 100,
+       res = res,
+       type  = out.type
+  )
+  # wegen "cairo"
+  print(cowplot::plot_grid(p_new))
+  dev.off()
+
+  (p_new)
+}
+
+
+require(lattice)
+require(stp25output2)
+require(stp25settings)
+p<- barchart(yield ~ variety | site, data = barley,
+             groups = year, layout = c(1,6), stack = TRUE,
+             auto.key = list(space = "right"),
+             ylab = "Barley Yield (bushels/acre)",
+             scales = list(x = list(rot = 45)))
+
+save_my_plot(p)
+
+
 
 resulution
 w und h in pixels

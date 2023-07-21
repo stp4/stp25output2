@@ -12,7 +12,7 @@ Projekt(myformat = "", Projektname = "Demo", datum = date())
 Rmd_Start(myformat, Projektname, datum)
 
 End(
-  browser = "iexplore",
+  browser = NA,
   output = options()$prompt[1] == "HTML> ",
   file = HTMLGetFile(),
   ...
@@ -37,7 +37,8 @@ html-Pfad oder Projektname als Text
 \description{
 Ein R-File ruft die Interne Funktion Projekt_html() auf und ein Rmd-File Rmd_Start().
 
-Einstellungen fuer .Rmd files hier werden keine Folder erstellt
+Einstellungen fuer .Rmd files hier
+werden keine Folder erstellt
 
 \subsection{End}{
 Zuruecksetzen der Einstellungen und Aufruf des Browsers browser = getOption("browser")}
