@@ -50,6 +50,7 @@ Output.character <- function(x, ...){ Text(x) }
 #' @param output welcher output, text, html, markdown
 #' @param header erste Zeile nur bei HTML
 #' @param select auswahl von Spalten
+#' @param col.names eigene Namen
 #' @param css.table,css.cell,align  htmlTable
 #'  padding-left: .5em; padding-right: .2em;
 #' @param booktabs,latex_options an kableExtra
@@ -106,6 +107,7 @@ Output.data.frame <-
            note = NULL,
            header = NULL,
            select = NA,
+           col.names=NULL,
            output =  which_output(),
            split_header = TRUE,
            css.table = 'padding-left: .5em; padding-right: .2em;',
@@ -126,6 +128,13 @@ Output.data.frame <-
       return(NULL)
 
   if(!is.na(select)) x <- x[select]
+
+
+  if (!is.null(col.names)) {
+    v_length <- length(col.names)
+    names(x)[v_length] <- col.names
+  }
+
 
 
 

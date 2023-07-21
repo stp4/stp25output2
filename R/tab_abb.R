@@ -12,14 +12,18 @@ NULL
 #' @export
 #' @param caption
 #'
-Tab <- function (caption = ""){
-
+Tab <- function (caption = "",
+                 caption.nr.prefix = get_opt("table", "caption.nr.prefix")) {
   if (exists("Tab_Index", .step25Env))
-   x <-  get("Tab_Index", .step25Env) + 1
-  else x <- 1
+    x <-  get("Tab_Index", .step25Env) + 1
+  else
+    x <- 1
 
   assign("Tab_Index", x, envir = .step25Env)
-  paste0("Tab ", x, ": ", caption)
+  if (is.null(caption.nr.prefix))
+    paste0("Tab ", x, ": ", caption)
+  else
+    paste0("Tab ", caption.nr.prefix, x, ": ", caption)
 }
 
 
@@ -50,6 +54,8 @@ Tab_Index <- function (x = NULL)
 
 #' @rdname Tab_Abb
 #' @param atr in Caption: alternativer Text
+#' @param include.n,include.tabel.number  wird über get_opt gesteuert
+#' entweder direkt include.n oder indirekt mit caotion =TRUE/FALSE
 #' @description  Ueberschrift aus stp-Objekt:
 #'
 #' Caption(caption, attr(x, "caption"))
@@ -57,40 +63,42 @@ Tab_Index <- function (x = NULL)
 #'
 Caption <- function(caption = NULL,
                     atr = NULL,
-                   # output =  which_output(),
                     N = NULL,
-                    include.n = get_opt("caption"))
-  {
-
-
-
-  # print( list(
-  #        caption=caption,
-  #        atr = atr,
-  #        output=output,
-  #        n=N,
-  #        include.n =include.n)
-  #        )
-
-  if( is.character(caption) ){
-    if(!is.null(include.n) & !is.null(N))
-      caption <- paste(caption, " (N=", N, ")", sep="")
+                    include.n =  get_opt("table", "include.n"),
+                    include.tabel.number =  get_opt("table", "include.tabel.number")) {
+#  cat("\n", class(caption), is.null(caption),"\n")
+  # Optionen aufdröseln
+  if (is.logical(get_opt("caption"))) {
+    if (get_opt("caption"))
+      include.n <- TRUE
+    else
+      include.tabel.number <- FALSE
   }
-  else if( is.character( atr )) caption <-  atr
-  else  if(!is.null(include.n) & !is.null(N))
-         caption <- paste( "N=", N, sep="" )
-  else caption <- ""
+ # cat("\n", include.n, include.tabel.number, "\n")
 
-  #if (output == "html" | output == "text" | output == "markdown_html")
-  Tab(caption)
+  # Ueberschrift definieren
+  if (!is.character(caption)) {
+    if (is.character(atr)) caption <- atr
+    else caption <- ""
+  }
+
+  if (include.n & !is.null(N))
+    caption <- paste(caption, " (N=", N, ")", sep = "")
+
+
+  if (include.tabel.number) Tab(caption)
+  else caption
 }
 
 #' @rdname Tab_Abb
 #' @param x Text
-Note<- function(x=NULL,
-                atr=NULL){
-  if(is.null(x) & (!is.null(atr))) atr
-  else if(!is.null(x)) x
-  else ""
+Note <- function(x = NULL,
+                 atr = NULL) {
+  if (is.null(x) & (!is.null(atr)))
+    atr
+  else if (!is.null(x))
+    x
+  else
+    ""
 }
 
