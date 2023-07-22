@@ -163,7 +163,7 @@ df1 \%>\% Output(output="html")
 df1 \%>\% Output(output="text")
 
 #+ df-word ,  results='asis'
-df1 \%>\% Output(output="word")
+ # df1 \%>\% Output(output="word")
 
 
 #+ df-mark

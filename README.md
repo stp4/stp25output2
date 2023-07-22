@@ -9,14 +9,14 @@ R2HTML, texreg und htmlTable.
 
 ## Overview
 
--   Initialisiert von neuen Projekten
-    -   `Projekt()` und `End()` Initialisiert ein neues Projekt und
-        aufruf der HTML-Seite mit Hilfe von R2HTML.
--   Text und Tabellen-Formatierung
-    -   `Output` Erstellt Tabellen
-    -   `Text`, `Head` und `Head1 ...` Schreibt HTML Text.
--   Hilfsfunktionen
-    -   `SavePlot` Speichert Bilder in den Arbeitsfolder.
+- Initialisiert von neuen Projekten
+  - `Projekt()` und `End()` Initialisiert ein neues Projekt und aufruf
+    der HTML-Seite mit Hilfe von R2HTML.
+- Text und Tabellen-Formatierung
+  - `Output` Erstellt Tabellen
+  - `Text`, `Head` und `Head1 ...` Schreibt HTML Text.
+- Hilfsfunktionen
+  - `SavePlot` Speichert Bilder in den Arbeitsfolder.
 
 ## Output formats
 
@@ -101,13 +101,13 @@ Tab 1: data.frame (N=56)
 </td>
 </tr>
 <tr>
-<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
 term
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
 n
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
 m
 </th>
 </tr>
@@ -189,34 +189,36 @@ as.table(matrix(c("a1","a2",3,4,5,6),
 <table class="gmisc_table" style="border-collapse: collapse; padding-left: .5em; padding-right: .2em;">
 <thead>
 <tr>
-<td colspan="5" style="text-align: left;">
+<td colspan="6" style="text-align: left;">
 Tab 2: as.table()
 </td>
 </tr>
 <tr>
-<th colspan="1" style="font-weight: 900; border-top: 2px solid black; text-align: center;">
+<th colspan="1" style="font-weight: 900; border-top: 2px solid black; text-align: center; margin: 0; padding: 0; vertical-align: middle;">
 </th>
-<th style="border-bottom: none; border-top: 2px solid black;" colspan="1">
- 
+<th style="width: 2px; border-bottom: 1px solid white; border-top: 2px solid black;" colspan="1">
 </th>
-<th colspan="3" style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+<th style="width: 2px; border-bottom: 1px solid white; border-top: 2px solid black;" colspan="1">
+</th>
+<th colspan="3" style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center; margin: 0; padding: 0; vertical-align: middle;">
 party
 </th>
 </tr>
 <tr>
-<th style="font-weight: 900; border-bottom: 1px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;">
 gender
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid black; text-align: center;" colspan="1">
- 
+<th style="width: 2px; margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;" colspan="1">
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid black; text-align: center;">
+<th style="width: 2px; margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;" colspan="1">
+</th>
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;">
 Dem
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;">
 Ind
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;">
 Rep
 </th>
 </tr>
@@ -226,8 +228,9 @@ Rep
 <td style="padding-left: .5em; padding-right: .2em; text-align: left;">
 M
 </td>
-<td style="padding-left: .5em; padding-right: .2em; text-align: left;" colspan="1">
- 
+<td style="width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;" colspan="1">
+</td>
+<td style="width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;" colspan="1">
 </td>
 <td style="padding-left: .5em; padding-right: .2em; text-align: left;">
 a1
@@ -243,8 +246,9 @@ a2
 <td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
 F
 </td>
-<td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;" colspan="1">
- 
+<td style="width: 2px; padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;" colspan="1">
+</td>
+<td style="width: 2px; padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;" colspan="1">
 </td>
 <td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
 4
@@ -259,7 +263,7 @@ F
 </tbody>
 <tfoot>
 <tr>
-<td colspan="5">
+<td colspan="6">
 </td>
 </tr>
 </tfoot>
@@ -275,14 +279,14 @@ warpbreaks2 %>%
 <thead>
 <tr>
 <td colspan="2" style="text-align: left;">
-Tab 3: Summary (N=54)
+Tab 3: Summary (N=54) (N=54)
 </td>
 </tr>
 <tr>
-<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
 Item
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
 m
 </th>
 </tr>
@@ -362,7 +366,6 @@ The type of wool 
 <tfoot>
 <tr>
 <td colspan="2">
-Categorical date: count (percent)ratio; Continuous date: mean (sd)
 </td>
 </tr>
 </tfoot>
@@ -376,11 +379,11 @@ df1 %>% Output()
 #> <table class='gmisc_table' style='border-collapse: collapse; padding-left: .5em; padding-right: .2em;' >
 #> <thead>
 #> <tr><td colspan='3' style='text-align: left;'>
-#> Tab 4: Demo Ueberschrift</td></tr>
+#> Tab 4: Demo Ueberschrift (N=99)</td></tr>
 #> <tr>
-#> <th style='font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;'>term</th>
-#> <th style='font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;'>n</th>
-#> <th style='font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;'>m</th>
+#> <th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;'>term</th>
+#> <th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;'>n</th>
+#> <th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;'>m</th>
 #> </tr>
 #> </thead>
 #> <tbody>
@@ -419,17 +422,17 @@ df1 %>% Output()
 <thead>
 <tr>
 <td colspan="3" style="text-align: left;">
-Tab 5: Demo Ueberschrift
+Tab 5: Demo Ueberschrift (N=99)
 </td>
 </tr>
 <tr>
-<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
 term
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
 n
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
 m
 </th>
 </tr>
@@ -492,7 +495,7 @@ Note: Anmerkung
 #' results='markup'
 df1 %>% Output(output="text")
 #> 
-#>  Tab 6: Demo Ueberschrift 
+#>  Tab 6: Demo Ueberschrift (N=99) 
 #>   term  n         m
 #> 1    A 23 4.7 (2.4)
 #> 2    B 14 4.1 (2.3)
@@ -514,7 +517,7 @@ df1 %>% Output(output="markdown")
 | C    |  56 | 8.9 (3.6) |
 | D    |   2 |           |
 
-Tab 7: Demo Ueberschrift
+Tab 7: Demo Ueberschrift (N=99)
 
 Note: Anmerkung
 
@@ -543,19 +546,19 @@ Tab 8:
 </td>
 </tr>
 <tr>
-<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
 Df
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
 Sum Sq
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
 Mean Sq
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
 F value
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;">
 Pr(\>F)
 </th>
 </tr>
@@ -894,8 +897,8 @@ library("xtable")
 print(xtable(my_data), type = "html", include.rownames=FALSE, html.table.attributes=list("border='0' cellpadding='5' "))
 ```
 
-<!-- html table generated in R 4.2.1 by xtable 1.8-4 package -->
-<!-- Fri Oct 28 08:56:24 2022 -->
+<!-- html table generated in R 4.2.3 by xtable 1.8-4 package -->
+<!-- Sat Jul 22 12:00:43 2023 -->
 <table border="0" cellpadding="5">
 <tr>
 <th>
@@ -1023,8 +1026,8 @@ library(xtable)
 print(xtable(my_data), type = 'html')
 ```
 
-<!-- html table generated in R 4.2.1 by xtable 1.8-4 package -->
-<!-- Fri Oct 28 08:56:24 2022 -->
+<!-- html table generated in R 4.2.3 by xtable 1.8-4 package -->
+<!-- Sat Jul 22 12:00:43 2023 -->
 <table border="1">
 <tr>
 <th>
@@ -1172,8 +1175,8 @@ library(xtable)
 print(xtable(my_data), type = 'html', html.table.attributes = '')
 ```
 
-<!-- html table generated in R 4.2.1 by xtable 1.8-4 package -->
-<!-- Fri Oct 28 08:56:24 2022 -->
+<!-- html table generated in R 4.2.3 by xtable 1.8-4 package -->
+<!-- Sat Jul 22 12:00:43 2023 -->
 <table>
 <tr>
 <th>
@@ -1371,141 +1374,141 @@ htmlTable(my_data, col.rgroup = c("none", "#F7F7F7"))
 <tr>
 <th style="border-bottom: 1px solid grey; border-top: 2px solid grey;">
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
 a
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
 b
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
 c
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
 d
 </th>
-<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+<th style="margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
 e
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">
+<td style="margin: 0; padding: 0; text-align: left;">
 1
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 5.1
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 3.5
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 1.4
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 0.2
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 setosa
 </td>
 </tr>
 <tr style="background-color: #f7f7f7;">
-<td style="background-color: #f7f7f7; text-align: left;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; text-align: left;">
 2
 </td>
-<td style="background-color: #f7f7f7; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; text-align: center;">
 4.9
 </td>
-<td style="background-color: #f7f7f7; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; text-align: center;">
 3
 </td>
-<td style="background-color: #f7f7f7; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; text-align: center;">
 1.4
 </td>
-<td style="background-color: #f7f7f7; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; text-align: center;">
 0.2
 </td>
-<td style="background-color: #f7f7f7; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; text-align: center;">
 setosa
 </td>
 </tr>
 <tr>
-<td style="text-align: left;">
+<td style="margin: 0; padding: 0; text-align: left;">
 3
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 4.7
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 3.2
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 1.3
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 0.2
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 setosa
 </td>
 </tr>
 <tr style="background-color: #f7f7f7;">
-<td style="background-color: #f7f7f7; text-align: left;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; text-align: left;">
 4
 </td>
-<td style="background-color: #f7f7f7; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; text-align: center;">
 4.6
 </td>
-<td style="background-color: #f7f7f7; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; text-align: center;">
 3.1
 </td>
-<td style="background-color: #f7f7f7; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; text-align: center;">
 1.5
 </td>
-<td style="background-color: #f7f7f7; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; text-align: center;">
 0.2
 </td>
-<td style="background-color: #f7f7f7; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; text-align: center;">
 setosa
 </td>
 </tr>
 <tr>
-<td style="text-align: left;">
+<td style="margin: 0; padding: 0; text-align: left;">
 5
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 5
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 3.6
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 1.4
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 0.2
 </td>
-<td style="text-align: center;">
+<td style="margin: 0; padding: 0; text-align: center;">
 setosa
 </td>
 </tr>
 <tr style="background-color: #f7f7f7;">
-<td style="background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: left;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: left;">
 6
 </td>
-<td style="background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
 5.4
 </td>
-<td style="background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
 3.9
 </td>
-<td style="background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
 1.7
 </td>
-<td style="background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
 0.4
 </td>
-<td style="background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
+<td style="margin: 0; padding: 0; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: center;">
 setosa
 </td>
 </tr>

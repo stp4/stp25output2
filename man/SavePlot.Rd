@@ -42,6 +42,7 @@ speichern. Die Funktion Abb() beinhaltet den Pfad.
 }
 \examples{
 
+#'
 plot(1)
 SavePlot("Einfache Grafik", w=4, h=4)
 
@@ -58,18 +59,18 @@ cowplot::plot_grid(
   #labels = c("", "", "C"),
   rel_heights = c(0.05, 1 )
 )
-cowplot::save_plot( )
+#  ?cowplot::save_plot( )
 ggplot2::ggsave("test-23.pdf")
 ggplot2::ggsave("test-2.eps")
 
 
 save_my_plot <- function(p,
-w = 7,
-h = 3.5 ,
-filename = "A-Figure.jpeg",
-out.type = "cairo",
-path = getwd(),
-res= 72
+                         w = 7,
+                         h = 3.5 ,
+                         filename = "A-Figure.jpeg",
+                         out.type = "cairo",
+                         path = getwd(),
+                         res= 72
 ) {
 
   p_new <-
@@ -99,8 +100,7 @@ p<- barchart(yield ~ variety | site, data = barley,
              ylab = "Barley Yield (bushels/acre)",
              scales = list(x = list(rot = 45)))
 
-save_my_plot(p)
-
+#   save_my_plot(p)
 
 
 resulution
