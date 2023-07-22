@@ -69,15 +69,15 @@
 #' }
 #'
 #'
-#' require(lattice)
-#' require(stp25output2)
-#' require(stp25settings)
-#' p<- barchart(yield ~ variety | site, data = barley,
-#'              groups = year, layout = c(1,6), stack = TRUE,
-#'              auto.key = list(space = "right"),
-#'              ylab = "Barley Yield (bushels/acre)",
-#'              scales = list(x = list(rot = 45)))
-#'
+#' # require(lattice)
+#' # require(stp25output2)
+#' # require(stp25settings)
+#' # p<- barchart(yield ~ variety | site, data = barley,
+#' #             groups = year, layout = c(1,6), stack = TRUE,
+#' #             auto.key = list(space = "right"),
+#' #             ylab = "Barley Yield (bushels/acre)",
+#' #             scales = list(x = list(rot = 45)))
+#' #
 #' #   save_my_plot(p)
 #'
 #'
@@ -252,8 +252,6 @@ SavePlot <- function(caption = "",
 
   invisible(abb$GraphFileName)
 }
-
-
 
 
 #' @rdname Tab_Abb

@@ -21,10 +21,6 @@
 #' ###HTMLplot( Caption="Look at this curve!")
 #' #End()
 #'
-#'
-#'
-#'
-#'
 Text <- function(x, ...) {
   UseMethod("Text")
 }

@@ -86,10 +86,6 @@ Text("hallo", "ich bin ein Test")
 #End()
 
 
-
-
-
-
 citation_library(base,Hmisc,car,lattice)
 
 }
