@@ -105,17 +105,25 @@ Text.character <- function(...,
   msg <- paste0(...)
   msg <- gsub("#' ", "", msg)
 
-  if (output == "html")
+
+
+  if (output == "html") {
     report_html(msg)
+  }
   else if (output == "markdown" | output == "markdown_html") {
     if (style > 0) {
+      cat("\n") # Wegen spin
       cat(paste(rep("#", style), collapse = ""), msg)
-    } else
+      cat("\n")
+    } else {
+      cat("\n")
       cat(msg)
+      cat("\n")
+    }
   }
-  else
-
+  else{
     report_txt(msg)
+  }
 }
 
 #' @rdname Output
