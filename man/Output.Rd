@@ -127,13 +127,14 @@ Word: knitr::kable(x, format = "pandoc")
 Output_word() flextable::regulartable
 }
 \examples{
+\dontrun{
 library(gtsummary)
  tbl_summary_ex1 <-
 trial \%>\%
   select(age, grade, response) \%>\%
   tbl_summary() \%>\%
   Output()
-
+}
 
 df1 <- data.frame(
 term = c("A", "B", "C", "D"),
@@ -171,7 +172,7 @@ df1 \%>\% Output(output="markdown")
 
 # df1 \%>\%  Output(linesep = c("", "", "\\midrule"))
 
-
+\dontrun{
 
 m <- data.frame(
   Item = factor(1:3, 1:3, c("A", "B", "C")),
@@ -182,4 +183,5 @@ m <- data.frame(
 
 m <- stp25tools::Label(m, a = "Aplha", b = "Barbar", c = "Ciklyn")
 Text(m)
+}
 }

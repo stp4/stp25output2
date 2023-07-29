@@ -12,6 +12,8 @@
 #' @name Text
 #' @export
 #' @examples
+#'
+#' \dontrun{
 #' #library(stp25)
 #' #Projekt("html")
 #' Head("Ueberschrift") ## HR=2
@@ -20,7 +22,7 @@
 #' ###plot(sin, -pi, 2*pi,main="Sinus")
 #' ###HTMLplot( Caption="Look at this curve!")
 #' #End()
-#'
+#' }
 Text <- function(x, ...) {
   UseMethod("Text")
 }
@@ -130,7 +132,7 @@ Text.character <- function(...,
 #'
 #' @export
 #' @examples
-#'
+#' \dontrun{
 #'
 #' m <- data.frame(
 #'   Item = factor(1:3, 1:3, c("A", "B", "C")),
@@ -141,6 +143,7 @@ Text.character <- function(...,
 #'
 #' m <- stp25tools::Label(m, a = "Aplha", b = "Barbar", c = "Ciklyn")
 #' Text(m)
+#' }
 Text.data.frame <- function(x,
                             ...,
                             style = 0,
@@ -254,8 +257,6 @@ Anmerkung <- function(..., prafix = "Anmerkung"){
     paste0('<p style="color: #0000FF"><b>',prafix, ':</b> <br>
           ', paste0(...), "</p><br>"))
   }
-#  Text('<div style="color:#0000FF"><b>Anmerkung:</b><br>', ..., "<br></div>")
-
 
 
 #' @rdname Text
@@ -277,10 +278,6 @@ Kunde <- function(x = "",
 
 }
 
-
-
-
-
 #' @rdname Text
 #' @param ... namen der Librarys
 #' @param style,.bibstyle an format
@@ -289,9 +286,9 @@ Kunde <- function(x = "",
 #' @export
 #'
 #' @examples
-#'
+#' \dontrun{
 #' citation_library(base,Hmisc,car,lattice)
-#'
+#' }
 citation_library <- function(...,
                              style = "text",
                              .bibstyle = NULL,
@@ -320,13 +317,11 @@ citation_library <- function(...,
 }
 
 
-
 #' @rdname Text
 #' @description Zitat() ist eine Text  vom Type <blockquote>
 #' @export
 Zitat <- function(...)
   Text('<blockquote>', ..., "<br></blockquote>")
-
 
 
 #' @rdname Text
@@ -363,7 +358,4 @@ Arbeitszeit <- function(Lines,
                   "Zeit_Summe")], ...)
   invisible(zeit)
 }
-
-
-
 

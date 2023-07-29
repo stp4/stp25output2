@@ -39,7 +39,6 @@ HTML_close <-
              format(Sys.time(), "%a %d %b %Y %H:%M:%S "),
              '</p>\n</body>\n</html> '),
       file = HTMLGetFile(),  append = TRUE
-
     )
   }
 
@@ -56,9 +55,7 @@ HTML_default <- function(x, output =  which_output()) {
   else{
     cat(x)
   }
-
 }
-
 
 
 #'  HTML_P <p> Paragraph
@@ -69,7 +66,6 @@ HTML_P <- function (x, output = which_output()){
 else
   HTML_default(x, output)
 }
-
 
 
 #'  HTML_I <i>	Defines italic text
@@ -146,7 +142,6 @@ HTML_NULL <- function (x, output = which_output()){
   NULL}
 
 
-
 #'  HTML_BR <br> Zeilenumbruch aber ohne Text
 #' @noRd
 HTML_BR <- function (x, output = which_output()){
@@ -156,14 +151,12 @@ else
   NULL}
 
 
-
 #' @description HTML_Start ist ein e Kopie von  R2HTML
 #' @noRd
 HTML_Start <- function (Projektname = "Demo",
                         datum = date(),
                         fig_folder = get_opt("fig_folder"),
                         html_folder = get_opt("html_folder"),
-
                         withprompt = "HTML> ",
                         .extension = "html",
                         .myDir = getwd(),
@@ -198,13 +191,6 @@ HTML_Start <- function (Projektname = "Demo",
 
 
 }
-
-
-
-
-
-
-
 
 
 #' CSS erstellen
@@ -310,9 +296,6 @@ MyCss <- function() {
 }
 
 
-
-
-#
 #Copie von
 #R2HTML::HTMLStop
 #@noRd

@@ -76,6 +76,8 @@ Zitat() ist eine Text  vom Type <blockquote>
 Arbeitszeit() Tabelle zur Dokumentation der Arbeiszeit.
 }
 \examples{
+
+\dontrun{
 #library(stp25)
 #Projekt("html")
 Head("Ueberschrift") ## HR=2
@@ -84,8 +86,8 @@ Text("hallo", "ich bin ein Test")
 ###plot(sin, -pi, 2*pi,main="Sinus")
 ###HTMLplot( Caption="Look at this curve!")
 #End()
-
-
+}
+\dontrun{
 citation_library(base,Hmisc,car,lattice)
-
+}
 }

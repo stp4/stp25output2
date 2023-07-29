@@ -35,7 +35,6 @@ Output2 <- function(x,
     note = note,
     header = header,
     output =  output
-
   )
 }
 
@@ -116,13 +115,8 @@ Output.data.frame <-
            latex_options = c("hold_position"),
            linesep = "",
            align = "l",
-
            rgroup = attr(x, "rgroup", TRUE),
            n.rgroup =  attr(x, "n.rgroup", TRUE),
-
-
-         #  cgroup = NULL,
-         #  n.cgroup = NULL,
            ...) {
     if (nrow(x) == 0)
       return(NULL)
@@ -399,6 +393,7 @@ tbl_header <-
     )
   }
 
+
 #' Leehrzeiche auffüllen
 #'
 #' Interne Funktion Html &nbsp; ergaenzen
@@ -414,6 +409,7 @@ insert_nbsp <- function(x) {
       x
   }))
 }
+
 
 #' nbsp entfernen
 #'

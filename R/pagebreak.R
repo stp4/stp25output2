@@ -4,20 +4,20 @@
 #'
 #' @return nichts
 #' @export
-#' 
-#' @examples 
-#' 
+#'
+#' @examples
+#'  \dontrun{
 #' # in MD-Files
 #' # `r pagebreak()`
-#' 
+#' }
 pagebreak <- function() {
   if(knitr::is_latex_output())
     return("\\newpage")
   else if(knitr::is_html_output())
     return('<div style="page-break-before: always;" />')
   else  if (which_output() == "html")
-      HTML_default('<br style="page-break-before: always">') 
+      HTML_default('<br style="page-break-before: always">')
   else cat("\n\n***\n\n")
 }
 
- 
+

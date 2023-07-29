@@ -49,7 +49,8 @@ Name plus Nummer
 Nummerierte Abbildung default Folder ist fig
 
 Ueberschrift aus stp-Objekt:
-
+\dontrun{
 Caption(caption, attr(x, "caption"))
 oder Note(note, attr(x, "note")) mit
+}
 }

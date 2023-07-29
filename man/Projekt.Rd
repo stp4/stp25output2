@@ -42,10 +42,11 @@ werden keine Folder erstellt
 
 \subsection{End}{
 Zuruecksetzen der Einstellungen und Aufruf des Browsers browser = getOption("browser")}
+
+Die Funktion geht nicht unter Linux/Apple
 }
 \details{
 Start eines neuen Prpjekts
-n.
 }
 \examples{
 
@@ -53,12 +54,9 @@ n.
 
  Projekt()
 
-
  # Auswertung
-
 
  End()
 
 }
-
 }

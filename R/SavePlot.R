@@ -20,7 +20,7 @@
 #'
 #' @examples
 #'
-#' #'
+#' \dontrun{
 #' plot(1)
 #' SavePlot("Einfache Grafik", w=4, h=4)
 #'
@@ -80,7 +80,7 @@
 #' #
 #' #   save_my_plot(p)
 #'
-#'
+#' }
 SavePlot <- function(caption = "",
                       w = dev.size("in")[1],
                       h = dev.size("in")[2],
@@ -98,8 +98,6 @@ SavePlot <- function(caption = "",
     GraphFileName <- paste0(abb$GraphFileName, ".png")
     #' resulution
     #' w und h in pixels
-
-
     dev.print(
       device = png,
       file = file.path(dirname(HTMLGetFile()), GraphFileName),

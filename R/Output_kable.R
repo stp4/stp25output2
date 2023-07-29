@@ -13,7 +13,6 @@ Output_kable <- function(x, ...) {
 #' @export
 Output_kable.list <- function(x, ...) {
   cname <- names(x)
-  #cat("\nnames: ", cname)
   for (i in  cname)
     Output_kable.default(x[[i]], ...)
 }
@@ -29,13 +28,10 @@ Output_kable.default <-
   function(x,
            caption = NULL,
            col.names = colnames(x),
-          # format = "latex",
            booktabs=TRUE,
            latex_options = c("hold_position"),
-
            note = NULL,
            output =  which_output(),
-
            ...) {
 
 
@@ -110,6 +106,4 @@ Output_kable.default <-
     }
     invisible(dt)
   }
-
-
 

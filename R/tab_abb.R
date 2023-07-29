@@ -29,7 +29,6 @@ Tab <- function (caption = "",
 
 #' @rdname Tab_Abb
 #' @export
-
 Tab_Index <- function (x = NULL)
 {
   if (exists("Tab_Index", .step25Env)) {
@@ -46,21 +45,15 @@ Tab_Index <- function (x = NULL)
 }
 
 
-
-
-
-
-
-
 #' @rdname Tab_Abb
 #' @param atr in Caption: alternativer Text
 #' @param include.n,include.tabel.number  wird über get_opt gesteuert
 #' entweder direkt include.n oder indirekt mit caotion =TRUE/FALSE
 #' @description  Ueberschrift aus stp-Objekt:
-#'
+#' \dontrun{
 #' Caption(caption, attr(x, "caption"))
 #' oder Note(note, attr(x, "note")) mit
-#'
+#' }
 Caption <- function(caption = NULL,
                     atr = NULL,
                     N = NULL,
@@ -89,6 +82,7 @@ Caption <- function(caption = NULL,
   if (include.tabel.number) Tab(caption)
   else caption
 }
+
 
 #' @rdname Tab_Abb
 #' @param x Text

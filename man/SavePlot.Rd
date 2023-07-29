@@ -42,7 +42,7 @@ speichern. Die Funktion Abb() beinhaltet den Pfad.
 }
 \examples{
 
-#'
+\dontrun{
 plot(1)
 SavePlot("Einfache Grafik", w=4, h=4)
 
@@ -102,7 +102,7 @@ save_my_plot <- function(p,
 #
 #   save_my_plot(p)
 
-
+}
 resulution
 w und h in pixels
 save as png

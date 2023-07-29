@@ -13,8 +13,8 @@ nichts
 Neue Seite bei copy and paste in Word.
 }
 \examples{
-
+ \dontrun{
 # in MD-Files
 # `r pagebreak()`
-
+}
 }
