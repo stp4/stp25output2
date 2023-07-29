@@ -2,9 +2,8 @@
 #'
 #' Ein R-File ruft die Interne Funktion Projekt_html() auf und ein Rmd-File Rmd_Start().
 #'
-#'
 #' Start eines neuen Prpjekts
-#' n.
+#'
 #' @param myformat HTML, Spin, Knit, Rpres oder Text. Spin ist knitr wobei die Ausgabe der Tabellen mit html erfolgt
 #' @param Projektname Bezeichnung des Projektes (gilt auch fuer die HTML Seite)
 #' @param datum Datum zur Dokumentation
@@ -19,14 +18,11 @@
 #'
 #'  Projekt()
 #'
-#'
 #'  # Auswertung
-#'
 #'
 #'  End()
 #'
 #' }
-#'
 Projekt <- function(myformat = "",
                     Projektname = "Demo",
                     datum = date()
@@ -69,13 +65,6 @@ Projekt <- function(myformat = "",
     )
   }
 
-
-  # if(!silent){
-  #
-  #   cat("\nformat: ",myformat, " output:  ", which_output(),"\n", path )
-  #   cat( "\nscript: ",  get_scriptpath() , "\n")
-  # }
-
 }
 
 
@@ -110,8 +99,22 @@ HTML_Start <- function (Projektname = "Demo",
                         datum) {
   output.dir = file.path(getwd(), get_opt("html_folder"))
 
-  if (Projektname == "Demo")
-    setwd("C:/Users/wpete/Dropbox/3_Forschung/R-Project")
+  if (Projektname == "Demo") {
+    #setwd("C:/Users/wpete/Dropbox/3_Forschung/R-Project")
+
+    demo_file <- path.expand("~/Spielwiese")
+    if (!file.exists(demo_file)) {
+      dir.create(
+        demo_file,
+        showWarnings = TRUE,
+        recursive = FALSE,
+        mode = "0777"
+      )
+
+    }
+    setwd(demo_file)
+    cat("\nDemo: ", demo_file, "\n")
+  }
   #  path.expand("~")
   set_opt(output = "html")
   #-- Fehler Abfangen
@@ -145,7 +148,6 @@ HTML_Start <- function (Projektname = "Demo",
 
   html_tbl_css()
 
-
   HTML_open(Projektname)
 
   HTML_P(Projektname)
@@ -165,9 +167,13 @@ HTML_Start <- function (Projektname = "Demo",
   )))
 }
 
+
 #' @rdname Projekt
 #' @description  \subsection{End}{
 #' Zuruecksetzen der Einstellungen und Aufruf des Browsers browser = getOption("browser")}
+#'
+#' Die Funktion geht nicht unter Linux/Apple
+#'
 #' @param browser Ie oder Chrome
 #' @param output,file intern
 #' @export
@@ -178,16 +184,7 @@ End <- function(browser = NA,
   if (output & !is.null(file)) {
     if (browser %in% c("firefox", "meleon"))
       file <-  paste0("file:///", file)
-    # brwsr <-
-    #   list(
-    #
-    #     meleon =  "C:/Program Files (x86)/K-Meleon/k-meleon.exe",
-    #     chrome   = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
-    #     # firefox  = "C:/Program Files/Mozilla Firefox/firefox.exe",
-    #        iexplore = "C:/Program Files (x86)/Internet Explorer/iexplore.exe",
-    #        word     = "C:/Program Files (x86)/Microsoft Office/Office14/WINWORD.EXE"
-    #
-    #        )
+
     browser <-
       switch(
         browser,
@@ -208,42 +205,12 @@ End <- function(browser = NA,
 }
 
 
-
-
-
-# HTML_End <- function(browser = "iexplore") {
-#   file <-if(browser== "firefox") paste0("file:///", HTMLGetFile() )
-#   else HTMLGetFile()
-#   brwsr<- list(
-#     chrome= "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
-#     firefox= "C:/Program Files/Mozilla Firefox/firefox.exe",
-#     iexplore=  "C:/Program Files (x86)/Internet Explorer/iexplore.exe")
-#   browser<-  brwsr[[browser]]
-#
-#   HTML_close()
-#   browseURL(file, browser = browser)
-#
-#
-#   set_default_params(list(Tab_Index = 0, Abb_Index = 0, file.name.index = 0))
-#   #  reset_lattice() # assign("old.par", par(no.readonly = TRUE), envir = .step25Env)
-#   set_opt(output = "text")
-#   options(prompt = "> ")
-#
-#   HTMLGetFile()
-# }
-
-
-
-
-
 #' @rdname Projekt
 #' @export
 Stop <- function() {
   End()
   stop("Nein das ist kein Fehler!\n", call. = FALSE)
 }
-
-
 
 
 #'  get_scriptpath
@@ -281,22 +248,6 @@ get_scriptpath <- function() {
   }
   return(path)
 }
-
-
-
-
-
-# set_default_params <- function(params) {
-#   params <- as.list(params)
-#   env    <-  .GlobalEnv
-#   invisible(
-#     lapply(names(params),
-#            function(key) {
-#              assign(key,
-#                     params[[key]],
-#                     envir = env, inherits = FALSE)}
-#     ))
-# }
 
 
 #' Parameter fuer HTML
