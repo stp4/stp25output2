@@ -47,9 +47,8 @@ Output.character <- function(x, ...){ Text(x) }
 #' @param x dataframe
 #' @param caption,note  Ueberschrift Fussnote
 #' @param output welcher output, text, html, markdown
-#' @param header erste Zeile nur bei HTML
+#' @param header,col.names altlast beides das selbe Kopf Zeile
 #' @param select auswahl von Spalten
-#' @param col.names eigene Namen
 #' @param css.table,css.cell,align  htmlTable
 #'  padding-left: .5em; padding-right: .2em;
 #' @param booktabs,latex_options an kableExtra
@@ -59,7 +58,7 @@ Output.character <- function(x, ...){ Text(x) }
 #' Die Position kann über   rgroup = c("A"=1, "B"=3, "C" =6 ) eingestellt werden
 #' @param ... nicht benutzt
 #'
-#' @return nix
+#' @return input
 #' @export
 #'
 #' @examples
@@ -104,9 +103,9 @@ Output.data.frame <-
   function(x,
            caption = NULL,
            note = NULL,
-           header = NULL,
+           col.names=NULL, header = col.names,
            select = NA,
-           col.names=NULL,
+
            output =  which_output(),
            split_header = TRUE,
            css.table = 'padding-left: .5em; padding-right: .2em;',
@@ -123,24 +122,24 @@ Output.data.frame <-
 
   if(!is.na(select)) x <- x[select]
 
-
-  if (!is.null(col.names)) {
-    v_length <- length(col.names)
-    names(x)[v_length] <- col.names
-  }
-
-
-
-
     if (output == "docx") {
       # In spin-word geht Word.doc  nicht weil die Ausgabe nicht an knit_print weitergegeben wird.
       return(Output_word(x, caption, note, output, split_header))
     }
 
-
-
     caption <- Caption(caption, attr(x, "caption"), N = attr(x, "N"))
     note    <- Note(note, attr(x, "note"))
+
+    if (!is.null(header)) {
+      #cat("\nin header\n")
+      if (ncol(x) > length(header)) {
+        #cat("Header lenght is wrong! (to short) \n")
+        header <- append(header, names(x)[-seq_along(header)])
+      } else if (ncol(x) < length(header)) {
+        #cat("Header lenght is wrong! (to long) \n")
+        header <- header[seq_along(x)]
+      }
+    }
 
      tbl <- tbl_header(x, header, split_header)
      if(!is.null(rgroup)) {
@@ -154,8 +153,6 @@ Output.data.frame <-
          n.rgroup <-  c(diff(n.rgroup - 1))
        }
      }
-
-
 
     if (output == "text") {
       #caption <- Caption(caption, attr(x, "caption"))
