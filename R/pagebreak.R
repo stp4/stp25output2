@@ -1,6 +1,9 @@
 #' pagebreak
 #'
 #' Neue Seite bei copy and paste in Word.
+#' Geht nicht mehr ??
+#'
+#' Copy/Paste geht nicht mehr  aber das öffnen der HTML-Seite mit Word funktioniert.
 #'
 #' @return nichts
 #' @export
