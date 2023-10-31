@@ -206,7 +206,7 @@ SavePlot <- function(caption = "",
       height = Height,
       pointsize = 12,
       bg =  "white",
-      res = res  # res liefert unerwartete Ergebnisse
+      res = res
     )
   }
 
@@ -226,7 +226,7 @@ SavePlot <- function(caption = "",
       height = Height,
       pointsize = 12,
       bg =  "white",
-      res = res  # res liefert unerwartete Ergebnisse
+      res = res
     )
   }
 
@@ -245,6 +245,24 @@ SavePlot <- function(caption = "",
       pointsize = 12,
       bg =  "white",
       res = res  # res liefert unerwartete Ergebnisse
+    )
+  }
+
+  if ("tiff" %in% save_plot) {
+    if (filename == "")
+      abb_Name <- paste0(abb$Name, ".tiff")
+    else
+      abb_Name <- paste0(get_opt("fig_folder"), filename, ".tiff")
+    cat("\npng: ", abb_Name, "\n")
+
+    dev.print(
+      device = tiff,
+      file = abb_Name,
+      width = Width,
+      height = Height,
+      pointsize = 12,
+      bg =  "white",
+      res = res
     )
   }
 
