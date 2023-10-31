@@ -4,7 +4,7 @@ Title: Output
 Version: 0.2.0
 Author: Wolfgang Peter
 Maintainer: Wolfgang Peter <w.peter@statistik-peter.at>
-Description: Reports erstellen die Tabellen und Texte werden dabei als HTML ausgegeben.
+Description: Reports erstellen die Tabellen und Texte dabei als HTML ausgegeben.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

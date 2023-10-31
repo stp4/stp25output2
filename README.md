@@ -168,8 +168,10 @@ D
 ``` r
 
 Text("Hallo")
+#> 
 #> Hallo
 Text(dat, term, n, m,  include.levels=TRUE)
+#> 
 #> term: term: A|B|C|D n: n: numeric m: m: 4.1 (2.3)|4.7 (2.4)|8.9 (3.6)
 ```
 
@@ -569,13 +571,13 @@ Pr(\>F)
 1
 </td>
 <td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-75.3725490196085
+75.3725490196082
 </td>
 <td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-75.3725490196085
+75.3725490196082
 </td>
 <td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-0.375191177841786
+0.375191177841784
 </td>
 <td style="padding-left: .5em; padding-right: .2em; text-align: left;">
 0.541683003365518
@@ -589,30 +591,13 @@ Pr(\>F)
 2572.14917617822
 </td>
 <td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-857.383058726072
+857.383058726074
 </td>
 <td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-4.26790076558696
+4.26790076558697
 </td>
 <td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-0.00718305207307176
-</td>
-</tr>
-<tr>
-<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-1
-</td>
-<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-36.307404193483
-</td>
-<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-36.307404193483
-</td>
-<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-0.180731817099443
-</td>
-<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-0.671727134425381
+0.0071830520730717
 </td>
 </tr>
 <tr>
@@ -620,16 +605,33 @@ Pr(\>F)
 1
 </td>
 <td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-59.3033811724377
+36.3074041934833
 </td>
 <td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-59.3033811724377
+36.3074041934833
 </td>
 <td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-0.295201710987628
+0.180731817099444
 </td>
 <td style="padding-left: .5em; padding-right: .2em; text-align: left;">
-0.588206240205116
+0.67172713442538
+</td>
+</tr>
+<tr>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+1
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+59.3033811724373
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+59.3033811724373
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+0.295201710987626
+</td>
+<td style="padding-left: .5em; padding-right: .2em; text-align: left;">
+0.588206240205118
 </td>
 </tr>
 <tr>
@@ -637,7 +639,7 @@ Pr(\>F)
 93
 </td>
 <td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
-18682.8674894362
+18682.8674894363
 </td>
 <td style="padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;">
 200.891048273508
@@ -897,8 +899,8 @@ library("xtable")
 print(xtable(my_data), type = "html", include.rownames=FALSE, html.table.attributes=list("border='0' cellpadding='5' "))
 ```
 
-<!-- html table generated in R 4.2.3 by xtable 1.8-4 package -->
-<!-- Sat Jul 22 12:22:31 2023 -->
+<!-- html table generated in R 4.3.1 by xtable 1.8-4 package -->
+<!-- Tue Oct 31 06:16:50 2023 -->
 <table border="0" cellpadding="5">
 <tr>
 <th>
@@ -1026,8 +1028,8 @@ library(xtable)
 print(xtable(my_data), type = 'html')
 ```
 
-<!-- html table generated in R 4.2.3 by xtable 1.8-4 package -->
-<!-- Sat Jul 22 12:22:32 2023 -->
+<!-- html table generated in R 4.3.1 by xtable 1.8-4 package -->
+<!-- Tue Oct 31 06:16:50 2023 -->
 <table border="1">
 <tr>
 <th>
@@ -1175,8 +1177,8 @@ library(xtable)
 print(xtable(my_data), type = 'html', html.table.attributes = '')
 ```
 
-<!-- html table generated in R 4.2.3 by xtable 1.8-4 package -->
-<!-- Sat Jul 22 12:22:32 2023 -->
+<!-- html table generated in R 4.3.1 by xtable 1.8-4 package -->
+<!-- Tue Oct 31 06:16:50 2023 -->
 <table>
 <tr>
 <th>

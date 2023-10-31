@@ -19,46 +19,36 @@ require(lattice)
 
 # stp25output2
 
-Die Scripten dienen der Erstellung von Reports als HTML aber auch von PDF ueber knit.
-Zum Teil handelt es sich um modifizerte Funktionen von  R2HTML, texreg und htmlTable.
+Die Scripten dienen der Erstellung von Reports als HTML aber auch von PDF ueber knit. Zum Teil handelt es sich um modifizerte Funktionen von R2HTML, texreg und htmlTable.
 
-Overview
---------
+## Overview
 
-
-* Initialisiert von neuen Projekten
-   + `Projekt()` und `End()` Initialisiert ein neues Projekt und aufruf der HTML-Seite mit Hilfe von R2HTML.
-
-* Text und Tabellen-Formatierung
-   + `Output` Erstellt Tabellen
-   + `Text`, `Head` und `Head1 ...` Schreibt HTML Text.
-
-* Hilfsfunktionen
-   + `SavePlot` Speichert Bilder in den Arbeitsfolder.
-
-
-
+-   Initialisiert von neuen Projekten
+    -   `Projekt()` und `End()` Initialisiert ein neues Projekt und aufruf der HTML-Seite mit Hilfe von R2HTML.
+-   Text und Tabellen-Formatierung
+    -   `Output` Erstellt Tabellen
+    -   `Text`, `Head` und `Head1 ...` Schreibt HTML Text.
+-   Hilfsfunktionen
+    -   `SavePlot` Speichert Bilder in den Arbeitsfolder.
 
 ## Output formats
 
-File | Type    | Parameter       | which_output()
------|---------|-----------------|--------------
-r    |         |                 | text
-r    | Projekt("html")        |  | html
-r    | spin    | html_document   | markdown_html
-r    | spin    | pdf_document    | latex
-r    | spin    | word_document   | docx
-Rmd  |     | html_document   | markdown_html
-Rmd  |     | pdf_document    | latex
-Rmd  |     | word_document   | docx
-Rmd  |     | beamer   | latex
-Rmd  |     | github_document   | markdown_html
-
-
+| File | Type            | Parameter       | which_output() |
+|------|-----------------|-----------------|----------------|
+| r    |                 |                 | text           |
+| r    | Projekt("html") |                 | html           |
+| r    | spin            | html_document   | markdown_html  |
+| r    | spin            | pdf_document    | latex          |
+| r    | spin            | word_document   | docx           |
+| Rmd  |                 | html_document   | markdown_html  |
+| Rmd  |                 | pdf_document    | latex          |
+| Rmd  |                 | word_document   | docx           |
+| Rmd  |                 | beamer          | latex          |
+| Rmd  |                 | github_document | markdown_html  |
 
 ## Projekt
 
-Initialisieren eines Projektes. 
+Initialisieren eines Projektes.
 
 ```{r}
 # devtools::install_github("stp4/stp25output")
@@ -82,8 +72,6 @@ warpbreaks2 %>%
 End()
 
 ```
-
-
 
 ### Usage
 
@@ -111,7 +99,6 @@ Text("Hallo")
 Text(dat, term, n, m,  include.levels=TRUE)
 ```
 
-
 ```{r output-matrix, results='asis'}
 
 # matrix(c("a1","a2",3,4,5,6),
@@ -126,8 +113,6 @@ as.table(matrix(c("a1","a2",3,4,5,6),
 
 ```
 
-
-
 ```{r , results='asis'}
  
 warpbreaks2 %>%
@@ -136,9 +121,7 @@ warpbreaks2 %>%
 
 ```
 
-
 ### Verschiedene Szenarien
- 
 
 ```{r, include = FALSE}
 
@@ -155,21 +138,15 @@ df1 <- data.frame(
 
 ```
 
-
-
-
 ```{r df-default, results='markup'}
 #' default, results='markup'
 df1 %>% Output()
 ```
 
-
 ```{r df-false, results='asis'}
 #' default, results='asis'
 df1 %>% Output()
 ```
-
-
 
 ```{r df-text, results='markup'}
 #' results='markup'
@@ -181,11 +158,9 @@ df1 %>% Output(output="text")
 df1 %>% Output(output="markdown")
 ```
 
+## xtable()
 
-##  xtable()
-
-Ist eine Package zum Erstellen von HTML und latex.
-Convert an R object to an xtable object, which can then be printed as a LaTeX or HTML table
+Ist eine Package zum Erstellen von HTML und latex. Convert an R object to an xtable object, which can then be printed as a LaTeX or HTML table
 
 ```{r, results='asis'}
  
@@ -200,7 +175,6 @@ Output(fm1.table)
 
 ```
 
-
 ```{r , results='markup'}
 
 fm2 <- lm(tlimth ~ sex*ethnicty, data = tli)
@@ -210,10 +184,7 @@ fm2b <- lm(tlimth ~ ethnicty, data = tli)
 
 ```
 
-
-
-##  knitr::kable
-
+## knitr::kable
 
 ```{r}
 knitr::kable(
@@ -221,8 +192,6 @@ knitr::kable(
   format = "pandoc" 
 )
 ```
-
-
 
 ```{r}
 
@@ -233,7 +202,6 @@ knitr::kable(
 
 ```
 
-
 ```{r}
 knitr::kable(
   df1, row.names = FALSE,
@@ -241,13 +209,7 @@ knitr::kable(
 )
 ```
 
-
-
-
-
-
 ## Grafik settings
-
 
 ```{r}
  
@@ -270,9 +232,6 @@ DF <- data.frame(
 bwplot(e ~ treatment, DF)
 ```
 
-
-
-
 ```{r fig-ggplot, fig.height=3, fig.width=4}
 
 #set_lattice_ggplot()
@@ -281,8 +240,6 @@ bwplot(e ~ treatment, DF)
 
 ```
 
-
-
 ```{r fig-bw, fig.height=3, fig.width=4}
 #set_lattice_bw()
 bwplot(e ~ treatment, DF)
@@ -290,18 +247,11 @@ bwplot(e ~ treatment, DF)
  
 ```
 
-
-
-
 ## A few methods for making tables in rmarkdown
-Quelle: https://gist.github.com/benmarwick/8ad99f35d5e4caa06492
- 
- 
 
-https://github.com/yihui/printr
-https://github.com/jalapic/simpletable
-https://github.com/renkun-ken/formattable
- 
+Quelle: <https://gist.github.com/benmarwick/8ad99f35d5e4caa06492>
+
+<https://github.com/yihui/printr> <https://github.com/jalapic/simpletable> <https://github.com/renkun-ken/formattable>
 
 ```{r}
 my_data <- head(iris)
@@ -343,7 +293,7 @@ pander::panderOptions('table.split.table', 350)
 pander::pandoc.table(my_data, style="rmarkdown")
 ```
 
-```{}
+```         
 library("ascii")
 print(ascii(my_data), type = 'pandoc')
 ```
@@ -358,8 +308,7 @@ library(hwriter)
 hwrite(my_data, border=0)
 ```
 
-This one is the most useful, and has a nice guide to customisation here: http://www.ebi.ac.uk/~gpau/hwriter/
-
+This one is the most useful, and has a nice guide to customisation here: <http://www.ebi.ac.uk/~gpau/hwriter/>
 
 ```{r results='asis'}
 library(hwriter)
@@ -376,4 +325,3 @@ cat(
   )
 )
 ```
-
