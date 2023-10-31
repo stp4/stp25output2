@@ -103,7 +103,8 @@ Output.data.frame <-
   function(x,
            caption = NULL,
            note = NULL,
-           col.names=NULL, header = col.names,
+           col.names=NULL,
+           header = col.names,
            select = NA,
 
            output =  which_output(),
