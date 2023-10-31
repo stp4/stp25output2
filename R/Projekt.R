@@ -208,6 +208,10 @@ End <- function(browser = NA,
 #' @rdname Projekt
 #' @export
 Stop <- function() {
+  cat("\n",
+      crayon::bgGreen('Alles OK!'),
+      "\n")
+
   End()
   stop("Nein das ist kein Fehler!\n", call. = FALSE)
 }
