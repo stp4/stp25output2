@@ -16,6 +16,10 @@
 #'
 #' \dontrun{
 #'
+#'
+#' #' Ändern des Speicher-Orts für HTML
+#'  set_opt(html_folder ="Temp-Ordner")
+#'
 #'  Projekt()
 #'
 #'  # Auswertung
@@ -176,11 +180,11 @@ HTML_Start <- function (Projektname = "Demo",
 #'
 #' @param browser Ie oder Chrome
 #' @param output,file intern
+#' @importFrom utils browseURL
 #' @export
 End <- function(browser = NA,
                 output = options()$prompt[1] == "HTML> ",
-                file = HTMLGetFile(),
-                ...) {
+                file = HTMLGetFile()) {
   if (output & !is.null(file)) {
     if (browser %in% c("firefox", "meleon"))
       file <-  paste0("file:///", file)

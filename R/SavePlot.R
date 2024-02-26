@@ -18,9 +18,11 @@
 #' @return file name
 #' @export
 #'
+#' @importFrom grDevices bmp cairo_ps dev.copy2eps dev.copy2pdf dev.print dev.size jpeg png tiff
 #' @examples
 #'
 #' \dontrun{
+#'
 #' plot(1)
 #' SavePlot("Einfache Grafik", w=4, h=4)
 #'
@@ -41,32 +43,33 @@
 #' ggplot2::ggsave("test-23.pdf")
 #' ggplot2::ggsave("test-2.eps")
 #'
-#'
-#' save_my_plot <- function(p,
-#'                          w = 7,
-#'                          h = 3.5 ,
-#'                          filename = "A-Figure.jpeg",
-#'                          out.type = "cairo",
-#'                          path = getwd(),
-#'                          res= 72
-#' ) {
-#'
-#'   p_new <-
-#'     update(p, par.settings = stp25settings::bw_theme(farbe()))
-#'   filename <-   file.path(path, filename)
-#'   jpeg(filename,
-#'        width = round(w * res),
-#'        height = round(h * res),
-#'        quality = 100,
-#'        res = res,
-#'        type  = out.type
-#'   )
-#'   # wegen "cairo"
-#'   print(cowplot::plot_grid(p_new))
-#'   dev.off()
-#'
-#'   (p_new)
 #' }
+#'
+#' #save_my_plot <- function(p,
+#' #                         w = 7,
+#' #                         h = 3.5 ,
+#' #                         filename = "A-Figure.jpeg",
+#' #                         out.type = "cairo",
+#' #                         path = getwd(),
+#' #                         res= 72
+#' #) {
+#'#
+#'  # p_new <-
+#'  #   update(p, par.settings = stp25settings::bw_theme(farbe()))
+#'  # filename <-   file.path(path, filename)
+#'  # jpeg(filename,
+#'  #      width = round(w * res),
+#'  #      height = round(h * res),
+#'  #      quality = 100,
+#'  #      res = res,
+#' #       type  = out.type
+#'  # )
+#'  # # wegen "cairo"
+#' #  print(cowplot::plot_grid(p_new))
+#'  # dev.off()
+#'#
+#'  # (p_new)
+#' #}
 #'
 #'
 #' # require(lattice)
@@ -80,10 +83,10 @@
 #' #
 #' #   save_my_plot(p)
 #'
-#' }
+#'
 SavePlot <- function(caption = "",
-                      w = dev.size("in")[1],
-                      h = dev.size("in")[2],
+                      w = grDevices::dev.size("in")[1],
+                      h = grDevices::dev.size("in")[2],
                       filename = "",
                       save_plot = "pdf",  # c("pdf", "esp", "png", "jpeg", "bmp")
                       output =  which_output(),
@@ -96,10 +99,10 @@ SavePlot <- function(caption = "",
 
   if (output == "html") {
     GraphFileName <- paste0(abb$GraphFileName, ".png")
-    #' resulution
-    #' w und h in pixels
-    dev.print(
-      device = png,
+    # resulution
+    # w und h in pixels
+    grDevices::dev.print(
+      device = grDevices::png,
       file = file.path(dirname(HTMLGetFile()), GraphFileName),
       width = Width,
       height = Height,
@@ -149,7 +152,7 @@ SavePlot <- function(caption = "",
 
     cat("\nPDF: ", abb_Name, "\n")
 
-    try(dev.copy2pdf(
+    try(grDevices::dev.copy2pdf(
       file = abb_Name,
       width = w,
       height = h,
@@ -167,7 +170,7 @@ SavePlot <- function(caption = "",
     if (inherits(ggplot2::last_plot(), "ggplot")) {
       cat("\n ggplot2::ggsave: ", abb_Name, "\n")
 
-      #' save as png
+      # save as png
       ggplot2::ggsave(gsub("\\.eps", "\\.png", abb_Name),
                       width = w,
                       height = h)
@@ -176,14 +179,14 @@ SavePlot <- function(caption = "",
         ggplot2::ggsave(abb_Name,
                         width = w,
                         height = h,
-                        device = cairo_ps)
+                        device = grDevices::cairo_ps)
       else
         ggplot2::ggsave(abb_Name,
                         width = w, height = h)
     }
     else{
       cat("\n dev.copy2eps: ", abb_Name, "\n")
-      try(dev.copy2eps(file = abb_Name,
+      try(grDevices::dev.copy2eps(file = abb_Name,
                        width = w,
                        height = h))
     }
@@ -199,8 +202,8 @@ SavePlot <- function(caption = "",
     cat("\njpeg: ", abb_Name, "\n")
     #if( out.type !=  "cairo")  out.type <- "windows"
 
-    dev.print(
-      device = jpeg,
+    grDevices::dev.print(
+      device = grDevices::jpeg,
       file = abb_Name,
       width = Width,
       height = Height,
@@ -219,8 +222,8 @@ SavePlot <- function(caption = "",
     cat("\nbmpjpeg: ", abb_Name, "\n")
     #if( out.type !=  "cairo")  out.type <- "windows"
 
-    dev.print(
-      device = bmp,
+    grDevices::dev.print(
+      device = grDevices::bmp,
       file = abb_Name,
       width = Width,
       height = Height,
@@ -237,8 +240,8 @@ SavePlot <- function(caption = "",
       abb_Name <- paste0(get_opt("fig_folder"), filename, ".png")
     cat("\npng: ", abb_Name, "\n")
 
-    dev.print(
-      device = png,
+    grDevices::dev.print(
+      device = grDevices::png,
       file = abb_Name,
       width = Width,
       height = Height,
@@ -255,8 +258,8 @@ SavePlot <- function(caption = "",
       abb_Name <- paste0(get_opt("fig_folder"), filename, ".tiff")
     cat("\npng: ", abb_Name, "\n")
 
-    dev.print(
-      device = tiff,
+    grDevices::dev.print(
+      device = grDevices::tiff,
       file = abb_Name,
       width = Width,
       height = Height,
@@ -270,42 +273,6 @@ SavePlot <- function(caption = "",
 }
 
 
-#' @rdname Tab_Abb
-#' @export
-#'
-Abb_Index <- function (x = NULL) {
-  if (exists("Abb_Index", .step25Env))
-    if (is.null(x)) {
-      get("Abb_Index", .step25Env)
-    }
-  else{
-    assign("Abb_Index", x, envir = .step25Env)
-    x
-  }
-  else
-    0
-}
 
-
-#' @rdname Tab_Abb
-#' @export
-#' @param filename  Name des Foles
-#' @param folder   Speicherort
-#'
-Abb <- function (filename="",
-                 caption="",
-                 folder = get_opt("fig_folder")) {
-  if (exists("Abb_Index", .step25Env))
-    x <-  get("Abb_Index", .step25Env) + 1
-  else x <- 1
-
-  assign("Abb_Index", x, envir = .step25Env)
-
-  list(
-    HtmlCaption=paste0("Abb", x, ": ", caption),
-    GraphFileName = paste0("Fig", x, filename),
-    Name =paste0(folder, "Fig", x, filename)
-  )
-}
 
 

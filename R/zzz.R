@@ -9,3 +9,8 @@ stp25settings::get_opt
 #' @importFrom stp25settings set_opt
 #' @export
 stp25settings::set_opt
+
+
+
+
+#' @importFrom utils browseURL citation read.table

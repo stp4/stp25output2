@@ -1,6 +1,10 @@
 #' Output nach docx
 #'
-#' Geht nur direkt asis_output() function only works in top-level R expressions,
+#' Geht nur direkt  und arbeitet mit flextable
+#'
+#' asis_output() function only works in top-level R expressions
+#'
+#' Wine Alternative ist die  gt-Bibilothek
 #'
 #' @param x data.frame
 #' @param caption,note,output,split_header Ueberschrift usw

@@ -78,26 +78,26 @@ Output.character <- function(x, ...){ Text(x) }
 #'   G2_m = c("4.9 (2.7)", "4.7 (2.5)", "4.1 (5.6)", "4.2 (5.6)")
 #'   )
 #' #+ df-default ,  results='asis'
-#' df1 %>% Output()
+#' df1 |> Output()
 #'
 #' #+ df-false ,  results='asis'
-#' df1 %>% Output()
+#' df1 |> Output()
 #'
 #'
 #' #+ df-html
-#' df1 %>% Output(output="html")
+#' df1 |> Output(output="html")
 #'
 #' #+ df-text ,  results='asis'
-#' df1 %>% Output(output="text")
+#' df1 |> Output(output="text")
 #'
 #' #+ df-word ,  results='asis'
-#'  # df1 %>% Output(output="word")
+#'  # df1 |> Output(output="word")
 #'
 #'
 #' #+ df-mark
-#' df1 %>% Output(output="markdown")
+#' df1 |> Output(output="markdown")
 #'
-#' # df1 %>%  Output(linesep = c("", "", "\\midrule"))
+#' # df1 |>  Output(linesep = c("", "", "\\midrule"))
 #'
 Output.data.frame <-
   function(x,
@@ -334,7 +334,6 @@ Output.list <- function(x,
 #'
 #' Interne Funktion
 #' @param x data.frame
-#' @param col.names colnames(x)
 #' @param split_header  spllit header
 #'
 #' @return list(header,header_above,cgroup,n.cgroup,header_above2,)

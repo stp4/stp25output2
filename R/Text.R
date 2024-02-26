@@ -3,6 +3,7 @@
 #' Ausgabe von \code{Text()} und Ueberschriften. \code{Head} ist dabei eine
 #' Kopie von \code{Text} mit
 #' dem Parameter \code{style = 2}
+#' @param x Objekt dataframe, liste, vector
 #' @param ... one or more R objects, to be converted to character vectors.
 #' @param style 0 = p oder normaler Text 2 = h2 also Ueberschrift bei
 #' Consolen-Ausgabe
@@ -28,20 +29,20 @@ Text <- function(x, ...) {
 }
 
 
-#' @rdname Output
+#' @rdname Text
 #'
 #' @export
 Text.default<- function(x, ...){
   print(class(x))
 }
 
-#' @rdname Output
+#' @rdname Text
 #'
 #' @export
 Text.character <- function(...,
                  style = 0,
                  char = "-",
-                 output =  which_output()) {
+                 output = which_output()) {
 
   report_html <- function(msg) {
     if (is.null(msg))
@@ -128,7 +129,8 @@ Text.character <- function(...,
   }
 }
 
-#' @rdname Output
+#' @rdname Text
+#' @param include.levels levels mit ausgeben default = FALSE
 #'
 #' @export
 #' @examples
@@ -192,24 +194,6 @@ Text.data.frame <- function(x,
 
 }
 
-# Text.data.frame <- function(x,  ...,
-#                             style = 0,
-#                             char = "-",
-#                             output =  "text"
-#                             ) {
-#   dotts <-  sapply(lazyeval::lazy_dots(...), function(x)
-#     as.character(x[1]))
-#
-#
-#     Text(paste0(dotts, ": ",
-#                 stp25tools::get_label(x[dotts])),
-#          style = style,
-#          char = char,
-#          output=output)
-#
-#
-#
-# }
 
 #' @rdname Text
 #' @export
@@ -220,34 +204,38 @@ Head<- function( ...,
 
 }
 
-
 #' @rdname Text
 #' @export
 Head1<- function( ... ){
   pagebreak()
   Text(..., style = 1, char = "-")
 }
+
 #' @rdname Text
 #' @export
 Head2<- function( ... ){
   pagebreak()
   Text(..., style = 2, char = "-")
 }
+
 #' @rdname Text
 #' @export
 Head3<- function( ... ){
   Text(..., style = 3, char = "-")
 }
+
 #' @rdname Text
 #' @export
 Head4<- function( ... ){
   Text(..., style = 4, char = "-")
 }
+
 #' @rdname Text
 #' @export
 Head5<- function( ... ){
   Text(..., style = 5, char = "-")
 }
+
 #' @rdname Text
 #' @description  Anmerkung() ist ein blauer Text.
 #' @param prafix Anmerkung
@@ -258,8 +246,8 @@ Anmerkung <- function(..., prafix = "Anmerkung"){
           ', paste0(...), "</p><br>"))
   }
 
-
 #' @rdname Text
+#' @param msg,name Name des kunden oder Nachricht
 #' @description  Kunde() ist ein rot-brauner Text.
 #' @export
 #' @importFrom stringr str_split
@@ -280,10 +268,11 @@ Kunde <- function(x = "",
 
 #' @rdname Text
 #' @param ... namen der Librarys
-#' @param style,.bibstyle an format
+#' @param .bibstyle an format
 #' @param output html oder text
 #' @return character
 #' @export
+#' @importFrom utils citation
 #'
 #' @examples
 #' \dontrun{
@@ -328,7 +317,7 @@ Zitat <- function(...)
 #' @description Arbeitszeit() Tabelle zur Dokumentation der Arbeiszeit.
 #' @param Lines in Arbeitszeit der Input-String
 #' @param sep in Arbeitszeit das Input-String-Trennzeichen
-#'
+#' @importFrom utils read.table
 #' @export
 Arbeitszeit <- function(Lines,
                         sep = "\\t",

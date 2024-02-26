@@ -3,7 +3,6 @@
 #'
 #' @param data A data frame.
 #' @param caption Tabellen Überschrift
-#' @param ..	Arguments passed to or from other methods.
 #'
 #' @examples
 #'
@@ -17,14 +16,13 @@
 #'   )
 #' )
 #'
-#' data<- rbind(data,data,data) %>% filter2(Gender!="N")
+#' data<- rbind(data,data,data) |> stp25tools::filter2(Gender!="N")
 #'
 #' report_data(data )
 #'
 #' @export
 report_data <- function(data,
-                        caption = "Excluded Participants",
-                        ...) {
+                        caption = "Excluded Participants") {
   if (is.null(attr(data, "filter")))
     Text("Participants: N =", nrow(data))
   else

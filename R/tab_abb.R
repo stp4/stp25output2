@@ -9,8 +9,8 @@
 NULL
 
 #' @rdname Tab_Abb
+#' @param caption.nr.prefix was soll vorne stehen
 #' @export
-#' @param caption
 #'
 Tab <- function (caption = "",
                  caption.nr.prefix = get_opt("table", "caption.nr.prefix")) {
@@ -47,13 +47,17 @@ Tab_Index <- function (x = NULL)
 
 #' @rdname Tab_Abb
 #' @param atr in Caption: alternativer Text
+#' @param N Stichprobe
 #' @param include.n,include.tabel.number  wird über get_opt gesteuert
 #' entweder direkt include.n oder indirekt mit caotion =TRUE/FALSE
 #' @description  Ueberschrift aus stp-Objekt:
-#' \dontrun{
-#' Caption(caption, attr(x, "caption"))
-#' oder Note(note, attr(x, "note")) mit
-#' }
+#' @examples
+#' # example code
+#'
+#' # \dontrun{
+#' # Caption(caption, attr(x, "caption"))
+#' # oder Note(note, attr(x, "note")) mit
+#' # }
 Caption <- function(caption = NULL,
                     atr = NULL,
                     N = NULL,
@@ -96,3 +100,42 @@ Note <- function(x = NULL,
     ""
 }
 
+
+#' @rdname Tab_Abb
+#' @export
+#'
+Abb_Index <- function (x = NULL) {
+  if (exists("Abb_Index", .step25Env))
+    if (is.null(x)) {
+      get("Abb_Index", .step25Env)
+    }
+  else{
+    assign("Abb_Index", x, envir = .step25Env)
+    x
+  }
+  else
+    0
+}
+
+
+#' @rdname Tab_Abb
+#' @export
+#' @param filename  Name des Foles
+#' @param folder   Speicherort
+#'
+Abb <- function (filename = "",
+                 caption = "",
+                 folder = get_opt("fig_folder")) {
+  if (exists("Abb_Index", .step25Env))
+    x <-  get("Abb_Index", .step25Env) + 1
+  else
+    x <- 1
+
+  assign("Abb_Index", x, envir = .step25Env)
+
+  list(
+    HtmlCaption = paste0("Abb", x, ": ", caption),
+    GraphFileName = paste0("Fig", x, filename),
+    Name = paste0(folder, "Fig", x, filename)
+  )
+}
