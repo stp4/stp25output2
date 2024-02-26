@@ -1,24 +1,26 @@
 Package: stp25output2
 Type: Package
 Title: Output
-Version: 0.2.0
+Version: 0.2.2
 Author: Wolfgang Peter
 Maintainer: Wolfgang Peter <w.peter@statistik-peter.at>
-Description: Reports erstellen die Tabellen und Texte dabei als HTML ausgegeben.
+Description: Creation of reports, whereby tables and texts are output in HTML format.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
-Date: 2023-07-22
-Imports: plyr,
-          htmlTable,
-          kableExtra,
-          knitr,
-          stringr,
-          flextable,
-          stp25settings
+RoxygenNote: 7.3.1
+Date: 2024-02-26
+Imports: 
+    plyr, 
+    lazyeval,tidyselect,
+    htmlTable,flextable, gt,
+    knitr, kableExtra,
+    stringr,stringi,
+    stp25settings,stp25tools,
+    crayon
 Suggests: 
-    magrittr,
+    ggplot2,
+    gtsummary,
     rmarkdown,
     testthat
 VignetteBuilder: knitr

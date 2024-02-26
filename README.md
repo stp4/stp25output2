@@ -768,139 +768,22 @@ library("knitr")
 kable(my_data)
 ```
 
-<table>
-<thead>
-<tr>
-<th style="text-align:right;">
-a
-</th>
-<th style="text-align:right;">
-b
-</th>
-<th style="text-align:right;">
-c
-</th>
-<th style="text-align:right;">
-d
-</th>
-<th style="text-align:left;">
-e
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
-5.1
-</td>
-<td style="text-align:right;">
-3.5
-</td>
-<td style="text-align:right;">
-1.4
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4.9
-</td>
-<td style="text-align:right;">
-3.0
-</td>
-<td style="text-align:right;">
-1.4
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4.7
-</td>
-<td style="text-align:right;">
-3.2
-</td>
-<td style="text-align:right;">
-1.3
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4.6
-</td>
-<td style="text-align:right;">
-3.1
-</td>
-<td style="text-align:right;">
-1.5
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-5.0
-</td>
-<td style="text-align:right;">
-3.6
-</td>
-<td style="text-align:right;">
-1.4
-</td>
-<td style="text-align:right;">
-0.2
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-5.4
-</td>
-<td style="text-align:right;">
-3.9
-</td>
-<td style="text-align:right;">
-1.7
-</td>
-<td style="text-align:right;">
-0.4
-</td>
-<td style="text-align:left;">
-setosa
-</td>
-</tr>
-</tbody>
-</table>
+|   a |   b |   c |   d | e      |
+|----:|----:|----:|----:|:-------|
+| 5.1 | 3.5 | 1.4 | 0.2 | setosa |
+| 4.9 | 3.0 | 1.4 | 0.2 | setosa |
+| 4.7 | 3.2 | 1.3 | 0.2 | setosa |
+| 4.6 | 3.1 | 1.5 | 0.2 | setosa |
+| 5.0 | 3.6 | 1.4 | 0.2 | setosa |
+| 5.4 | 3.9 | 1.7 | 0.4 | setosa |
 
 ``` r
 library("xtable")
 print(xtable(my_data), type = "html", include.rownames=FALSE, html.table.attributes=list("border='0' cellpadding='5' "))
 ```
 
-<!-- html table generated in R 4.3.1 by xtable 1.8-4 package -->
-<!-- Tue Oct 31 06:16:50 2023 -->
+<!-- html table generated in R 4.3.2 by xtable 1.8-4 package -->
+<!-- Wed Feb 21 06:51:34 2024 -->
 <table border="0" cellpadding="5">
 <tr>
 <th>
@@ -1028,8 +911,8 @@ library(xtable)
 print(xtable(my_data), type = 'html')
 ```
 
-<!-- html table generated in R 4.3.1 by xtable 1.8-4 package -->
-<!-- Tue Oct 31 06:16:50 2023 -->
+<!-- html table generated in R 4.3.2 by xtable 1.8-4 package -->
+<!-- Wed Feb 21 06:51:34 2024 -->
 <table border="1">
 <tr>
 <th>
@@ -1177,8 +1060,8 @@ library(xtable)
 print(xtable(my_data), type = 'html', html.table.attributes = '')
 ```
 
-<!-- html table generated in R 4.3.1 by xtable 1.8-4 package -->
-<!-- Tue Oct 31 06:16:50 2023 -->
+<!-- html table generated in R 4.3.2 by xtable 1.8-4 package -->
+<!-- Wed Feb 21 06:51:34 2024 -->
 <table>
 <tr>
 <th>
