@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset=UTF-8>
+  <meta name="author" content="Wolfgang Peter">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Demo</title>
+<link rel=stylesheet href="layout.css" type=text/css>
+</head>
+<body>
+
+
+
+<p>Demo</p>
+
+
+
+<p>Datum:  Wed Feb 21 06:48:12 2024 , Software:  R version 4.3.2 (2023-10-31 ucrt) , Link: www.R-project.org/</p>
+
+
+
+<p>File:  C:/Users/wpete/OneDrive/Dokumente/Spielwiese/Exampel.R</p>
+
+
+<br style="page-break-before: always">
+
+
+ <h1> Überschrift 1</h1>
+
+
+<br style="page-break-before: always">
+
+
+ <h2> Überschrift 2</h2>
+
+
+
+ <h3> Überschrift 3</h3>
+
+
+
+ <h4> Überschrift 4</h4>
+
+
+
+<p>Beispiel, wie ein Projekt aufgebaut sein muss, um Tabellen und Grafiken auszugeben.<BR><BR>     ÄÜÖäöü?</p>
+
+
+
+<p>h1</p>
+
+
+<br>
+
+<div class='center' align='center'><table class='gmisc_table' style='border-collapse: collapse; padding-left: .5em; padding-right: .2em;' >
+<thead>
+<tr><td colspan='9' style='text-align: left;'>
+Tab 1: Tabellen über Output + split_header</td></tr>
+<tr>
+<th colspan='1' style='font-weight: 900; border-top: 2px solid black; text-align: center; margin: 0; padding: 0; vertical-align: middle;'></th><th style='width: 2px; border-bottom: 1px solid white; border-top: 2px solid black;' colspan=1></th> <th style='width: 2px; border-bottom: 1px solid white; border-top: 2px solid black;' colspan=1></th>
+<th colspan='2' style='font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center; margin: 0; padding: 0; vertical-align: middle;'>x</th><th style='width: 2px; border-bottom: 1px solid white; border-top: 2px solid black;' colspan=1></th> <th style='width: 2px; border-bottom: 1px solid white; border-top: 2px solid black;' colspan=1></th>
+<th colspan='2' style='font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center; margin: 0; padding: 0; vertical-align: middle;'>y</th>
+</tr>
+<tr>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;'>Item</th> 
+<th style='width: 2px; margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;' colspan=1></th> <th style='width: 2px; margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;' colspan=1></th>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;'>m</th>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;'>sd</th> 
+<th style='width: 2px; margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;' colspan=1></th> <th style='width: 2px; margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;' colspan=1></th>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;'>m</th>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;'>sd</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>A</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>45.47</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>1.43</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>35.42</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>3.44</td>
+</tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>B</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>256.14</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>25.264</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>261.94</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>25.25</td>
+</tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>Ö</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>14.47</td>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>5.423</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>24.43</td>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>5.42</td>
+</tr>
+</tbody>
+<tfoot><tr><td colspan='9'>
+</td></tr></tfoot>
+</table></div>
+
+<br>
+
+<br>
+
+<div class='center' align='center'><table class='gmisc_table' style='border-collapse: collapse; padding-left: .5em; padding-right: .2em;' >
+<thead>
+<tr><td colspan='5' style='text-align: left;'>
+Tab 2: Tabellen über Output + note + split_header=false</td></tr>
+<tr>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;'>Item</th>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;'>x_m</th>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;'>x_sd</th>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;'>y_m</th>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center;'>y_sd</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>A</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>45.47</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>1.43</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>35.42</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>3.44</td>
+</tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>B</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>256.14</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>25.264</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>261.94</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>25.25</td>
+</tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>Ö</td>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>14.47</td>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>5.423</td>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>24.43</td>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>5.42</td>
+</tr>
+</tbody>
+<tfoot><tr><td colspan='5'>
+Kommentar</td></tr></tfoot>
+</table></div>
+
+<br>
+
+
+<div  class='center'>
+<figure style='font-family: verdana; font-size: 8pt; font-style: italic; padding: 8px; text-align: center'>
+<img src='Fig1.png' alt='Fig/Fig1' style='width:360px;height:288px;'/>
+<br>
+<figcaption>Abb1: Grafik  Influence of feed given to cows on the fatty acid pattern of milk
+(g/100 g milk fat) (adapted acc. to [31])</figcaption>
+</figure>
+</div>
+
+<br>
+
+<br>
+
+<div class='center' align='center'><table class='gmisc_table' style='border-collapse: collapse; padding-left: .5em; padding-right: .2em;' >
+<thead>
+<tr><td colspan='9' style='text-align: left;'>
+Tab 3: Regressionstabelle mit Output</td></tr>
+<tr>
+<th colspan='1' style='font-weight: 900; border-top: 2px solid black; text-align: center; margin: 0; padding: 0; vertical-align: middle;'></th><th style='width: 2px; border-bottom: 1px solid white; border-top: 2px solid black;' colspan=1></th> <th style='width: 2px; border-bottom: 1px solid white; border-top: 2px solid black;' colspan=1></th>
+<th colspan='2' style='font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center; margin: 0; padding: 0; vertical-align: middle;'>lm1</th><th style='width: 2px; border-bottom: 1px solid white; border-top: 2px solid black;' colspan=1></th> <th style='width: 2px; border-bottom: 1px solid white; border-top: 2px solid black;' colspan=1></th>
+<th colspan='2' style='font-weight: 900; border-bottom: 1px solid black; border-top: 2px solid black; text-align: center; margin: 0; padding: 0; vertical-align: middle;'>lm2</th>
+</tr>
+<tr>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;'>term</th> 
+<th style='width: 2px; margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;' colspan=1></th> <th style='width: 2px; margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;' colspan=1></th>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;'>b</th>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;'>conf</th> 
+<th style='width: 2px; margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;' colspan=1></th> <th style='width: 2px; margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;' colspan=1></th>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;'>b</th>
+<th style='margin: 0; padding: 0; font-weight: 900; vertical-align: middle; border-bottom: 1px solid black; text-align: center;'>conf</th>
+</tr>
+</thead>
+<tbody> 
+<tr><td colspan='9' style='padding-left: .5em; padding-right: .2em; font-weight: normal; margin: 0; padding: 0;'>Parameter</td></tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>(Intercept)</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>39.3***</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>[45.6,&nbsp;32.9]</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>44.6***</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>[51.9,&nbsp;37.2]</td>
+</tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>wool[T.B]</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>-5.78</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>[0.573,&nbsp;-12.1]</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>-16.3**</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>[-5.96,&nbsp;-26.7]</td>
+</tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>tension[T.M]</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>&nbsp;-10*</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>[-2.22,&nbsp;-17.8]</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>-20.6***</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>[-10.2,&nbsp;-30.9]</td>
+</tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>tension[T.H]</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>-14.7***</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>[-6.94,&nbsp;-22.5]</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>&nbsp;-20***</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>[-9.63,&nbsp;-30.4]</td>
+</tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>wool[T.B]:tension[T.M]</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'></td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>21.1**</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>[35.8,&nbsp;6.45]</td>
+</tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>wool[T.B]:tension[T.H]</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'></td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>10.6</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>[25.2,&nbsp;-4.11]</td>
+</tr> 
+<tr><td colspan='9' style='padding-left: .5em; padding-right: .2em; font-weight: normal; margin: 0; padding: 0;'>Goodness of fit</td></tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>R2</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>0.27</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'></td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>0.38</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'></td>
+</tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>adj.&nbsp;R2</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>0.23</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'></td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>0.31</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'></td>
+</tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>AIC</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>424.0</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'></td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>419.3</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'></td>
+</tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>BIC</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>433.9</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'></td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>433.2</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'></td>
+</tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>RMSE</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>11.18</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'></td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'>10.31</td>
+<td style='padding-left: .5em; padding-right: .2em; text-align: left;'></td>
+</tr>
+<tr>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>Obs</td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>54</td>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'></td> 
+<td style='width: 2px; padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;' colspan=1></td> <td style='width: 2px; padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;' colspan=1></td>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'>54</td>
+<td style='padding-left: .5em; padding-right: .2em; border-bottom: 2px solid black; text-align: left;'></td>
+</tr>
+</tbody>
+<tfoot><tr><td colspan='9'>
+ Response:  breaks</td></tr></tfoot>
+</table></div>
+
+<br>
+
+
+ <h3> GT-Bibliothek</h3>
+
+
+
+<p>Beispiel für die Ausgabe einer Tabelle mit gt(). Die GT-Bibliothek erlaubt verschiedene Formatierungen, die vor allem unter Quarto von Vorteil sind.</p>
+
+
+<br>
+
+<div> 
+  
+  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#FFFFFF"> 
+  <caption> Beispiel für die Ausgabe einer Tabelle mit gt()</caption> 
+  <thead style="border-style: none;"> 
+    <tr class="gt_col_headings gt_spanner_row" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; border-bottom-style: hidden;"> 
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id="term" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left"> term</th> 
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="lm1" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; text-align: center;" bgcolor="#FFFFFF" align="center"> 
+        <span class="gt_column_spanner" style="border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%;"> lm1</span> 
+      </th> 
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="lm2" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; text-align: center; padding-right: 0;" bgcolor="#FFFFFF" align="center"> 
+        <span class="gt_column_spanner" style="border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%;"> lm2</span> 
+      </th> 
+    </tr> 
+    <tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;"> 
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="b&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right"> b<span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal;"> <sup> 1</sup> </span> </th> 
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="conf" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left"> conf</th> 
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="b" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" bgcolor="#FFFFFF" valign="bottom" align="right"> b</th> 
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="conf" style="border-style: none; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left;" bgcolor="#FFFFFF" valign="bottom" align="left"> conf</th> 
+    </tr> 
+  </thead> 
+  <tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3;"> 
+    <tr style="border-style: none;"> <td headers="term" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> (Intercept)</td> 
+<td headers="lm1_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 39.3***</td> 
+<td headers="lm1_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> [45.6, 32.9]</td> 
+<td headers="lm2_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 44.6***</td> 
+<td headers="lm2_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> [51.9, 37.2]</td> </tr> 
+    <tr style="border-style: none;"> <td headers="term" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> wool[T.B]</td> 
+<td headers="lm1_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> -5.78</td> 
+<td headers="lm1_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> [0.573, -12.1]</td> 
+<td headers="lm2_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> -16.3**</td> 
+<td headers="lm2_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> [-5.96, -26.7]</td> </tr> 
+    <tr style="border-style: none;"> <td headers="term" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> tension[T.M]</td> 
+<td headers="lm1_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">  -10*</td> 
+<td headers="lm1_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> [-2.22, -17.8]</td> 
+<td headers="lm2_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> -20.6***</td> 
+<td headers="lm2_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> [-10.2, -30.9]</td> </tr> 
+    <tr style="border-style: none;"> <td headers="term" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> tension[T.H]</td> 
+<td headers="lm1_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> -14.7***</td> 
+<td headers="lm1_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> [-6.94, -22.5]</td> 
+<td headers="lm2_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right">  -20***</td> 
+<td headers="lm2_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> [-9.63, -30.4]</td> </tr> 
+    <tr style="border-style: none;"> <td headers="term" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> wool[T.B]:tension[T.M]</td> 
+<td headers="lm1_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> <br> </td> 
+<td headers="lm1_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> <br> </td> 
+<td headers="lm2_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 21.1**</td> 
+<td headers="lm2_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> [35.8, 6.45]</td> </tr> 
+    <tr style="border-style: none;"> <td headers="term" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> wool[T.B]:tension[T.H]</td> 
+<td headers="lm1_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> <br> </td> 
+<td headers="lm1_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> <br> </td> 
+<td headers="lm2_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 10.6</td> 
+<td headers="lm2_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> [25.2, -4.11]</td> </tr> 
+    <tr style="border-style: none;"> <td headers="term" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> R2</td> 
+<td headers="lm1_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 0.27</td> 
+<td headers="lm1_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> <br> </td> 
+<td headers="lm2_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 0.38</td> 
+<td headers="lm2_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> <br> </td> </tr> 
+    <tr style="border-style: none;"> <td headers="term" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> adj. R2</td> 
+<td headers="lm1_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 0.23</td> 
+<td headers="lm1_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> <br> </td> 
+<td headers="lm2_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 0.31</td> 
+<td headers="lm2_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> <br> </td> </tr> 
+    <tr style="border-style: none;"> <td headers="term" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> AIC</td> 
+<td headers="lm1_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 424.0</td> 
+<td headers="lm1_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> <br> </td> 
+<td headers="lm2_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 419.3</td> 
+<td headers="lm2_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> <br> </td> </tr> 
+    <tr style="border-style: none;"> <td headers="term" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> BIC</td> 
+<td headers="lm1_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 433.9</td> 
+<td headers="lm1_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> <br> </td> 
+<td headers="lm2_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 433.2</td> 
+<td headers="lm2_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> <br> </td> </tr> 
+    <tr style="border-style: none;"> <td headers="term" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> RMSE</td> 
+<td headers="lm1_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 11.18</td> 
+<td headers="lm1_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> <br> </td> 
+<td headers="lm2_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 10.31</td> 
+<td headers="lm2_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> <br> </td> </tr> 
+    <tr style="border-style: none;"> <td headers="term" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> Obs</td> 
+<td headers="lm1_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 54</td> 
+<td headers="lm1_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> <br> </td> 
+<td headers="lm2_b" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums;" valign="middle" align="right"> 54</td> 
+<td headers="lm2_conf" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"> <br> </td> </tr> 
+  </tbody> 
+  
+  <tfoot class="gt_footnotes" style="border-style: none; color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3;" bgcolor="#FFFFFF"> 
+    <tr style="border-style: none;"> 
+      <td class="gt_footnote" colspan="5" style="border-style: none; margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px;"> <span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal;"> <sup> 1</sup> </span>  Fussnote die weiter Information zu der zweiten Spalte liefert.</td> 
+    </tr> 
+  </tfoot> 
+</table> 
+</div> 
+
+<br>
+<p>Wed 21 Feb 2024 06:48:14 </p>
+</body>
+</html> 

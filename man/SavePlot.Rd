@@ -6,8 +6,8 @@
 \usage{
 SavePlot(
   caption = "",
-  w = dev.size("in")[1],
-  h = dev.size("in")[2],
+  w = grDevices::dev.size("in")[1],
+  h = grDevices::dev.size("in")[2],
   filename = "",
   save_plot = "pdf",
   output = which_output(),
@@ -43,6 +43,7 @@ speichern. Die Funktion Abb() beinhaltet den Pfad.
 \examples{
 
 \dontrun{
+
 plot(1)
 SavePlot("Einfache Grafik", w=4, h=4)
 
@@ -63,32 +64,33 @@ cowplot::plot_grid(
 ggplot2::ggsave("test-23.pdf")
 ggplot2::ggsave("test-2.eps")
 
-
-save_my_plot <- function(p,
-                         w = 7,
-                         h = 3.5 ,
-                         filename = "A-Figure.jpeg",
-                         out.type = "cairo",
-                         path = getwd(),
-                         res= 72
-) {
-
-  p_new <-
-    update(p, par.settings = stp25settings::bw_theme(farbe()))
-  filename <-   file.path(path, filename)
-  jpeg(filename,
-       width = round(w * res),
-       height = round(h * res),
-       quality = 100,
-       res = res,
-       type  = out.type
-  )
-  # wegen "cairo"
-  print(cowplot::plot_grid(p_new))
-  dev.off()
-
-  (p_new)
 }
+
+#save_my_plot <- function(p,
+#                         w = 7,
+#                         h = 3.5 ,
+#                         filename = "A-Figure.jpeg",
+#                         out.type = "cairo",
+#                         path = getwd(),
+#                         res= 72
+#) {
+#
+ # p_new <-
+ #   update(p, par.settings = stp25settings::bw_theme(farbe()))
+ # filename <-   file.path(path, filename)
+ # jpeg(filename,
+ #      width = round(w * res),
+ #      height = round(h * res),
+ #      quality = 100,
+ #      res = res,
+#       type  = out.type
+ # )
+ # # wegen "cairo"
+#  print(cowplot::plot_grid(p_new))
+ # dev.off()
+#
+ # (p_new)
+#}
 
 
 # require(lattice)
@@ -102,8 +104,5 @@ save_my_plot <- function(p,
 #
 #   save_my_plot(p)
 
-}
-resulution
-w und h in pixels
-save as png
+
 }

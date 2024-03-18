@@ -2,6 +2,9 @@
 % Please edit documentation in R/Text.R
 \name{Text}
 \alias{Text}
+\alias{Text.default}
+\alias{Text.character}
+\alias{Text.data.frame}
 \alias{Head}
 \alias{Head1}
 \alias{Head2}
@@ -16,6 +19,19 @@
 \title{Text Ausgabe}
 \usage{
 Text(x, ...)
+
+\method{Text}{default}(x, ...)
+
+\method{Text}{character}(..., style = 0, char = "-", output = which_output())
+
+\method{Text}{data.frame}(
+  x,
+  ...,
+  style = 0,
+  char = "-",
+  include.levels = FALSE,
+  output = which_output()
+)
 
 Head(..., style = 3, char = "-")
 
@@ -40,6 +56,8 @@ Zitat(...)
 Arbeitszeit(Lines, sep = "\\\\t", ...)
 }
 \arguments{
+\item{x}{Objekt dataframe, liste, vector}
+
 \item{...}{namen der Librarys}
 
 \item{style}{0 = p oder normaler Text 2 = h2 also Ueberschrift bei
@@ -47,15 +65,19 @@ Consolen-Ausgabe}
 
 \item{char}{ist nicht zu Verwenden Text Trennzeichen bei Consolen-Ausgabe}
 
+\item{output}{html oder text}
+
+\item{include.levels}{levels mit ausgeben default = FALSE}
+
 \item{prafix}{Anmerkung}
 
-\item{output}{html oder text}
+\item{msg, name}{Name des kunden oder Nachricht}
+
+\item{.bibstyle}{an format}
 
 \item{Lines}{in Arbeitszeit der Input-String}
 
 \item{sep}{in Arbeitszeit das Input-String-Trennzeichen}
-
-\item{style, .bibstyle}{an format}
 }
 \value{
 Vector
@@ -86,6 +108,18 @@ Text("hallo", "ich bin ein Test")
 ###plot(sin, -pi, 2*pi,main="Sinus")
 ###HTMLplot( Caption="Look at this curve!")
 #End()
+}
+\dontrun{
+
+m <- data.frame(
+  Item = factor(1:3, 1:3, c("A", "B", "C")),
+  a = (1:3),
+  b = (1:3) * 2,
+  c = (1:3) * 3
+)
+
+m <- stp25tools::Label(m, a = "Aplha", b = "Barbar", c = "Ciklyn")
+Text(m)
 }
 \dontrun{
 citation_library(base,Hmisc,car,lattice)

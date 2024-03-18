@@ -3,20 +3,19 @@
 
 # stp25output2
 
-Die Scripten dienen der Erstellung von Reports als HTML aber auch von
-PDF ueber knit. Zum Teil handelt es sich um modifizerte Funktionen von
-R2HTML, texreg und htmlTable.
+The scripts are used to generate reports as HTML, but also PDF via knit.
+Some of them are modified functions of R2HTML, texreg and htmlTable.
 
 ## Overview
 
-- Initialisiert von neuen Projekten
-  - `Projekt()` und `End()` Initialisiert ein neues Projekt und aufruf
-    der HTML-Seite mit Hilfe von R2HTML.
-- Text und Tabellen-Formatierung
-  - `Output` Erstellt Tabellen
-  - `Text`, `Head` und `Head1 ...` Schreibt HTML Text.
-- Hilfsfunktionen
-  - `SavePlot` Speichert Bilder in den Arbeitsfolder.
+- Initialisation of new projects
+  - `Projekt()` and `End()` Initialises a new project and calls up the
+    HTML page with the help of R2HTML.
+- Text and table formatting
+  - `Output` table formatting
+  - `Text`, `Head` and `Head1 ...` Writes HTML text.
+- Helper functions
+  - `SavePlot` Saves images to the working folder.
 
 ## Output formats
 
@@ -35,7 +34,7 @@ R2HTML, texreg und htmlTable.
 
 ## Projekt
 
-Initialisieren eines Projektes.
+Initialises a new project.
 
 ``` r
 # devtools::install_github("stp4/stp25output")
@@ -782,8 +781,8 @@ library("xtable")
 print(xtable(my_data), type = "html", include.rownames=FALSE, html.table.attributes=list("border='0' cellpadding='5' "))
 ```
 
-<!-- html table generated in R 4.3.2 by xtable 1.8-4 package -->
-<!-- Wed Feb 21 06:51:34 2024 -->
+<!-- html table generated in R 4.3.3 by xtable 1.8-4 package -->
+<!-- Mon Mar 18 11:29:59 2024 -->
 <table border="0" cellpadding="5">
 <tr>
 <th>
@@ -911,8 +910,8 @@ library(xtable)
 print(xtable(my_data), type = 'html')
 ```
 
-<!-- html table generated in R 4.3.2 by xtable 1.8-4 package -->
-<!-- Wed Feb 21 06:51:34 2024 -->
+<!-- html table generated in R 4.3.3 by xtable 1.8-4 package -->
+<!-- Mon Mar 18 11:29:59 2024 -->
 <table border="1">
 <tr>
 <th>
@@ -1060,8 +1059,8 @@ library(xtable)
 print(xtable(my_data), type = 'html', html.table.attributes = '')
 ```
 
-<!-- html table generated in R 4.3.2 by xtable 1.8-4 package -->
-<!-- Wed Feb 21 06:51:34 2024 -->
+<!-- html table generated in R 4.3.3 by xtable 1.8-4 package -->
+<!-- Mon Mar 18 11:29:59 2024 -->
 <table>
 <tr>
 <th>

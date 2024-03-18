@@ -11,6 +11,10 @@ nichts
 }
 \description{
 Neue Seite bei copy and paste in Word.
+Geht nicht mehr ??
+}
+\details{
+Copy/Paste geht nicht mehr  aber das öffnen der HTML-Seite mit Word funktioniert.
 }
 \examples{
  \dontrun{

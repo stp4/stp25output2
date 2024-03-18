@@ -14,8 +14,7 @@ Rmd_Start(myformat, Projektname, datum)
 End(
   browser = NA,
   output = options()$prompt[1] == "HTML> ",
-  file = HTMLGetFile(),
-  ...
+  file = HTMLGetFile()
 )
 
 Stop()
@@ -51,6 +50,10 @@ Start eines neuen Prpjekts
 \examples{
 
 \dontrun{
+
+
+#' Ändern des Speicher-Orts für HTML
+ set_opt(html_folder ="Temp-Ordner")
 
  Projekt()
 

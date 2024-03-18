@@ -24,5 +24,10 @@ Output_word(
 flextable
 }
 \description{
-Geht nur direkt asis_output() function only works in top-level R expressions,
+Geht nur direkt  und arbeitet mit flextable
+}
+\details{
+asis_output() function only works in top-level R expressions
+
+Wine Alternative ist die  gt-Bibilothek
 }
