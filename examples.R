@@ -98,6 +98,18 @@ rslt_reg_table |>
 #   gt() |> extract_body ( ) |> Output()
 
 
+require(modelsummary)
+
+
+dat <- mtcars
+dat$vs <- as.logical(dat$vs)
+dat$cyl <- as.factor(dat$cyl)
+datasummary_skim(dat, output="html") |>
+  stp25output2:::HTML_default()
+
+
+datasummary_skim(dat, "categorical", output="gt") |>
+  Output(caption="Beispiel für die Ausgabe einer Tabelle mit gt()")
 
 
 End()

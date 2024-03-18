@@ -159,8 +159,7 @@ df1 %>% Output(output="markdown")
 ```
 
 ## xtable()
-
-Ist eine Package zum Erstellen von HTML und latex. Convert an R object to an xtable object, which can then be printed as a LaTeX or HTML table
+Convert an R object to an xtable object, which can then be printed as a LaTeX or HTML table
 
 ```{r, results='asis'}
  
@@ -211,7 +210,7 @@ knitr::kable(
 
 ## Grafik settings
 
-```{r}
+```{r, include=FALSE}
  
 set.seed(2)
 n <- 20 * 3 * 2
@@ -230,21 +229,19 @@ DF <- data.frame(
 ```{r fig-default, fig.height=3, fig.width=4}
 #set_lattice()
 bwplot(e ~ treatment, DF)
+# SavePlot()
 ```
 
 ```{r fig-ggplot, fig.height=3, fig.width=4}
-
 #set_lattice_ggplot()
 bwplot(e ~ treatment, DF)
-
-
+# SavePlot()
 ```
 
 ```{r fig-bw, fig.height=3, fig.width=4}
 #set_lattice_bw()
 bwplot(e ~ treatment, DF)
-
- 
+# SavePlot()
 ```
 
 ## A few methods for making tables in rmarkdown
@@ -252,6 +249,7 @@ bwplot(e ~ treatment, DF)
 Quelle: <https://gist.github.com/benmarwick/8ad99f35d5e4caa06492>
 
 <https://github.com/yihui/printr> <https://github.com/jalapic/simpletable> <https://github.com/renkun-ken/formattable>
+
 
 ```{r}
 my_data <- head(iris)

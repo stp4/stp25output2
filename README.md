@@ -524,8 +524,8 @@ Note: Anmerkung
 
 ## xtable()
 
-Ist eine Package zum Erstellen von HTML und latex. Convert an R object
-to an xtable object, which can then be printed as a LaTeX or HTML table
+Convert an R object to an xtable object, which can then be printed as a
+LaTeX or HTML table
 
 ``` r
  
@@ -782,7 +782,7 @@ print(xtable(my_data), type = "html", include.rownames=FALSE, html.table.attribu
 ```
 
 <!-- html table generated in R 4.3.3 by xtable 1.8-4 package -->
-<!-- Mon Mar 18 11:29:59 2024 -->
+<!-- Mon Mar 18 11:34:26 2024 -->
 <table border="0" cellpadding="5">
 <tr>
 <th>
@@ -911,7 +911,7 @@ print(xtable(my_data), type = 'html')
 ```
 
 <!-- html table generated in R 4.3.3 by xtable 1.8-4 package -->
-<!-- Mon Mar 18 11:29:59 2024 -->
+<!-- Mon Mar 18 11:34:26 2024 -->
 <table border="1">
 <tr>
 <th>
@@ -1060,7 +1060,7 @@ print(xtable(my_data), type = 'html', html.table.attributes = '')
 ```
 
 <!-- html table generated in R 4.3.3 by xtable 1.8-4 package -->
-<!-- Mon Mar 18 11:29:59 2024 -->
+<!-- Mon Mar 18 11:34:26 2024 -->
 <table>
 <tr>
 <th>

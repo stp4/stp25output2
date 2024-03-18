@@ -1,0 +1,268 @@
+---
+title: "Dokumentation"
+author: "Wolfgang Peter"
+format: pdf
+execute: 
+  echo: false
+reference-location: margin
+citation-location: margin
+
+---
+
+<!-- bibliography: Literatur/skeleton.bib -->
+
+```{r setup}
+#| include: false
+#| warning: false
+
+
+require(knitr)
+#require(kableExtra)
+require(tidyverse)
+require(lattice)
+require(stp25tools)
+require(stp25stat2)
+require(stp25plot)
+require(stp25output2)
+require(gt)
+
+ set_opt(
+    mean = list(
+      # digits = 2,
+      # lead.zero = TRUE,
+      # 
+      # plusmin_str = paste(" ", intToUtf8(177), " "),
+      # style = 1,   # style=3 plusmin_sign
+      # seperator = ", ",
+      include_name= ""
+    )
+ #  prozent = list(digits = 0, null_percent_sign =  ' . ')
+ )
+
+```
+
+## Daten
+
+```{r}
+which_output()
+ 
+tab<- data.frame(
+  Item = c("A", "B", "Ö"),
+  x_m = c(45.47, 256.14, 14.47),
+  x_sd = c(1.43, 25.24, 5.423))
+
+```
+
+
+::: column-page-right
+Die Scripten dienen der Erstellung von Reports als HTML aber auch von PDF ueber knit. Zum Teil handelt es sich um modifizerte Funktionen von R2HTML, texreg und htmlTable.
+:::
+
+
+
+## Overview
+
+-   Initialisiert von neuen Projekten
+    -   `Projekt()` und `End()` Initialisiert ein neues Projekt und aufruf der HTML-Seite mit Hilfe von R2HTML.
+-   Text und Tabellen-Formatierung
+    -   `Output` Erstellt Tabellen
+    -   `Text`, `Head` und `Head1 ...` Schreibt HTML Text.
+-   Hilfsfunktionen
+    -   `SavePlot` Speichert Bilder in den Arbeitsfolder.
+
+
+
+### Online-Befragung
+
+Depression, Angst, Stress (DASS-21), körperliches und geistiges Wohlbefinden (SF-12), Lebensqualität und Wohlbefinden (WHO-5), Resilienz (RS-11) und die Schlafqualität (SF-B/R).
+
+::: column-margin
+Online-Umfrage (medistat) vom 25. März bis 27. April, 2021
+:::
+
+Gesundheitsfaktoren: BMI, Ernährungsmuster, Verwendung von Nahrungsergänzungsmitteln, Bewegung, Rauchen, Alkohol, Krankheiten, chronische Schmerzen, Medikamenteneinnahme, Konzentration und Leistung.
+
+### Labordiagnostik
+
+::: column-margin
+Blutprobenentnahme im Zeitraum vom 6. April bis zum 28. April 2021
+
+Die Proben wurden vom Labor GANZIMMUN Diagnostics GmbH (Mainz, Deutschland) analysiert.
+:::
+
+Mineralstoffe und Spurenelemente, Gesamtcholesterin (TC), Low Density Lipoprotein Cholesterin (LDL-C), High Density Lipoprotein Cholesterin (HDL-C), Triglyceride (TG), Homocystein, Apolipoprotein A, c-reactive protein (wrCRP), Coenzym Q10, Omega-3-Index, EPA, und DHA
+
+
+
+
+### Tabellen mit gt
+
+```{r}
+#| results: asis
+#| warning: false
+#| echo: true
+#| tbl-cap: "Sampel: participants (raw data)"
+
+tab |>
+  gt() |> tab_spanner(
+    label = "Group X",
+    columns = starts_with("x_")
+  ) |> cols_label(
+    Item = "Ttem Name",
+    x_m = "M",
+    x_sd = "SD"
+  )
+
+```
+
+
+
+
+```{r}
+#| results: asis
+#| warning: false
+#| echo: true
+#| tbl-cap: "Sampel: participants (raw data)"
+tab |> 
+  Output("Tabellen über Text")
+
+```
+
+
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+
+
+```{r}
+#| results: asis
+#| echo: true
+#| tbl-cap: "Meine Output-Funktion"
+lm1 <- lm(breaks ~ wool + tension, data = warpbreaks)
+lm2 <- lm(breaks ~ wool * tension, data = warpbreaks)
+
+
+Tbll_reg(
+  lm1,
+  lm2,
+  include.p = FALSE,
+  include.ci = TRUE,
+  include.se=FALSE
+) |> Output("Tabellen Text")
+```
+
+
+```{r}
+#| include: false
+Tbll_reg(
+  lm1,  lm2,
+  include.p = FALSE
+) |>
+  gt() |>
+  gt_split_header() |>
+  tab_caption(caption= "hallo Welt")
+```
+
+ It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+
+```{r}
+#| echo: true
+#| tbl-cap: "Meine orginale Output-Funktion + gt()"
+Tbll_reg(
+  lm1,  lm2,
+  include.p = FALSE
+) |>
+  gt() |>
+ Output("Hallo Welt", note="super Tabelle")
+```
+
+
+```{r}
+#| echo: true
+#| tbl-cap: "Nur mit gt() Funktionen"
+
+Tbll_reg(
+  lm1,  lm2,
+  include.p = FALSE
+) |>
+  gt() |>
+  tab_spanner(label = "base model",
+              columns = starts_with("lm1")) |> 
+  tab_spanner(label = "dig model",
+              columns = starts_with("lm2")) |>
+  cols_label(lm1_b = "B",
+             lm1_conf ="95%-CI",
+             lm2_b = "B",
+             lm2_conf ="95%-CI",
+             term=""
+             ) |> 
+  sub_missing(missing_text = "") 
+
+
+```
+
+
+
+
+
+You can add options to executable code like this 
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+
+```{r}
+#| label: hist-ASCVD
+#| fig-cap: "Histogram of ASCVD 10-year risk score"
+#| echo: false
+#| warning: false
+#| column: margin 
+
+barchart( x_m/10 ~ Item, tab, xlab = "", 
+           main = "ASCVD 10-year risk score") |> 
+  update(par.settings = bw_theme(cex.axis = 1.5, cex.ylab = 1.4, cex.main = 1.5))
+```
+
+
+## xtable()
+
+Ist eine Package zum Erstellen von HTML und latex. Convert an R object to an xtable object, which can then be printed as a LaTeX or HTML table
+
+```{r}
+#| results: asis
+#| echo: true
+
+
+require(xtable)
+data(tli)
+## Demonstrate aov
+fm1 <- aov(tlimth ~ sex + ethnicty + grade + disadvg, data = tli)
+fm1.table <- xtable(fm1)
+
+Output(fm1.table)
+
+
+```
+
+```{r}
+#| echo: true
+
+#fm1
+#summary(fm1)
+
+#   fmt_auto() geht nicht wegen $$
+
+fm1.table |> 
+gt(rownames_to_stub = TRUE) |> 
+  fmt_number(
+  columns = everything(),
+  rows = everything(),
+  decimals = 2)
+
+
+```
+
+
+
