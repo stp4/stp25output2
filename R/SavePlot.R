@@ -5,7 +5,7 @@
 #' speichern. Die Funktion Abb() beinhaltet den Pfad.
 #'
 #' @param caption TextAbbildung
-#' @param w,h,res  Width, Height, an HTMLplot
+#' @param w,h,res  Width, Height, an HTMLplot w and h in Inches or Pixel
 #' default = 520, Breite der  Grafik  also zb w=8=dev.size("in")[2],
 #' h=dev.size("in")[1] Hoehe der Grafik also zb h=8
 #' res=72
@@ -92,6 +92,15 @@ SavePlot <- function(caption = "",
                       output =  which_output(),
                       res = 72,
                       out.type = "pdf") {
+
+
+  if (w > 20)
+    w <- round(w / 96, 2)
+
+  if (h > 20)
+    h <- round(h / 96, 2)
+
+
   abb <- Abb(filename, caption)
   Width <- round(w * res)
   Height <- round(h * res)
