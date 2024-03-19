@@ -34,11 +34,16 @@ Output.gt_tbl <- function(x,
   if (split_header)
     x <- gt_split_header(x, na.rm = na.rm)
 
-  if (!is.null(caption))
-    x <- gt::tab_caption(x, caption = caption)
 
-  if (!is.null(note))
+  if (!is.null(caption)){
+  #  if (caption == TRUE) caption <-   attr(x, "caption")
+    x <- gt::tab_caption(x, caption = caption)
+    }
+
+  if (!is.null(note)){
+   # if (note == TRUE) note <-   attr(x, "note")
     x <- gt::tab_footnote(x, footnote = note)
+    }
 
 
   if (output == "html") {
