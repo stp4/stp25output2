@@ -93,18 +93,15 @@ SavePlot <- function(caption = "",
                       res = 72,
                       out.type = "pdf") {
 
-
-  if (w > 20)
-    w <- round(w / 96, 2)
-
-  if (h > 20)
-    h <- round(h / 96, 2)
-
+  # Pixels to Inches
+  if (w > 20) w <- round(w / 96, 2)
+  if (h > 20) h <- round(h / 96, 2)
 
   abb <- Abb(filename, caption)
   Width <- round(w * res)
   Height <- round(h * res)
 
+  cat("\n w = ", w, " h = ", h, "res = ", res, " ", save_plot,  "\n")
 
   if (output == "html") {
     GraphFileName <- paste0(abb$GraphFileName, ".png")
@@ -150,7 +147,6 @@ SavePlot <- function(caption = "",
   } else{
     NULL
   }
-
 
 
   if ("pdf" %in% save_plot) {
