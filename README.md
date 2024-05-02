@@ -713,21 +713,6 @@ knitr::kable(
 ## Grafik settings
 
 ``` r
- 
-set.seed(2)
-n <- 20 * 3 * 2
-DF <- data.frame(
-  n = runif(n, min = 1, max = 5),
-  e = runif(n, min = 1, max = 5),
-  o = runif(n, min = 1, max = 5),
-  g = runif(n, min = 1, max = 5),
-  a = runif(n, min = 1, max = 5),
-  treatment = gl(3, n / 3, labels = c("UG1", "UG2", "KG"))[sample.int(n)],
-  sex = gl(2, n / 2, labels = c("male", "female"))
-)
-```
-
-``` r
 #set_lattice()
 bwplot(e ~ treatment, DF)
 ```
@@ -735,7 +720,10 @@ bwplot(e ~ treatment, DF)
 ![](README-fig-default-1.png)<!-- -->
 
 ``` r
+# SavePlot()
+```
 
+``` r
 #set_lattice_ggplot()
 bwplot(e ~ treatment, DF)
 ```
@@ -743,11 +731,19 @@ bwplot(e ~ treatment, DF)
 ![](README-fig-ggplot-1.png)<!-- -->
 
 ``` r
+# SavePlot()
+```
+
+``` r
 #set_lattice_bw()
 bwplot(e ~ treatment, DF)
 ```
 
 ![](README-fig-bw-1.png)<!-- -->
+
+``` r
+# SavePlot()
+```
 
 ## A few methods for making tables in rmarkdown
 
@@ -781,8 +777,8 @@ library("xtable")
 print(xtable(my_data), type = "html", include.rownames=FALSE, html.table.attributes=list("border='0' cellpadding='5' "))
 ```
 
-<!-- html table generated in R 4.3.3 by xtable 1.8-4 package -->
-<!-- Mon Mar 18 11:34:26 2024 -->
+<!-- html table generated in R 4.4.0 by xtable 1.8-4 package -->
+<!-- Thu May  2 07:53:56 2024 -->
 <table border="0" cellpadding="5">
 <tr>
 <th>
@@ -910,8 +906,8 @@ library(xtable)
 print(xtable(my_data), type = 'html')
 ```
 
-<!-- html table generated in R 4.3.3 by xtable 1.8-4 package -->
-<!-- Mon Mar 18 11:34:26 2024 -->
+<!-- html table generated in R 4.4.0 by xtable 1.8-4 package -->
+<!-- Thu May  2 07:53:56 2024 -->
 <table border="1">
 <tr>
 <th>
@@ -1059,8 +1055,8 @@ library(xtable)
 print(xtable(my_data), type = 'html', html.table.attributes = '')
 ```
 
-<!-- html table generated in R 4.3.3 by xtable 1.8-4 package -->
-<!-- Mon Mar 18 11:34:26 2024 -->
+<!-- html table generated in R 4.4.0 by xtable 1.8-4 package -->
+<!-- Thu May  2 07:53:56 2024 -->
 <table>
 <tr>
 <th>

@@ -101,7 +101,7 @@ SavePlot <- function(caption = "",
   Width <- round(w * res)
   Height <- round(h * res)
 
-  cat("\n w = ", w, " h = ", h, "res = ", res, " ", save_plot,  "\n")
+  cat("\n w = ", w, ", h = ", h, ", res = ", res, "\n")
 
   if (output == "html") {
     GraphFileName <- paste0(abb$GraphFileName, ".png")
