@@ -105,7 +105,7 @@ Output.data.frame <-
            note = NULL,
            col.names=NULL,
            header = col.names,
-           select = NA,
+           select = NULL,
 
            output =  which_output(),
            split_header = TRUE,
@@ -121,7 +121,7 @@ Output.data.frame <-
     if (nrow(x) == 0)
       return(NULL)
 
-  if(!is.na(select)) x <- x[select]
+  if(!is.null(select)) x <- x[select]
 
     if (output == "docx") {
       # In spin-word geht Word.doc  nicht weil die Ausgabe nicht an knit_print weitergegeben wird.
