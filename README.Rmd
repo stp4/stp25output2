@@ -21,6 +21,11 @@ require(lattice)
 
 The scripts are used to generate reports as HTML, but also PDF via knit. Some of them are modified functions of R2HTML, texreg and htmlTable.
 
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/stp25stat2)](https://CRAN.R-project.org/package=stp25stat2)
+<!-- badges: end -->
+
 ## Overview
 
 -   Initialisation of new projects

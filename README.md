@@ -6,6 +6,14 @@
 The scripts are used to generate reports as HTML, but also PDF via knit.
 Some of them are modified functions of R2HTML, texreg and htmlTable.
 
+<!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/stp25stat2)](https://CRAN.R-project.org/package=stp25stat2)
+<!-- badges: end -->
+
 ## Overview
 
 - Initialisation of new projects
@@ -778,7 +786,7 @@ print(xtable(my_data), type = "html", include.rownames=FALSE, html.table.attribu
 ```
 
 <!-- html table generated in R 4.4.0 by xtable 1.8-4 package -->
-<!-- Thu May  2 07:53:56 2024 -->
+<!-- Sat May 11 07:16:43 2024 -->
 <table border="0" cellpadding="5">
 <tr>
 <th>
@@ -907,7 +915,7 @@ print(xtable(my_data), type = 'html')
 ```
 
 <!-- html table generated in R 4.4.0 by xtable 1.8-4 package -->
-<!-- Thu May  2 07:53:56 2024 -->
+<!-- Sat May 11 07:16:43 2024 -->
 <table border="1">
 <tr>
 <th>
@@ -1056,7 +1064,7 @@ print(xtable(my_data), type = 'html', html.table.attributes = '')
 ```
 
 <!-- html table generated in R 4.4.0 by xtable 1.8-4 package -->
-<!-- Thu May  2 07:53:56 2024 -->
+<!-- Sat May 11 07:16:43 2024 -->
 <table>
 <tr>
 <th>
