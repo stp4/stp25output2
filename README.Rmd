@@ -71,7 +71,7 @@ warpbreaks2 <- Label(warpbreaks,
                      tension	=	"The level of tension")
  
 
-warpbreaks2 %>%
+warpbreaks2 |>
   Tbll_desc(breaks + tension ~ wool)
 
 End()
@@ -81,9 +81,36 @@ End()
 ### Usage
 
 data.frame()
+ Optionale Formatierung 
+ 
+    col.names 
+     header 
+     selec 
+     wrap 
+    wrap_result  
 
-```{r output-data-frame, results='asis'}
-set_opt(caption =TRUE)
+ set_opt
+ 
+```{r}
+set_opt(
+  caption =TRUE,
+    table = list(
+    # an stp25stat2::Tbll()  
+    # stubhead = 'Items', 
+    # measure.name.m = 'Mittelwert/Prozent',
+    # measure.name.total = 'Summe',
+    # measure.name.statistics = 'P-Werte',
+    
+   #  wrap = TRUE, # erste Spalte Umbrechen
+   #  wrap_result = TRUE # Formatierte Resultate Umbrechen
+  )
+)
+```
+
+
+    
+```{r output-data-frame, results='asis'}        
+  
 which_output()
  
 dat<- data.frame(
@@ -93,7 +120,7 @@ m = c("4.7 (2.4)", "4.1 (2.3)", "8.9 (3.6)", NA)
 ) 
 attr(dat, "N") <- 56
 
-dat  %>% Output("data.frame")
+dat  |> Output("data.frame")
  
 
 ```
@@ -109,19 +136,19 @@ Text(dat, term, n, m,  include.levels=TRUE)
 # matrix(c("a1","a2",3,4,5,6),
 #                 nrow=2, byrow=TRUE,
 #                 dimnames=list(gender=c("M", "F"),
-#                               party=c( "Dem", "Ind", "Rep")))  #%>% Output("matrix()")
+#                               party=c( "Dem", "Ind", "Rep")))  #|> Output("matrix()")
 
 as.table(matrix(c("a1","a2",3,4,5,6),
                  nrow=2, byrow=TRUE,
                  dimnames=list(gender=c("M", "F"),
-                               party=c( "Dem", "Ind", "Rep")))) %>% Output("as.table()")
+                               party=c( "Dem", "Ind", "Rep")))) |> Output("as.table()")
 
 ```
 
 ```{r , results='asis'}
  
-warpbreaks2 %>%
-  Tbll_desc(breaks + tension + wool) %>% Output()
+warpbreaks2 |>
+  Tbll_desc(breaks + tension + wool) |> Output()
 
 
 ```
@@ -145,22 +172,22 @@ df1 <- data.frame(
 
 ```{r df-default, results='markup'}
 #' default, results='markup'
-df1 %>% Output()
+df1 |> Output()
 ```
 
 ```{r df-false, results='asis'}
 #' default, results='asis'
-df1 %>% Output()
+df1 |> Output()
 ```
 
 ```{r df-text, results='markup'}
 #' results='markup'
-df1 %>% Output(output="text")
+df1 |> Output(output="text")
 ```
 
 ```{r, df-md, results='asis'}
 #' results='asis'
-df1 %>% Output(output="markdown")
+df1 |> Output(output="markdown")
 ```
 
 ## xtable()

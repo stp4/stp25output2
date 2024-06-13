@@ -49,6 +49,7 @@ Output.character <- function(x, ...){ Text(x) }
 #' @param output welcher output, text, html, markdown
 #' @param header,col.names altlast beides das selbe Kopf Zeile
 #' @param select auswahl von Spalten
+#' @param wrap wrap_result Zeilenumbrueche in den Tabellen einfuegen set_opt(table = list(wrap = TRUE, wrap_result = TRUE))
 #' @param css.table,css.cell,align  htmlTable
 #'  padding-left: .5em; padding-right: .2em;
 #' @param booktabs,latex_options an kableExtra
@@ -106,8 +107,11 @@ Output.data.frame <-
            col.names=NULL,
            header = col.names,
            select = NULL,
+           wrap = get_opt("table", "wrap"),
+           wrap_result = get_opt("table", "wrap_result"),
 
            output =  which_output(),
+
            split_header = TRUE,
            css.table = 'padding-left: .5em; padding-right: .2em;',
            css.cell = 'padding-left: .5em; padding-right: .2em;',
@@ -166,6 +170,10 @@ Output.data.frame <-
       else{
         names(x) <- tbl$header
       }
+      if(!is.null(wrap)) {
+        x[[1]] <- stp25tools::wrap_string(x[[1]], width = wrap, sep =  "\n")
+        }
+
       cat("\n", caption, "\n")
       print(data.frame(x))
       if (is.character(note))
@@ -177,6 +185,18 @@ Output.data.frame <-
 
       tbl$header <-  gsub(" +", '&nbsp;', tbl$header)
       tbl$cgroup <-  gsub(" +", '&nbsp;', tbl$cgroup)
+      if(!is.null(wrap)) {
+        if( is.logical(wrap)) wrap <- 25
+        x[[1]] <- stp25tools::wrap_string(x[[1]], width = wrap, sep =  "<br>")
+      }
+      if (!is.null(wrap_result)) {
+        x[-1] <-
+          stp25tools::dapply2(x[-1], function(y) {
+            y <-  stp25tools::wrap_string_at(y , pattern = " \\(", replacement = "<br>\n(")
+            y <-  stp25tools::wrap_string_at(y , pattern = ", p", replacement = "<br>\np")
+          })
+      }
+
 
       if (is.null(tbl$header_above)) {
         res <- htmlTable::htmlTable(

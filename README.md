@@ -52,6 +52,9 @@ Projekt("md", "Beispiel Projekt",
         )
 #> Projekt:  Beispiel Projekt 
 #> Wd:  C:/Users/wpete/Dropbox/3_Forschung/R-Project/stp25output2
+```
+
+``` r
 
 #stp25settings
 set_opt(prozent=list(digits=c(1,0), style=2))
@@ -62,7 +65,7 @@ warpbreaks2 <- Label(warpbreaks,
                      tension    =   "The level of tension")
  
 
-warpbreaks2 %>%
+warpbreaks2 |>
   Tbll_desc(breaks + tension ~ wool)
 #> # A tibble: 6 × 3
 #>   Item                          A               B             
@@ -73,6 +76,9 @@ warpbreaks2 %>%
 #> 4 "    L"                       "9 (33%)"       "9 (33%)"     
 #> 5 "    M"                       "9 (33%)"       "9 (33%)"     
 #> 6 "    H"                       "9 (33%)"       "9 (33%)"
+```
+
+``` r
 
 End()
 ```
@@ -82,7 +88,24 @@ End()
 data.frame()
 
 ``` r
-set_opt(caption =TRUE)
+set_opt(
+  caption =TRUE,
+    table = list(
+    # an stp25stat2::Tbll()  
+    # stubhead = 'Items', 
+    # measure.name.m = 'Mittelwert/Prozent',
+    # measure.name.total = 'Summe',
+    # measure.name.statistics = 'P-Werte',
+    
+   #  wrap = TRUE, # erste Spalte Umbrechen
+   #  wrap_result = TRUE # Formatierte Resultate Umbrechen
+  )
+)
+        
+        
+        
+        
+  
 which_output()
 ```
 
@@ -97,7 +120,7 @@ m = c("4.7 (2.4)", "4.1 (2.3)", "8.9 (3.6)", NA)
 ) 
 attr(dat, "N") <- 56
 
-dat  %>% Output("data.frame")
+dat  |> Output("data.frame")
 ```
 
 <table class="gmisc_table" style="border-collapse: collapse; padding-left: .5em; padding-right: .2em;">
@@ -177,6 +200,9 @@ D
 Text("Hallo")
 #> 
 #> Hallo
+```
+
+``` r
 Text(dat, term, n, m,  include.levels=TRUE)
 #> 
 #> term: term: A|B|C|D n: n: numeric m: m: 4.1 (2.3)|4.7 (2.4)|8.9 (3.6)
@@ -187,12 +213,12 @@ Text(dat, term, n, m,  include.levels=TRUE)
 # matrix(c("a1","a2",3,4,5,6),
 #                 nrow=2, byrow=TRUE,
 #                 dimnames=list(gender=c("M", "F"),
-#                               party=c( "Dem", "Ind", "Rep")))  #%>% Output("matrix()")
+#                               party=c( "Dem", "Ind", "Rep")))  #|> Output("matrix()")
 
 as.table(matrix(c("a1","a2",3,4,5,6),
                  nrow=2, byrow=TRUE,
                  dimnames=list(gender=c("M", "F"),
-                               party=c( "Dem", "Ind", "Rep")))) %>% Output("as.table()")
+                               party=c( "Dem", "Ind", "Rep")))) |> Output("as.table()")
 ```
 
 <table class="gmisc_table" style="border-collapse: collapse; padding-left: .5em; padding-right: .2em;">
@@ -280,15 +306,15 @@ F
 
 ``` r
  
-warpbreaks2 %>%
-  Tbll_desc(breaks + tension + wool) %>% Output()
+warpbreaks2 |>
+  Tbll_desc(breaks + tension + wool) |> Output()
 ```
 
 <table class="gmisc_table" style="border-collapse: collapse; padding-left: .5em; padding-right: .2em;">
 <thead>
 <tr>
 <td colspan="2" style="text-align: left;">
-Tab 3: Summary (N=54) (N=54)
+Tab 3: Summary (N=54)
 </td>
 </tr>
 <tr>
@@ -384,7 +410,7 @@ The type of wool 
 
 ``` r
 #' default, results='markup'
-df1 %>% Output()
+df1 |> Output()
 #> <table class='gmisc_table' style='border-collapse: collapse; padding-left: .5em; padding-right: .2em;' >
 #> <thead>
 #> <tr><td colspan='3' style='text-align: left;'>
@@ -424,7 +450,7 @@ df1 %>% Output()
 
 ``` r
 #' default, results='asis'
-df1 %>% Output()
+df1 |> Output()
 ```
 
 <table class="gmisc_table" style="border-collapse: collapse; padding-left: .5em; padding-right: .2em;">
@@ -502,7 +528,7 @@ Note: Anmerkung
 
 ``` r
 #' results='markup'
-df1 %>% Output(output="text")
+df1 |> Output(output="text")
 #> 
 #>  Tab 6: Demo Ueberschrift (N=99) 
 #>   term  n         m
@@ -516,7 +542,7 @@ df1 %>% Output(output="text")
 
 ``` r
 #' results='asis'
-df1 %>% Output(output="markdown")
+df1 |> Output(output="markdown")
 ```
 
 | term |   n | m         |
@@ -539,6 +565,9 @@ LaTeX or HTML table
  
 require(xtable)
 #> Loading required package: xtable
+```
+
+``` r
 data(tli)
 ## Demonstrate aov
 fm1 <- aov(tlimth ~ sex + ethnicty + grade + disadvg, data = tli)
@@ -786,7 +815,7 @@ print(xtable(my_data), type = "html", include.rownames=FALSE, html.table.attribu
 ```
 
 <!-- html table generated in R 4.4.0 by xtable 1.8-4 package -->
-<!-- Sat May 11 07:16:43 2024 -->
+<!-- Fri May 31 11:57:36 2024 -->
 <table border="0" cellpadding="5">
 <tr>
 <th>
@@ -915,7 +944,7 @@ print(xtable(my_data), type = 'html')
 ```
 
 <!-- html table generated in R 4.4.0 by xtable 1.8-4 package -->
-<!-- Sat May 11 07:16:43 2024 -->
+<!-- Fri May 31 11:57:36 2024 -->
 <table border="1">
 <tr>
 <th>
@@ -1064,7 +1093,7 @@ print(xtable(my_data), type = 'html', html.table.attributes = '')
 ```
 
 <!-- html table generated in R 4.4.0 by xtable 1.8-4 package -->
-<!-- Sat May 11 07:16:43 2024 -->
+<!-- Fri May 31 11:57:36 2024 -->
 <table>
 <tr>
 <th>
