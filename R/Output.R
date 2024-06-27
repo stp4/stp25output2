@@ -47,9 +47,9 @@ Output.character <- function(x, ...){ Text(x) }
 #' @param x dataframe
 #' @param caption,note  Ueberschrift Fussnote
 #' @param output welcher output, text, html, markdown
-#' @param header,col.names altlast beides das selbe Kopf Zeile
-#' @param select auswahl von Spalten
-#' @param wrap wrap_result Zeilenumbrueche in den Tabellen einfuegen set_opt(table = list(wrap = TRUE, wrap_result = TRUE))
+#' @param header,col.names new name for the header row in the tables
+#' @param select,col,row Selecting columns or rows
+#' @param wrap wrap_result Insert line breaks in the tables set_opt(table = list(wrap = TRUE, wrap_result = TRUE))
 #' @param css.table,css.cell,align  htmlTable
 #'  padding-left: .5em; padding-right: .2em;
 #' @param booktabs,latex_options an kableExtra
@@ -105,12 +105,15 @@ Output.data.frame <-
            caption = NULL,
            note = NULL,
            col.names=NULL,
-           header = col.names,
-           select = NULL,
+
+           select = col,
+           col = NULL,
+           row = NULL,
            wrap = get_opt("table", "wrap"),
            wrap_result = get_opt("table", "wrap_result"),
 
            output =  which_output(),
+           header = col.names,
 
            split_header = TRUE,
            css.table = 'padding-left: .5em; padding-right: .2em;',
@@ -126,6 +129,7 @@ Output.data.frame <-
       return(NULL)
 
   if(!is.null(select)) x <- x[select]
+  if(!is.null(row)) x <- x[row,]
 
     if (output == "docx") {
       # In spin-word geht Word.doc  nicht weil die Ausgabe nicht an knit_print weitergegeben wird.
@@ -317,6 +321,8 @@ Output.data.frame <-
 
 #' @rdname Output
 #' @description Output.iste: einzeln in einen data.frame transformieren
+#' Wenn in einer liste ein recrusive Liste kommt wird diese mit invisible
+#' zurückgegeben (das sind oft Daten)
 #' @export
 #'
 Output.list <- function(x,
@@ -324,28 +330,31 @@ Output.list <- function(x,
                         note = NULL,
                         output =  which_output(),
                         ...) {
-  if (!is.null(caption))
-    Head5(caption)
-  if (!is.null(note))
-    Head5(note)
+  if (!is.null(caption)) Head5(caption)
+  if (!is.null(note)) Head5(note)
 
   if (output == "docx") {
     if (length(x) > 1)
       Text("Weitere Tabellen:", names(x)[-1])
     x <- x[[1]]
     return(Output_word(x, ...))
-  } else {
+  }
+  else {
     res <- list()
+    rtrn <- NULL
     for (i in 1:length(x)) {
       if (inherits(x[[i]], "list")) {
         if (is.data.frame(x[[i]])) print(x[[i]])
-        else print(class(x[[i]]))
-        stop("Recrusive Liste!")
+        else rtrn <- x[[i]]
+
+       #print(names()
+       # warning("Recrusive Liste!")
       }
       if (is.data.frame(x[[i]]))
       res[[i]] <- Output(x[[i]], output = output, ...)
     }
-    invisible(x)
+    if(is.null(rtrn)) invisible(rtrn)
+    else invisible(x)
   }
 }
 

@@ -48,11 +48,13 @@ Output2(x, ..., note = NULL, header = NULL, output = which_output())
   caption = NULL,
   note = NULL,
   col.names = NULL,
-  header = col.names,
-  select = NULL,
+  select = col,
+  col = NULL,
+  row = NULL,
   wrap = get_opt("table", "wrap"),
   wrap_result = get_opt("table", "wrap_result"),
   output = which_output(),
+  header = col.names,
   split_header = TRUE,
   css.table = "padding-left: .5em; padding-right: .2em;",
   css.cell = "padding-left: .5em; padding-right: .2em;",
@@ -106,11 +108,11 @@ Output_kable(x, ...)
 
 \item{...}{}
 
-\item{header, col.names}{altlast beides das selbe Kopf Zeile}
+\item{header, col.names}{new name for the header row in the tables}
 
-\item{select}{auswahl von Spalten}
+\item{select, col, row}{Selecting columns or rows}
 
-\item{wrap}{wrap_result Zeilenumbrueche in den Tabellen einfuegen set_opt(table = list(wrap = TRUE, wrap_result = TRUE))}
+\item{wrap}{wrap_result Insert line breaks in the tables set_opt(table = list(wrap = TRUE, wrap_result = TRUE))}
 
 \item{css.table, css.cell, align}{htmlTable
 padding-left: .5em; padding-right: .2em;}
@@ -141,6 +143,8 @@ gt_split_header: GT Tabel header spliten
 HTML :  htmlTable::htmlTable
 
 Output.iste: einzeln in einen data.frame transformieren
+Wenn in einer liste ein recrusive Liste kommt wird diese mit invisible
+zurückgegeben (das sind oft Daten)
 
 Output mit  knitr::kable Funftioniert nur wenn options(knitr.table.format = "latex")
 gesetzt wird (das gilt nur fuer Pdf)
