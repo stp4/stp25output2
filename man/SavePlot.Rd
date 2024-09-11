@@ -45,7 +45,7 @@ speichern. Die Funktion Abb() beinhaltet den Pfad.
 \dontrun{
 
 plot(1)
-SavePlot("Einfache Grafik", w=4, h=4)
+# SavePlot("Einfache Grafik", w=4, h=4)
 
 #'  require(cowplot)
 title <-
@@ -61,8 +61,8 @@ cowplot::plot_grid(
   rel_heights = c(0.05, 1 )
 )
 #  ?cowplot::save_plot( )
-ggplot2::ggsave("test-23.pdf")
-ggplot2::ggsave("test-2.eps")
+#ggplot2::ggsave("test-23.pdf")
+#ggplot2::ggsave("test-2.eps")
 
 }
 
