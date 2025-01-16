@@ -106,7 +106,7 @@ Text.character <- function(...,
   }
 
   msg <- paste0(...)
-  msg <- gsub("#' ", "", msg)
+  if(grepl("\n#' ", msg))  msg <- gsub("\n#' ", "", msg)
 
 
 
