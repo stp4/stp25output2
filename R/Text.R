@@ -106,7 +106,7 @@ Text.character <- function(...,
   }
 
   msg <- paste0(...)
-  if(grepl("\n#' ", msg))  msg <- gsub("\n#' ", "", msg)
+  if(grepl("\n#' ", msg))  msg <- gsub("\n#' ", " ", msg)
 
 
 
@@ -239,11 +239,27 @@ Head5<- function( ... ){
 #' @rdname Text
 #' @description  Anmerkung() ist ein blauer Text.
 #' @param prafix Anmerkung
+#' @param include.comment logical.
 #' @export
-Anmerkung <- function(..., prafix = "Anmerkung"){
-  HTML_default(
-    paste0('<p style="color: #0000FF"><b>',prafix, ':</b> <br>
-          ', paste0(...), "</p><br>"))
+Anmerkung <-
+  function(...,
+           prafix = "Anmerkung",
+           include.comment = if (is.null(get_opt("include.comment")))
+             TRUE
+           else
+             get_opt("include.comment")) {
+    if (include.comment) {
+      HTML_default(
+        paste0(
+          '<p style="color: #0000FF"><b>',
+          prafix,
+          ':</b> <br>
+          ',
+          paste0(...),
+          "</p><br>"
+        )
+      )
+    }
   }
 
 #' @rdname Text
@@ -251,20 +267,33 @@ Anmerkung <- function(..., prafix = "Anmerkung"){
 #' @description  Kunde() ist ein rot-brauner Text.
 #' @export
 #' @importFrom stringr str_split
-Kunde <- function(x = "",
-                  msg = NULL,
-                  name = NULL) {
-  if (is.null(name)) {
-    name <- stringr::str_split(getwd(), "/"  , simplify = TRUE)
-    name <- strtrim(gsub("[^::A-Z::]", "", name[length(name)]), 2)
+Kunde <-
+  function(x = "",
+           msg = NULL,
+           name = NULL,
+           include.comment = if (is.null(get_opt("include.comment")))
+             TRUE
+           else
+             get_opt("include.comment")) {
+    if (include.comment) {
+      if (is.null(name)) {
+        name <- stringr::str_split(getwd(), "/"  , simplify = TRUE)
+        name <- strtrim(gsub("[^::A-Z::]", "", name[length(name)]), 2)
+      }
+
+      if (is.null(msg))
+        HTML_default(paste('<p style="color:#800000"> <b>', name, ': </b> ', x, '</p>'))
+      else
+        HTML_default(paste(
+          '<p style="color:#800000"> <b>',
+          name,
+          x,
+          ': </b>',
+          msg,
+          '</p>'
+        ))
+    }
   }
-
-  if (is.null(msg))
-    HTML_default(paste('<p style="color:#800000"> <b>', name,': </b> ',x,'</p>'))
-  else
-    HTML_default(paste('<p style="color:#800000"> <b>', name, x,': </b>', msg,'</p>'))
-
-}
 
 #' @rdname Text
 #' @param ... namen der Librarys

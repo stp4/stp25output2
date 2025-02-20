@@ -45,9 +45,20 @@ Head4(...)
 
 Head5(...)
 
-Anmerkung(..., prafix = "Anmerkung")
+Anmerkung(
+  ...,
+  prafix = "Anmerkung",
+  include.comment = if (is.null(get_opt("include.comment"))) TRUE else
+    get_opt("include.comment")
+)
 
-Kunde(x = "", msg = NULL, name = NULL)
+Kunde(
+  x = "",
+  msg = NULL,
+  name = NULL,
+  include.comment = if (is.null(get_opt("include.comment"))) TRUE else
+    get_opt("include.comment")
+)
 
 citation_library(..., style = "text", .bibstyle = NULL, output = "text")
 
@@ -70,6 +81,8 @@ Consolen-Ausgabe}
 \item{include.levels}{levels mit ausgeben default = FALSE}
 
 \item{prafix}{Anmerkung}
+
+\item{include.comment}{logical.}
 
 \item{msg, name}{Name des kunden oder Nachricht}
 
