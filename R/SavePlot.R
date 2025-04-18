@@ -143,7 +143,11 @@ SavePlot <- function(caption = "",
     HTML_BR()
   }
   else if (output == "docx") {
-    save_plot <- "FALSE"
+    if (!file.exists(get_opt("fig_folder"))) {
+         cat("\nDer Folder ", get_opt("fig_folder"), " existiet nicht!\n Diesen musst du selber erstellen.")
+         #print("2 der folder existiert nicht!")
+         save_plot <- "FALSE"
+    }
   } else{
     NULL
   }
@@ -278,6 +282,94 @@ SavePlot <- function(caption = "",
 }
 
 
+#' @rdname SavePlot
+#' @export
+SaveGTplot <- function(x,
+                       caption = "",
+                       filename = "",
+                       save_plot = "pdf",  # c("pdf", "esp", "png", "jpeg", "bmp")
+                       output =  which_output(),
+                       res = 72,
+                       ...) {
 
+  if(!inherits(x, "gt_tbl")) stop("Hier muss ein GT-Objekt übergeben werden!")
+  abb <- Abb(filename, caption)
+  GraphFileName <- paste0(abb$GraphFileName, ".png")
+  file <- file.path(dirname(HTMLGetFile()), GraphFileName)
+
+  if (output == "html") {
+    # gtExtras::gtsave_extra(x,filename=file, zoom = 2 )
+    gt::gtsave(x, filename=file, expand = 1, zoom = res/72 )
+
+    HTML_default(
+      paste0(
+        "\n<div  class='center'>\n",
+        "<figure style='font-family: verdana; font-size: 8pt; font-style: italic; padding: 8px; text-align: center'>\n",
+        "<img src='",
+        GraphFileName,
+        "'",
+        " alt='",
+        abb$Name,
+        "'",
+
+        "/>\n<br>\n",
+        "<figcaption>",
+        abb$HtmlCaption,
+        "</figcaption>\n",
+        "</figure>\n</div>"
+      )
+    )
+    HTML_BR()
+  } # else if (output == "docx") {save_plot <- "FALSE"}
+  else{
+    return(x)
+  }
+
+
+  if ("pdf" %in% save_plot) {
+    if (filename == "")
+      abb_Name <- paste0(abb$Name, ".pdf")
+    else
+      abb_Name <- paste0(get_opt("fig_folder"), filename, ".pdf")
+
+    cat("\nPDF: ", abb_Name, "\n")
+    gt::gtsave(x, filename=abb_Name, expand = 1, zoom = res/72 )
+
+  }
+
+  if ("eps" %in% save_plot) {stop( "Das geht noch nicht!")}
+  if ("jpeg" %in% save_plot) {stop( "Das geht noch nicht!") }
+  if ("bmp" %in% save_plot) {stop( "Das geht noch nicht!") }
+  if ("png" %in% save_plot) {stop( "Das geht noch nicht!") }
+  if ("tiff" %in% save_plot) {stop( "Das geht noch nicht!") }
+
+  (abb$GraphFileName)
+
+}
+
+#' @rdname SavePlot
+#' @export
+HTML_IMG <- function(file,
+                     caption = file,
+                     size = "50%",
+                     output = which_output()) {
+  if (output == "html") {
+    HTML_default(
+      paste0(
+        "
+<div  class='center'>
+ <figure style='font-family: verdana; font-size: 8pt; font-style: italic; padding: 8px; text-align: center'>
+   <img src='", file, "' style='width: ", size,"'/>
+   <br>
+   <figcaption>", caption, "</figcaption>
+ </figure>
+</div>
+"
+      )
+    )
+  }
+  else
+    " Bilder werden nur in HTML Angezeigt! "
+}
 
 

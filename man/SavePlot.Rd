@@ -2,6 +2,8 @@
 % Please edit documentation in R/SavePlot.R
 \name{SavePlot}
 \alias{SavePlot}
+\alias{SaveGTplot}
+\alias{HTML_IMG}
 \title{SavePlot}
 \usage{
 SavePlot(
@@ -14,6 +16,18 @@ SavePlot(
   res = 72,
   out.type = "pdf"
 )
+
+SaveGTplot(
+  x,
+  caption = "",
+  filename = "",
+  save_plot = "pdf",
+  output = which_output(),
+  res = 72,
+  ...
+)
+
+HTML_IMG(file, caption = file, size = "50\%", output = which_output())
 }
 \arguments{
 \item{caption}{TextAbbildung}
