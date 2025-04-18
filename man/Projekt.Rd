@@ -4,6 +4,7 @@
 \alias{Projekt}
 \alias{Rmd_Start}
 \alias{End}
+\alias{End2}
 \alias{Stop}
 \title{Projekt}
 \usage{
@@ -15,6 +16,13 @@ End(
   browser = NA,
   output = options()$prompt[1] == "HTML> ",
   file = HTMLGetFile()
+)
+
+End2(
+  browser = NA,
+  output = options()$prompt[1] == "HTML> ",
+  file = HTMLGetFile(),
+  output.dir = file.path(getwd(), get_opt("html_folder"))
 )
 
 Stop()

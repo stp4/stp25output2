@@ -178,6 +178,9 @@ HTML_Start <- function (Projektname = "Demo",
 #'
 #' Die Funktion geht nicht unter Linux/Apple
 #'
+#' install.packages("installr")  # Falls noch nicht installiert
+#' installr::install.pandoc()
+#'
 #' @param browser Ie oder Chrome
 #' @param output,file intern
 #' @importFrom utils browseURL
@@ -207,6 +210,51 @@ End <- function(browser = NA,
   projekt_settings()
   #cat(format(Sys.time(), "%a %d %b %Y %H:%M:%S ") )
 }
+
+#' @rdname Projekt
+#' @export
+End2 <-
+  function(browser = NA,
+           output = options()$prompt[1] == "HTML> ",
+           file = HTMLGetFile(),
+           output.dir = file.path(getwd(), get_opt("html_folder"))) {
+
+    if (output & !is.null(file)) {
+      if (browser %in% c("firefox", "meleon"))
+        file <-  paste0("file:///", file)
+
+      browser <-
+        switch(
+          browser,
+          meleon    = "C:/Program Files (x86)/K-Meleon/k-meleon.exe",
+          chrome    = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+          firefox   = "C:/Program Files/Mozilla Firefox/firefox.exe",
+          iexplore  = "C:/Program Files (x86)/Internet Explorer/iexplore.exe",
+          word      = "C:/Program Files (x86)/Microsoft Office/Office14/WINWORD.EXE",
+          getOption("browser")
+        )
+
+
+      HTML_close()
+      browseURL(file, browser = browser)
+
+
+      file <- basename(file)
+      doc_file <-
+        paste0("../", gsub("\\.html", "(0).docx", file))
+      command <-
+        paste("pandoc" , file, "-o" , doc_file, "--standalone") #--resource-path=.
+
+cat("\nSet output dir to ", output.dir,"\n")
+      setwd(output.dir)
+      system(command)
+    }
+
+    projekt_settings()
+
+    cat("\nCommand:\n\n")
+    command
+  }
 
 
 #' @rdname Projekt
