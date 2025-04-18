@@ -133,7 +133,11 @@ Output.data.frame <-
 
     if (output == "docx") {
       # In spin-word geht Word.doc  nicht weil die Ausgabe nicht an knit_print weitergegeben wird.
-      return(Output_word(x, caption, note, output, split_header))
+      return(
+        Output_word(x,
+                    caption, note, output,
+                    split_header, wrap, wrap_result)
+        )
     }
 
     caption <- Caption(caption, attr(x, "caption"), N = attr(x, "N"))
@@ -198,6 +202,7 @@ Output.data.frame <-
           stp25tools::dapply2(x[-1], function(y) {
             y <-  stp25tools::wrap_string_at(y , pattern = " \\(", replacement = "<br>\n(")
             y <-  stp25tools::wrap_string_at(y , pattern = ", p", replacement = "<br>\np")
+            gsub( "[()]", "", y)
           })
       }
 
