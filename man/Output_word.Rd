@@ -10,13 +10,15 @@ Output_word(
   note = NULL,
   output = "docx",
   split_header = TRUE,
+  wrap = get_opt("table", "wrap"),
+  wrap_result = get_opt("table", "wrap_result"),
   ...
 )
 }
 \arguments{
 \item{x}{data.frame}
 
-\item{caption, note, output, split_header}{Ueberschrift usw}
+\item{caption, note, output, split_header, wrap, wrap_result}{Ueberschrift usw}
 
 \item{...}{not used}
 }

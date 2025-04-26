@@ -131,6 +131,12 @@ Output.data.frame <-
   if(!is.null(select)) x <- x[select]
   if(!is.null(row)) x <- x[row,]
 
+  if (!is.null(wrap)) {
+    if (is.logical(wrap))
+      if (wrap)
+        wrap <- 30
+  }
+
     if (output == "docx") {
       # In spin-word geht Word.doc  nicht weil die Ausgabe nicht an knit_print weitergegeben wird.
       return(
@@ -178,7 +184,7 @@ Output.data.frame <-
       else{
         names(x) <- tbl$header
       }
-      if(!is.null(wrap)) {
+      if(is.numeric(wrap)) {
         x[[1]] <- stp25tools::wrap_string(x[[1]], width = wrap, sep =  "\n")
         }
 
@@ -193,8 +199,8 @@ Output.data.frame <-
 
       tbl$header <-  gsub(" +", '&nbsp;', tbl$header)
       tbl$cgroup <-  gsub(" +", '&nbsp;', tbl$cgroup)
-      if(!is.null(wrap)) {
-        if( is.logical(wrap)) wrap <- 25
+
+      if(is.numeric(wrap)) {
         x[[1]] <- stp25tools::wrap_string(x[[1]], width = wrap, sep =  "<br>")
       }
       if (!is.null(wrap_result)) {

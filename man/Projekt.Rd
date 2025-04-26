@@ -51,6 +51,9 @@ werden keine Folder erstellt
 Zuruecksetzen der Einstellungen und Aufruf des Browsers browser = getOption("browser")}
 
 Die Funktion geht nicht unter Linux/Apple
+
+install.packages("installr")  # Falls noch nicht installiert
+installr::install.pandoc()
 }
 \details{
 Start eines neuen Prpjekts
