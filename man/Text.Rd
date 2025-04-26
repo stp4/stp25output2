@@ -16,6 +16,7 @@
 \alias{citation_library}
 \alias{Zitat}
 \alias{Arbeitszeit}
+\alias{Sonstige}
 \title{Text Ausgabe}
 \usage{
 Text(x, ...)
@@ -65,6 +66,8 @@ citation_library(..., style = "text", .bibstyle = NULL, output = "text")
 Zitat(...)
 
 Arbeitszeit(Lines, sep = "\\\\t", ...)
+
+Sonstige(x, ..., prefix = "Sonstige:")
 }
 \arguments{
 \item{x}{Objekt dataframe, liste, vector}
@@ -109,6 +112,8 @@ Kunde() ist ein rot-brauner Text.
 Zitat() ist eine Text  vom Type <blockquote>
 
 Arbeitszeit() Tabelle zur Dokumentation der Arbeiszeit.
+
+Sonstige Texteingaben auszaehlen.
 }
 \examples{
 
@@ -137,4 +142,10 @@ Text(m)
 \dontrun{
 citation_library(base,Hmisc,car,lattice)
 }
+
+# Sonstige
+DF <- data.frame(xa = 1:10 , b = letters[1:2], c = LETTERS[1:10]) |>
+  stp25tools::Label(a = "Aplha", b = "Barbar", c = "Ciklyn")
+Sonstige(DF, b, c)
+
 }

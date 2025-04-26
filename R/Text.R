@@ -377,3 +377,43 @@ Arbeitszeit <- function(Lines,
   invisible(zeit)
 }
 
+
+#' @rdname Text
+#' @description Sonstige Texteingaben auszaehlen.
+#' @export
+#' @examples
+#'
+#' # Sonstige
+#' DF <- data.frame(xa = 1:10 , b = letters[1:2], c = LETTERS[1:10]) |>
+#'   stp25tools::Label(a = "Aplha", b = "Barbar", c = "Ciklyn")
+#' Sonstige(DF, b, c)
+#'
+Sonstige <- function(x, ..., prefix = "Sonstige:") {
+  if (is.vector(x))
+    sonst_tabel_text(x, prefix)
+  else{
+    X <- stp25tools::prepare_data2(x, ...)
+    for (i in seq_along(X$measure.vars)) {
+      sonst_tabel_text(X$data[[i]], X$row_name[i])
+    }
+  }
+}
+
+sonst_tabel_text <- function(x, prefix) {
+  tbl <- table(x)
+  x <- names(tbl)
+  n <- as.vector(tbl)
+  if (any(n > 1)) {
+    x <- paste0(x, "  [", n, "]")
+  }
+  Text(prefix,
+       "\n",
+       paste(
+         "(",
+         seq_along(x),
+         ") ",
+         x,
+         sep = "",
+         collapse = "\n"
+       ))
+}
