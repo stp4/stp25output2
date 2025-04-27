@@ -30,7 +30,9 @@ Text(x, ...)
   ...,
   style = 0,
   char = "-",
-  include.levels = FALSE,
+  include.levels = TRUE,
+  include.labels = TRUE,
+  include.code = TRUE,
   output = which_output()
 )
 
@@ -81,7 +83,7 @@ Consolen-Ausgabe}
 
 \item{output}{html oder text}
 
-\item{include.levels}{levels mit ausgeben default = FALSE}
+\item{include.levels, include.labels, include.code}{levels mit ausgeben default = FALSE}
 
 \item{prafix}{Anmerkung}
 

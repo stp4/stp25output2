@@ -24,7 +24,7 @@
 report_data <- function(data,
                         caption = "Excluded Participants") {
   if (is.null(attr(data, "filter")))
-    Text("Participants: N =", nrow(data))
+    Text("Participants: N = ", nrow(data))
   else
     Output(attr(data, "filter"), caption = caption)
 }

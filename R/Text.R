@@ -106,9 +106,13 @@ Text.character <- function(...,
   }
 
   msg <- paste0(...)
+
+  if( length(msg) != 1L) {
+      if(length(msg) == 0L ) return()
+      else msg <- paste(msg, collapse = ";\n")
+  }
+
   if(grepl("\n#' ", msg))  msg <- gsub("\n#' ", " ", msg)
-
-
 
   if (output == "html") {
     report_html(msg)
@@ -130,7 +134,7 @@ Text.character <- function(...,
 }
 
 #' @rdname Text
-#' @param include.levels levels mit ausgeben default = FALSE
+#' @param include.levels,include.labels,include.code levels mit ausgeben default = FALSE
 #'
 #' @export
 #' @examples
@@ -146,53 +150,85 @@ Text.character <- function(...,
 #' m <- stp25tools::Label(m, a = "Aplha", b = "Barbar", c = "Ciklyn")
 #' Text(m)
 #' }
-Text.data.frame <- function(x,
-                            ...,
-                            style = 0,
-                            char = "-",
-                            include.levels = FALSE,
-                            output =  which_output()) {
-  dotts <- sapply(lazyeval::lazy_dots(...),
-                  function(x)
-                    as.character(x[1]))
+Text.data.frame <-
+  function(x,
+           ...,
+           style = 0,
+           char = "-",
+           include.levels = TRUE,
+           include.labels = TRUE,
+           include.code = TRUE,
+           output =  which_output()) {
+    dotts <- sapply(lazyeval::lazy_dots(...), function(x)
+      as.character(x[1]))
 
-  if (length(dotts) == 0) {
-    dotts <- names(x)
-  }
+    if (length(dotts) == 0) {
+      dotts <- names(x)
+    }
 
-  if (!include.levels)
-    Text(
-      paste0(dotts, ": ",
-                stp25tools::get_label(x[dotts])
-             ),
-         style = style,
-         char = char,
-      output=output)
-  else{
-    lvl <-   sapply(x[dotts], function(y) {
-      if (is.numeric(y))
-        "numeric"
-      else if (is.factor(y))
-        paste(levels(y), collapse = "|")
-      else if (is.character(y)) {
-        y<- factor(y)
-        paste(levels(y), collapse = "|")
+    Text("Cases: N = ", nrow(x))
 
+    if (include.labels) {
+      Text("Label:")
+      lbl <- paste(dotts, " = '", stp25tools::get_label(x[dotts]), "'", sep = "")
+      lbl <- paste(lbl, sep = "", collapse = ",\n")
+      Text(lbl,
+           style = style,
+           char = char,
+           output = output)
+    }
+
+    if (include.levels) {
+      Text("Levels:")
+      if (include.code) {
+        lvl <- NULL
+        for (i in dotts) {
+          if (is.numeric(x[[i]])) {
+            lv <-
+              paste(i, "= as.numeric(", i, ")")
+          }
+          else if (is.factor(x[[i]])) {
+            lv <-  levels(x[[i]])
+            lv <- paste("c(", paste("'", lv, "'", sep = "", collapse = ", "), ")")
+            lv <-
+              paste(i, " = factor(", i, ", ", lv, ")", sep = "")
+          }
+          else {
+            lv <-  paste(i, " = ", i, sep = "")
+          }
+          if (is.null(lvl))
+            lvl <- lv
+          else
+            lvl <- paste(lvl, ",\n", lv, sep = "")
+        }
+
+        Text(lvl)
       }
-      else
-        "unknown"
-    })
-    Text(
-      paste0(dotts, ": ",
-             stp25tools::get_label(x[dotts]), ": ", lvl
-             ),
-      style = style,
-      char = char,
-      output=output
-    )
-  }
+      else{
+        lvl <-   sapply(x[dotts], function(y) {
+          if (is.numeric(y))
+            "numeric"
+          else if (is.factor(y))
+            paste(levels(y), collapse = "|")
+          else if (is.character(y)) {
+            y <- factor(y)
+            paste(levels(y), collapse = "|")
+          }
+          else
+            "unknown"
+        })
+        Text(
+          paste0(dotts, ": ", stp25tools::get_label(x[dotts]), ": ", lvl),
+          style = style,
+          char = char,
+          output = output
+        )
+      }
+    }
 
-}
+    if (!is.null(attr(data, "filter")))
+      Output(attr(data, "filter"), caption = caption)
+  }
 
 
 #' @rdname Text
