@@ -14,12 +14,20 @@ NULL
 #'
 Tab <- function (caption = "",
                  caption.nr.prefix = get_opt("table", "caption.nr.prefix")) {
-  if (exists("Tab_Index", .step25Env))
-    x <-  get("Tab_Index", .step25Env) + 1
-  else
+  if (exists("Tab_Index", .step25Env)) {
+    x <- get("Tab_Index", .step25Env)
+    if (is.numeric(x)) {
+      x <- x + 1
+      assign("Tab_Index", x, envir = .step25Env)
+    }
+   else{
+    assign("Tab_Index", 0 , envir = .step25Env)
+   }
+  }
+  else{
     x <- 1
-
-  assign("Tab_Index", x, envir = .step25Env)
+    assign("Tab_Index", x, envir = .step25Env)
+  }
   if (is.null(caption.nr.prefix))
     paste0("Tab ", x, ": ", caption)
   else
@@ -28,6 +36,7 @@ Tab <- function (caption = "",
 
 
 #' @rdname Tab_Abb
+#' @param x numeric or character
 #' @export
 Tab_Index <- function (x = NULL)
 {
