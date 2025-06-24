@@ -19,6 +19,10 @@ Tab <- function (caption = "",
     if (is.numeric(x)) {
       x <- x + 1
       assign("Tab_Index", x, envir = .step25Env)
+    } else if ( is.character(x) & nchar(x) == 1L ){
+
+      x <- letters[[which(letters  %in% tolower(x)) + 1]]
+      assign("Tab_Index", x, envir = .step25Env)
     }
    else{
     assign("Tab_Index", 0 , envir = .step25Env)

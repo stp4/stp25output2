@@ -149,6 +149,9 @@ Output.data.frame <-
     caption <- Caption(caption, attr(x, "caption"), N = attr(x, "N"))
     note    <- Note(note, attr(x, "note"))
 
+    attr(x, "caption") <- caption
+    attr(x, "note") <- note
+
     if (!is.null(header)) {
       #cat("\nin header\n")
       if (ncol(x) > length(header)) {
@@ -185,7 +188,10 @@ Output.data.frame <-
         names(x) <- tbl$header
       }
       if(is.numeric(wrap)) {
-        x[[1]] <- stp25tools::wrap_string(x[[1]], width = wrap, sep =  "\n")
+        x[[1]] <-
+          stp25tools::wrap_string(x[[1]],
+                                  width = wrap,
+                                  sep =  "\n")
         }
 
       cat("\n", caption, "\n")
@@ -200,8 +206,17 @@ Output.data.frame <-
       tbl$header <-  gsub(" +", '&nbsp;', tbl$header)
       tbl$cgroup <-  gsub(" +", '&nbsp;', tbl$cgroup)
 
-      if(is.numeric(wrap)) {
-        x[[1]] <- stp25tools::wrap_string(x[[1]], width = wrap, sep =  "<br>")
+      if (is.numeric(wrap)) {
+        # um die einrückung bei factoren zu erhalten
+        sep <- unlist(lapply(x[[1]], function(i)
+          if (substr(i, 1, 5) == "&nbsp")
+            "<br>&nbsp; &nbsp; "
+          else
+            "<br>"))
+        x[[1]] <-
+          stp25tools::wrap_string(x[[1]],
+                                  width = wrap,
+                                  sep = sep)
       }
       if (!is.null(wrap_result)) {
         x[-1] <-
