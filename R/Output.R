@@ -49,6 +49,7 @@ Output.character <- function(x, ...){ Text(x) }
 #' @param output welcher output, text, html, markdown
 #' @param header,col.names new name for the header row in the tables
 #' @param select,col,row Selecting columns or rows
+#' @param na.rm NA replace by ""
 #' @param wrap wrap_result Insert line breaks in the tables set_opt(table = list(wrap = TRUE, wrap_result = TRUE))
 #' @param css.table,css.cell,align  htmlTable
 #'  padding-left: .5em; padding-right: .2em;
@@ -60,6 +61,8 @@ Output.character <- function(x, ...){ Text(x) }
 #' @param ... nicht benutzt
 #'
 #' @return input
+#' @importFrom dplyr mutate across where
+#' @importFrom tidyr replace_na
 #' @export
 #'
 #' @examples
@@ -111,6 +114,7 @@ Output.data.frame <-
            row = NULL,
            wrap = get_opt("table", "wrap"),
            wrap_result = get_opt("table", "wrap_result"),
+           na.rm=TRUE,
 
            output =  which_output(),
            header = col.names,
@@ -136,6 +140,10 @@ Output.data.frame <-
       if (wrap)
         wrap <- 30
   }
+
+  if (na.rm)
+    x <- mutate(x, across(where(is.character), ~ replace_na(., "")))
+
 
     if (output == "docx") {
       # In spin-word geht Word.doc  nicht weil die Ausgabe nicht an knit_print weitergegeben wird.
@@ -207,16 +215,27 @@ Output.data.frame <-
       tbl$cgroup <-  gsub(" +", '&nbsp;', tbl$cgroup)
 
       if (is.numeric(wrap)) {
-        # um die einrückung bei factoren zu erhalten
-        sep <- unlist(lapply(x[[1]], function(i)
-          if (substr(i, 1, 5) == "&nbsp")
-            "<br>&nbsp; &nbsp; "
-          else
-            "<br>"))
-        x[[1]] <-
-          stp25tools::wrap_string(x[[1]],
-                                  width = wrap,
-                                  sep = sep)
+
+      # Fehler wenn nicht mit Tbll_desc ausgewertet wird
+      #  Error in if (substr(i, 1, 5) == "&nbsp") "<br>&nbsp; &nbsp; " else "<br>" :
+      #    missing value where TRUE/FALSE needed
+      #  Called from: FUN(X[[i]], ...)
+
+        if (names(x)[1] == "Items") {
+          # um die einrückung bei factoren zu erhalten
+          sep <- unlist(
+            lapply(x[[1]],
+                   function(i){
+                      if (substr(i, 1, 5) == "&nbsp")
+                        "<br>&nbsp; &nbsp; "
+                      else
+                        "<br>"
+                        }
+            ))
+
+          x[[1]] <-
+            stp25tools::wrap_string(x[[1]], width = wrap, sep = sep)
+        }
       }
       if (!is.null(wrap_result)) {
         x[-1] <-
@@ -343,6 +362,25 @@ Output.data.frame <-
 
     invisible(x)
   }
+
+#' @rdname Output
+#' @description Output_split data.frame anhand einer Spalte in mehere Tabellen Aufspliten.
+#'
+#' by ist entweder Character oder Formula
+#' @export
+#'
+Output_split <- function(x, by, caption = "", ...) {
+  if (inherits(by, "formula"))
+    by <- all.vars(by)
+  f <- x[by]
+  pos_by <- which(names(x) %in% by)
+  x_list <- split(x[-pos_by], f)
+  for (i in seq_along(x_list)) {
+    Output(x_list[[i]], caption = paste(caption, names(x_list)[i]), ...)
+  }
+
+  invisible(x)
+}
 
 
 #' @rdname Output

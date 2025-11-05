@@ -312,3 +312,104 @@ MyCss <- function() {
 # }
 
 
+
+# Stolen from https://github.com/psychbruce/bruceR/blob/main/R/bruceR_utils.R
+
+#' Paste strings together.
+#'
+#' Paste strings together. A wrapper of \code{paste0()}.
+#' Why \code{\%^\%}? Because typing \code{\%} and \code{^} is pretty easy by
+#' pressing \strong{Shift + 5 + 6 + 5}.
+#'
+#' @param x,y Any objects, usually a numeric or character string or vector.
+#'
+#' @return A character string/vector of the pasted values.
+#'
+#' @examples
+#' "He" %^% "llo"
+#' "X" %^% 1:10
+#' "Q" %^% 1:5 %^% letters[1:5]
+#'
+
+`%^%` = function(x, y) {
+  paste0(x, y)
+}
+
+
+
+#' html-table
+#'
+#' Experimental
+#'
+#'
+#' @param df data.frame
+#'
+#'
+#' @importFrom stringr str_trim str_replace_all
+#'
+#' @examples
+#'
+#'  HTML_TABLE( data.frame(
+#'     Item = c("A", "B", "Ö"),
+#'     x_m = c(45.47, 256.14, 14.47),
+#'     x_sd = c(1.43, 25.264, 5.423),
+#'     y_m = c(35.42, 261.94, 24.43),
+#'     y_sd = c(3.44, 25.25, 5.42)
+#'
+#' )
+#'
+HTML_TABLE <-  function(df, ...) {
+
+
+  align.head <- c("left", rep("right", times=ncol(df)-1))
+  align.text <- c("left", rep("right", times=ncol(df)-1))
+
+
+
+  for(j in 1:ncol(df)) {
+
+    df[[j]] <-  "\n<td align='" %^% align.text[j] %^% "'>" %^%
+      str_trim(str_replace_all(df[[j]], "^\\s*-{1}", "\u2013")) %^% "</td>"
+  }
+
+
+
+  THEAD <- "<tr style='border-bottom: 1px solid black; border-top: 1px solid black;'>  " %^%
+    paste("<th align='" %^% align.head %^% "'>" %^% names(df) %^% "</th>",
+          collapse=" ") %^% " </tr>"
+
+  TBODY <- ""
+  if( nrow(df) > 1)
+  TBODY <- "<tr> " %^%
+    paste(apply(df[-nrow(df),], 1, function(...) paste(..., collapse=" ")),
+          collapse=" </tr>\n<tr> ") %^% " </tr>"
+
+  TBODY <- paste( TBODY ,
+                  "<tr style='border-bottom: 1px solid black; '>",
+                  paste(df[nrow(df),], collapse=" "), "</tr>")
+
+  TBODY <- TBODY |>
+    str_replace_all(">\\s*NA\\s*<", "><") |>
+    str_replace_all("\\s+</td>", "</td>") |>
+    str_replace_all("\\[\\s+", "[") |>
+    str_replace_all("\\,\\s+", ", ") |>
+    str_replace_all("<\\.001", "< .001")
+
+  TABLE = paste0("
+<table class='gmisc_table' style='border-collapse: collapse; padding-left: .5em; padding-right: .2em;'>
+<thead colspan='7'>
+", THEAD, "
+</thead>
+<tbody>
+", TBODY, "
+</tbody>
+</table>
+")
+
+  TABLE
+
+}
+
+
+
+

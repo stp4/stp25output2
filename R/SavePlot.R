@@ -10,7 +10,7 @@
 #' h=dev.size("in")[1] Hoehe der Grafik also zb h=8
 #' res=72
 #' @param filename Text
-#' @param save_plot  c("pdf", "esp", "png", "jpeg", "bmp") speichern als file
+#' @param save_plot  c("pdf", "esp", "png", "jpeg", "tiff",  "bmp") speichern als file
 #' @param output nur wichtig bei html
 #' @param out.type	 name of the output device: can
 #' be "pdf", or "cairo" dev.copy2pdf
