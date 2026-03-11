@@ -11,6 +11,7 @@
 \alias{Output2}
 \alias{Output.character}
 \alias{Output.data.frame}
+\alias{Output_split}
 \alias{Output.list}
 \alias{Output.default}
 \alias{Output_kable}
@@ -52,7 +53,9 @@ Output2(x, ..., note = NULL, header = NULL, output = which_output())
   col = NULL,
   row = NULL,
   wrap = get_opt("table", "wrap"),
+  wrap_column = TRUE,
   wrap_result = get_opt("table", "wrap_result"),
+  na.rm = TRUE,
   output = which_output(),
   header = col.names,
   split_header = TRUE,
@@ -66,6 +69,8 @@ Output2(x, ..., note = NULL, header = NULL, output = which_output())
   n.rgroup = attr(x, "n.rgroup", TRUE),
   ...
 )
+
+Output_split(x, by, caption = "", ...)
 
 \method{Output}{list}(x, caption = NULL, note = NULL, output = which_output(), ...)
 
@@ -127,6 +132,8 @@ n.rgroup wie oft kommt A b und C vor.
 Die Position kann über   rgroup = c("A"=1, "B"=3, "C" =6 ) eingestellt werden}
 
 \item{digits}{to insight::display}
+
+\item{na.rm}{NA replace by ""}
 }
 \value{
 gt_tbl, list
@@ -141,6 +148,10 @@ Output mit gt() interne übergabe an gt_split_header()
 gt_split_header: GT Tabel header spliten
 
 HTML :  htmlTable::htmlTable
+
+Output_split data.frame anhand einer Spalte in mehere Tabellen Aufspliten.
+
+by ist entweder Character oder Formula
 
 Output.iste: einzeln in einen data.frame transformieren
 Wenn in einer liste ein recrusive Liste kommt wird diese mit invisible

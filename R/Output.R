@@ -113,6 +113,7 @@ Output.data.frame <-
            col = NULL,
            row = NULL,
            wrap = get_opt("table", "wrap"),
+           wrap_column = TRUE,
            wrap_result = get_opt("table", "wrap_result"),
            na.rm=TRUE,
 
@@ -129,6 +130,8 @@ Output.data.frame <-
            rgroup = attr(x, "rgroup", TRUE),
            n.rgroup =  attr(x, "n.rgroup", TRUE),
            ...) {
+
+ #   cat("\n   in Output \n")
     if (nrow(x) == 0)
       return(NULL)
 
@@ -141,8 +144,16 @@ Output.data.frame <-
         wrap <- 30
   }
 
+ # if (!is.null(wrap_column)) {
+    if (is.logical(wrap_column))
+      if (wrap_column) wrap_column <- 12
+ # }
+
+
+
   if (na.rm)
-    x <- mutate(x, across(where(is.character), ~ replace_na(., "")))
+    x <- mutate(x,
+                across(where(is.character), ~ replace_na(., "")))
 
 
     if (output == "docx") {
@@ -197,7 +208,7 @@ Output.data.frame <-
       }
       if(is.numeric(wrap)) {
         x[[1]] <-
-          stp25tools::wrap_string(x[[1]],
+          stp25tools2::wrap_string(x[[1]],
                                   width = wrap,
                                   sep =  "\n")
         }
@@ -211,41 +222,37 @@ Output.data.frame <-
       #caption <- Caption(caption, attr(x, "caption"))
       #note <- Note(note, attr(x, "note"))
 
-      tbl$header <-  gsub(" +", '&nbsp;', tbl$header)
-      tbl$cgroup <-  gsub(" +", '&nbsp;', tbl$cgroup)
 
       if (is.numeric(wrap)) {
-
-      # Fehler wenn nicht mit Tbll_desc ausgewertet wird
-      #  Error in if (substr(i, 1, 5) == "&nbsp") "<br>&nbsp; &nbsp; " else "<br>" :
-      #    missing value where TRUE/FALSE needed
-      #  Called from: FUN(X[[i]], ...)
-
-        if (names(x)[1] == "Items") {
-          # um die einrückung bei factoren zu erhalten
-          sep <- unlist(
-            lapply(x[[1]],
-                   function(i){
-                      if (substr(i, 1, 5) == "&nbsp")
-                        "<br>&nbsp; &nbsp; "
-                      else
-                        "<br>"
-                        }
-            ))
-
-          x[[1]] <-
-            stp25tools::wrap_string(x[[1]], width = wrap, sep = sep)
-        }
+        # neu programmiert aber unten habe ich noch nichts
+        # geaendert!!
+        if (grepl("Item", names(x)[1]  ))
+          x[[1]] <- wrap_character(x[[1]], width = wrap, sep = "<br>" )
       }
+
+      # Nicht Getestet!!! eventuell Fehler
       if (!is.null(wrap_result)) {
         x[-1] <-
-          stp25tools::dapply2(x[-1], function(y) {
-            y <-  stp25tools::wrap_string_at(y , pattern = " \\(", replacement = "<br>\n(")
-            y <-  stp25tools::wrap_string_at(y , pattern = ", p", replacement = "<br>\np")
+          stp25tools2::dapply2(x[-1], function(y) {
+            y <-  stp25tools2::wrap_string_at(y , pattern = " \\(", replacement = "<br>\n(")
+            y <-  stp25tools2::wrap_string_at(y , pattern = ", p", replacement = "<br>\np")
             gsub( "[()]", "", y)
           })
       }
 
+
+      # Nicht Getestet!!! eventuell Fehler
+      if (is.numeric(wrap_column)) {
+        if (is.null(tbl$header_above))
+          tbl$header <-
+            stp25tools2::wrap_string(tbl$header, width = wrap_column, sep = "<br>")
+        else
+          tbl$cgroup <-
+            stp25tools2::wrap_string(tbl$cgroup, width = wrap_column, sep = "<br>")
+      }
+
+      tbl$header <-  gsub(" +", '&nbsp;', tbl$header)
+      tbl$cgroup <-  gsub(" +", '&nbsp;', tbl$cgroup)
 
       if (is.null(tbl$header_above)) {
         res <- htmlTable::htmlTable(
@@ -525,12 +532,51 @@ cleanup_nbsp <- function(x) {
 #' @export
 #'
 Output.default <- function(x, ...) {
-  rslt <- stp25tools::fix_to_df(x)
+  rslt <- stp25tools2::fix_to_df(x)
   if (is.data.frame(rslt))
     Output.data.frame(rslt, ...)
   else {
     warning("Unbekanter Objekt-Typ: ", class(x)[1])
     x
+  }
+}
+
+
+wrap_character <- function(x,
+                           width = 25,  sep =  "\n",
+                           max.lines = NULL,
+                           max.lines.char = " ...",
+
+                           ...) {
+  # removes whitespace from start and end of string
+  x <- stringr::str_squish(x)
+
+  # Truncate a string to maximum width
+  if (!is.null(max.lines)) {
+    x <- sapply(x, function(z) {
+      stringr::str_trunc(z,
+                         width =  max.lines,
+                         side = "right",
+                         ellipsis = max.lines.char)
+    })
+  }
+
+  # um die einrückung bei factoren zu erhalten
+  sep <- unlist(
+    lapply(x[[1]],
+           function(i){
+             if (substr(i, 1, 5) == "&nbsp")
+               paste0(sep,"&nbsp; &nbsp; ")
+             else
+               sep
+           }
+    ))
+
+  if (is.numeric(width)) {
+    mapply(function(txt, s)
+      paste(strwrap(txt, width = width), collapse = s),
+      x, sep,
+      USE.NAMES = FALSE)
   }
 }
 
