@@ -234,9 +234,9 @@ Output.data.frame <-
       if (!is.null(wrap_result)) {
         x[-1] <-
           stp25tools2::dapply2(x[-1], function(y) {
-            y <-  stp25tools2::wrap_string_at(y , pattern = " \\(", replacement = "<br>\n(")
-            y <-  stp25tools2::wrap_string_at(y , pattern = ", p", replacement = "<br>\np")
-            gsub( "[()]", "", y)
+            y <- gsub(" \\(", "<br>\n(", y)
+            y <- gsub(", p", "<br>\np", y)
+            gsub("[()]", "", y)
           })
       }
 
@@ -245,10 +245,10 @@ Output.data.frame <-
       if (is.numeric(wrap_column)) {
         if (is.null(tbl$header_above))
           tbl$header <-
-            stp25tools2::wrap_string(tbl$header, width = wrap_column, sep = "<br>")
+            wrap_character(tbl$header, width = wrap_column, sep = "<br>")
         else
           tbl$cgroup <-
-            stp25tools2::wrap_string(tbl$cgroup, width = wrap_column, sep = "<br>")
+            wrap_character(tbl$cgroup, width = wrap_column, sep = "<br>")
       }
 
       tbl$header <-  gsub(" +", '&nbsp;', tbl$header)
@@ -533,6 +533,8 @@ cleanup_nbsp <- function(x) {
 #'
 Output.default <- function(x, ...) {
   rslt <- stp25tools2::fix_to_df(x)
+
+  print(rslt)
   if (is.data.frame(rslt))
     Output.data.frame(rslt, ...)
   else {
@@ -546,7 +548,6 @@ wrap_character <- function(x,
                            width = 25,  sep =  "\n",
                            max.lines = NULL,
                            max.lines.char = " ...",
-
                            ...) {
   # removes whitespace from start and end of string
   x <- stringr::str_squish(x)
