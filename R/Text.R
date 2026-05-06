@@ -147,7 +147,7 @@ Text.character <- function(...,
 #'   c = (1:3) * 3
 #' )
 #'
-#' m <- stp25tools::Label(m, a = "Aplha", b = "Barbar", c = "Ciklyn")
+#' m <- stp25tools2::Label(m, a = "Aplha", b = "Barbar", c = "Ciklyn")
 #' Text(m)
 #' }
 Text.data.frame <-
@@ -170,7 +170,7 @@ Text.data.frame <-
 
     if (include.labels) {
       Text("Label:")
-      lbl <- paste(dotts, " = '", stp25tools::get_label(x[dotts]), "'", sep = "")
+      lbl <- paste(dotts, " = '", stp25tools2::get_label(x[dotts]), "'", sep = "")
       lbl <- paste(lbl, sep = "", collapse = ",\n")
       Text(lbl,
            style = style,
@@ -218,7 +218,7 @@ Text.data.frame <-
             "unknown"
         })
         Text(
-          paste0(dotts, ": ", stp25tools::get_label(x[dotts]), ": ", lvl),
+          paste0(dotts, ": ", stp25tools2::get_label(x[dotts]), ": ", lvl),
           style = style,
           char = char,
           output = output
@@ -421,14 +421,14 @@ Arbeitszeit <- function(Lines,
 #'
 #' # Sonstige
 #' DF <- data.frame(xa = 1:10 , b = letters[1:2], c = LETTERS[1:10]) |>
-#'   stp25tools::Label(a = "Aplha", b = "Barbar", c = "Ciklyn")
+#'   stp25tools2::Label(a = "Aplha", b = "Barbar", c = "Ciklyn")
 #' Sonstige(DF, b, c)
 #'
 Sonstige <- function(x, ..., prefix = "Sonstige:") {
   if (is.vector(x))
     sonst_tabel_text(x, prefix)
   else{
-    X <- stp25tools::prepare_data2(x, ...)
+    X <- stp25tools2::prepare_data2(x, ...)
     for (i in seq_along(X$measure.vars)) {
       sonst_tabel_text(X$data[[i]], X$row_name[i])
     }

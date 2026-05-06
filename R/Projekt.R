@@ -143,7 +143,7 @@ HTML_Start <- function (Projektname = "Demo",
     file = file.path(
       output.dir,
       paste(
-        stp25tools::cleansing_umlaute(Projektname),
+         cleansing_umlaute(Projektname),
         ".html",
         sep = ""
       )

@@ -36,15 +36,14 @@ Output_word <- function(x,
 
   if(!is.null(wrap)) {
     if( is.logical(wrap)) wrap <- 25
-    x[[1]] <- stp25tools::wrap_string(x[[1]], width = wrap, sep =  "\n")
+    x[[1]] <- wrap_character(x[[1]], width = wrap, sep =  "\n")
   }
   if (!is.null(wrap_result)) {
 
-  #  if( is.logical(wrap_result)) wrap_result <- 5
     x[-1] <-
-      stp25tools::dapply2(x[-1], function(y) {
-        y <-  stp25tools::wrap_string_at(y , pattern = " \\(", replacement = "\n(")
-        y <-  stp25tools::wrap_string_at(y , pattern = ", p", replacement = "\np")
+      stp25tools2::dapply2(x[-1], function(y) {
+        y <- gsub(" \\(", "\n(", y)
+        y <- gsub(", p", "\np", y)
         gsub( "[()]", "", y)
       })
   }

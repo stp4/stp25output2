@@ -138,7 +138,7 @@ m <- data.frame(
   c = (1:3) * 3
 )
 
-m <- stp25tools::Label(m, a = "Aplha", b = "Barbar", c = "Ciklyn")
+m <- stp25tools2::Label(m, a = "Aplha", b = "Barbar", c = "Ciklyn")
 Text(m)
 }
 \dontrun{
@@ -147,7 +147,7 @@ citation_library(base,Hmisc,car,lattice)
 
 # Sonstige
 DF <- data.frame(xa = 1:10 , b = letters[1:2], c = LETTERS[1:10]) |>
-  stp25tools::Label(a = "Aplha", b = "Barbar", c = "Ciklyn")
+  stp25tools2::Label(a = "Aplha", b = "Barbar", c = "Ciklyn")
 Sonstige(DF, b, c)
 
 }

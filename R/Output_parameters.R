@@ -1,6 +1,6 @@
 #' @param output to insight::display
 #' @param digits to insight::display
-#' @param ...
+#' @param ... weiter an Output.data.frame()
 #'
 #' @rdname Output
 #' @description Output.parameters_model: of parameters::parameters Objekts

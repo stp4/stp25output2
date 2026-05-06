@@ -41,7 +41,49 @@ Output2 <- function(x,
 
 #' @rdname Output
 #' @export
-Output.character <- function(x, ...){ Text(x) }
+#' @examples
+#'
+#'  Output("
+#' | # | Modellname | Formel (R) | Grafik | Hypothesen |
+#'   |---|-----------|-----------|--------|-----------|
+#'   | **M-A** | Biomarker → MRS (univariat) | `d.MRS ~ d.cort` / `~ d.ammp8` / `~ d.pyri` | Scatterplot mit Regressionslinie, facettiert nach Biomarker | H1a, H1b, H1c |
+#'   | **M-B** | Hormone → aMMP-8 | `d.ammp8 ~ d.fsh + d.estr` | Scatterplot-Matrix (ggpairs) | H1f |
+#'   | **M-C** | Hormone → MRS-Subskalen | `d.MRS.vasomotorisch ~ d.fsh + d.estr` | Heatmap: Korrelation MRS-Subskalen × Hormonparameter | H1g |
+#'   | **M-D** | Cortisol → aMMP-8 | `d.ammp8 ~ d.cort` | Scatterplot + Smooth | H1d |
+#'   | **M-E** | aMMP-8 → Pyridinium | `d.pyri ~ d.ammp8` | Scatterplot + Smooth | H1e |
+#'   | **M-F** | Kausale Kette (sequentiell) | Drei verkettete lm()-Schritte: Cortisol → aMMP-8 → Pyridinium → MRS | Pfaddiagramm (ggraph / semPlot) | H1a–H1e |
+#'   | **M-G** | Treatment-Moderation | `d.MRS ~ d.ammp8 * treatment` | Grouped Scatterplot, getrennte Regressionslinien | Übergeordnete H1 |
+#'   ")
+#'
+Output.character <-
+  function(x, ...) {
+    pipes <-
+      sum(lengths(gregexpr("\\|", x)))
+
+    if (pipes < 4)
+      Text(x)
+    else {
+      x <- gsub("\n\\s*[-|\\s]+\n", "\n", x)
+      x_1 <- gsub("[\n\t ]", "", x)
+      start_end <- (all(c(substr(x_1, 1, 1), substr(x_1, nchar(x_1), nchar(x_1))) == "|"))
+
+      x <-  readr::read_delim(
+        file = I(x),
+        delim = "|",
+        trim_ws = TRUE,
+        # strip.white = TRUE,
+        # bereinigt Leerzeichen
+        show_col_types = FALSE
+      )
+      if (start_end)
+        x <- x[-c(1, ncol(x))]
+
+      Output(x, ...)
+
+    }
+  }
+
+
 
 #' @rdname Output
 #' @param x dataframe
@@ -208,7 +250,7 @@ Output.data.frame <-
       }
       if(is.numeric(wrap)) {
         x[[1]] <-
-          stp25tools2::wrap_string(x[[1]],
+          wrap_character(x[[1]],
                                   width = wrap,
                                   sep =  "\n")
         }
@@ -221,11 +263,8 @@ Output.data.frame <-
     else if (output == "html" | output == "markdown_html") {
       #caption <- Caption(caption, attr(x, "caption"))
       #note <- Note(note, attr(x, "note"))
-
-
       if (is.numeric(wrap)) {
-        # neu programmiert aber unten habe ich noch nichts
-        # geaendert!!
+        # neu programmiert aber unten habe ich noch nichts geaendert!!
         if (grepl("Item", names(x)[1]  ))
           x[[1]] <- wrap_character(x[[1]], width = wrap, sep = "<br>" )
       }
@@ -546,21 +585,21 @@ Output.default <- function(x, ...) {
 
 wrap_character <- function(x,
                            width = 25,  sep =  "\n",
-                           max.lines = NULL,
-                           max.lines.char = " ...",
+                         #  max.lines = NULL,
+                          # max.lines.char = " ...",
                            ...) {
   # removes whitespace from start and end of string
-  x <- stringr::str_squish(x)
+  # x <- stringr::str_squish(x)
 
-  # Truncate a string to maximum width
-  if (!is.null(max.lines)) {
-    x <- sapply(x, function(z) {
-      stringr::str_trunc(z,
-                         width =  max.lines,
-                         side = "right",
-                         ellipsis = max.lines.char)
-    })
-  }
+  # # Truncate a string to maximum width
+  # if (!is.null(max.lines)) {
+  #   x <- sapply(x, function(z) {
+  #     stringr::str_trunc(z,
+  #                        width =  max.lines,
+  #                        side = "right",
+  #                        ellipsis = max.lines.char)
+  #   })
+  # }
 
   # um die einrückung bei factoren zu erhalten
   sep <- unlist(

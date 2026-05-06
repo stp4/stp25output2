@@ -8,15 +8,17 @@ Description: Creation of reports, whereby tables and texts are output in HTML fo
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.3
 Date: 2024-02-26
 Imports: 
     plyr, 
-    lazyeval,tidyselect,
-    htmlTable,flextable, gt,
-    knitr, kableExtra,
-    stringr,stringi,
-    stp25settings,stp25tools,
+    lazyeval,
+    tidyselect,
+    htmlTable,
+    flextable, gt,
+    knitr, 
+    kableExtra,
+    stringr,
+    stringi,
     crayon
 Suggests: 
     ggplot2,
@@ -24,3 +26,4 @@ Suggests:
     rmarkdown,
     testthat
 VignetteBuilder: knitr
+Config/roxygen2/version: 8.0.0

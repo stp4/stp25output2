@@ -111,7 +111,7 @@ Output_kable(x, ...)
 
 \item{output}{to insight::display}
 
-\item{...}{}
+\item{...}{weiter an Output.data.frame()}
 
 \item{header, col.names}{new name for the header row in the tables}
 
@@ -214,6 +214,19 @@ m2 <- lm(neg_c_7 ~ c160age + c12hour + c161sex + e17age, data = efc)
 sjPlot::tab_model(m1, m2) |>
   Output("Side-by-side Regression Models")
 }
+
+
+ Output("
+| # | Modellname | Formel (R) | Grafik | Hypothesen |
+  |---|-----------|-----------|--------|-----------|
+  | **M-A** | Biomarker → MRS (univariat) | `d.MRS ~ d.cort` / `~ d.ammp8` / `~ d.pyri` | Scatterplot mit Regressionslinie, facettiert nach Biomarker | H1a, H1b, H1c |
+  | **M-B** | Hormone → aMMP-8 | `d.ammp8 ~ d.fsh + d.estr` | Scatterplot-Matrix (ggpairs) | H1f |
+  | **M-C** | Hormone → MRS-Subskalen | `d.MRS.vasomotorisch ~ d.fsh + d.estr` | Heatmap: Korrelation MRS-Subskalen × Hormonparameter | H1g |
+  | **M-D** | Cortisol → aMMP-8 | `d.ammp8 ~ d.cort` | Scatterplot + Smooth | H1d |
+  | **M-E** | aMMP-8 → Pyridinium | `d.pyri ~ d.ammp8` | Scatterplot + Smooth | H1e |
+  | **M-F** | Kausale Kette (sequentiell) | Drei verkettete lm()-Schritte: Cortisol → aMMP-8 → Pyridinium → MRS | Pfaddiagramm (ggraph / semPlot) | H1a–H1e |
+  | **M-G** | Treatment-Moderation | `d.MRS ~ d.ammp8 * treatment` | Grouped Scatterplot, getrennte Regressionslinien | Übergeordnete H1 |
+  ")
 
 
 df1 <- data.frame(

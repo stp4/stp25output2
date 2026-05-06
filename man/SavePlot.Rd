@@ -39,7 +39,7 @@ res=72}
 
 \item{filename}{Text}
 
-\item{save_plot}{c("pdf", "esp", "png", "jpeg", "bmp") speichern als file}
+\item{save_plot}{c("pdf", "esp", "png", "jpeg", "tiff",  "bmp") speichern als file}
 
 \item{output}{nur wichtig bei html}
 
@@ -90,7 +90,7 @@ cowplot::plot_grid(
 #) {
 #
  # p_new <-
- #   update(p, par.settings = stp25settings::bw_theme(farbe()))
+ #   update(p, par.settings =bw_theme(farbe()))
  # filename <-   file.path(path, filename)
  # jpeg(filename,
  #      width = round(w * res),
@@ -109,7 +109,6 @@ cowplot::plot_grid(
 
 # require(lattice)
 # require(stp25output2)
-# require(stp25settings)
 # p<- barchart(yield ~ variety | site, data = barley,
 #             groups = year, layout = c(1,6), stack = TRUE,
 #             auto.key = list(space = "right"),

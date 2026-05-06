@@ -55,7 +55,7 @@
 #' #) {
 #'#
 #'  # p_new <-
-#'  #   update(p, par.settings = stp25settings::bw_theme(farbe()))
+#'  #   update(p, par.settings =bw_theme(farbe()))
 #'  # filename <-   file.path(path, filename)
 #'  # jpeg(filename,
 #'  #      width = round(w * res),
@@ -74,7 +74,6 @@
 #'
 #' # require(lattice)
 #' # require(stp25output2)
-#' # require(stp25settings)
 #' # p<- barchart(yield ~ variety | site, data = barley,
 #' #             groups = year, layout = c(1,6), stack = TRUE,
 #' #             auto.key = list(space = "right"),
